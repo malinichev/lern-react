@@ -12,6 +12,7 @@ export default {
     },
 } as ComponentMeta<typeof MainPage>;
 
+// @ts-ignore
 const Template: ComponentStory<typeof MainPage> = (args) => <MainPage {...args} />;
 
 export const Normal = Template.bind({});

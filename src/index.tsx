@@ -8,6 +8,7 @@ import { ErrorBoundary } from './app/providers/ErrorBoundary';
 
 render(
     <BrowserRouter>
+        {/* @ts-ignore */}
         <ErrorBoundary>
             <ThemeProvider>
                 <App />
