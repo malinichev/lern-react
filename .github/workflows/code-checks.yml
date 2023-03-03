@@ -1,0 +1,62 @@
+name: Code Checks
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  eslint:
+    name: runner / eslint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'yarn'
+      - run: yarn install --frozen-lockfile
+      - name: linting typescript
+        run: yarn lint:ts
+
+  stylelint:
+    name: runner / stylelint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'yarn'
+      - run: yarn install --frozen-lockfile
+      - name: linting css
+        run: yarn lint:scss
+
+  unit:
+    name: runner / unit_test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'yarn'
+      - run: yarn install --frozen-lockfile
+      - name: unit testing
+        run: yarn test:unit
+
+  screenshot:
+    name: runner / screenshot_testing
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'yarn'
+      - run: yarn install --frozen-lockfile
+      - name: install modules
+        run: yarn
+      - name: build storybook
+        run: yarn storybook:build
+      - name: screenshot testing
+        run: yarn test:ui:ci

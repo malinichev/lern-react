@@ -5,7 +5,7 @@ import { Input } from 'shared/ui/Input/Input';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
 import { useDispatch, useSelector } from 'react-redux';
 import { useCallback } from 'react';
-import { getLoginData } from 'features/AuthByUsername/model/selector/getLoginData/getLoginData';
+import { getLoginData } from '../../model/selector/getLoginData/getLoginData';
 import { getPassword, getUserName, loginAction } from '../../model';
 import { loginByUserName } from '../../model/services/loginByUserName/loginByUserName';
 import cls from './LoginForm.module.scss';
