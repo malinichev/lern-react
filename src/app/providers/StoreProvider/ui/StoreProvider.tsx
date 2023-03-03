@@ -15,6 +15,7 @@ export const StoreProvider = (props:StoreProviderType) => {
     const store = createReduxStore(initialState as StateSchema);
 
     return (
+        // @ts-ignore
         <Provider store={store}>
             {children}
         </Provider>
