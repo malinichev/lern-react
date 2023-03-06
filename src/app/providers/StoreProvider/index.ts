@@ -1,4 +1,4 @@
-export type { StateSchema } from './config/StateSchema';
+export type { StateSchema, ReduxStoreWithManager } from './config/StateSchema';
 
 export { createReduxStore } from './config/createReduxStore';
 

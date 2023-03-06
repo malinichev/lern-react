@@ -5,8 +5,15 @@ import { Input } from 'shared/ui/Input/Input';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
 import { useDispatch, useSelector } from 'react-redux';
 import { useCallback } from 'react';
-import { getLoginData } from '../../model/selector/getLoginData/getLoginData';
-import { getPassword, getUserName, loginAction } from '../../model';
+
+import { getError } from 'features/AuthByUsername/model/selector/getError/getError';
+import { getIsLoading } from 'features/AuthByUsername/model/selector/getIsLoading/getIsLoading';
+import { ReducersList, useDynamicModuleLoader } from 'shared/lib/useDynamicModuleLoader';
+
+import { loginAction, loginReducer } from '../../model/slice/LoginSlice';
+import {
+    getPassword, getUserName,
+} from '../../model';
 import { loginByUserName } from '../../model/services/loginByUserName/loginByUserName';
 import cls from './LoginForm.module.scss';
 
@@ -14,10 +21,18 @@ interface LoginFormProps {
     className?: string;
 }
 
-export const LoginForm = ({ className }: LoginFormProps) => {
+const initialsReducers: ReducersList = {
+    login: loginReducer,
+};
+
+const LoginForm = ({ className }: LoginFormProps) => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
-    const { isLoading, error } = useSelector(getLoginData);
+
+    useDynamicModuleLoader(initialsReducers, true);
+
+    const error = useSelector(getError);
+    const isLoading = useSelector(getIsLoading);
     const password = useSelector(getPassword);
     const username = useSelector(getUserName);
 
@@ -76,3 +91,5 @@ export const LoginForm = ({ className }: LoginFormProps) => {
         dispatch(loginByUserName({ username, password }));
     }
 };
+
+export default LoginForm;
