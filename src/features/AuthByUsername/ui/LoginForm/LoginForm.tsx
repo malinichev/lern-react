@@ -3,13 +3,14 @@ import { useTranslation } from 'react-i18next';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { Input } from 'shared/ui/Input/Input';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
-import { useDispatch, useSelector } from 'react-redux';
-import { useCallback } from 'react';
+import { useSelector } from 'react-redux';
 
 import { getError } from 'features/AuthByUsername/model/selector/getError/getError';
 import { getIsLoading } from 'features/AuthByUsername/model/selector/getIsLoading/getIsLoading';
 import { ReducersList, useDynamicModuleLoader } from 'shared/lib/useDynamicModuleLoader';
 
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
+import { memo } from 'react';
 import { loginAction, loginReducer } from '../../model/slice/LoginSlice';
 import {
     getPassword, getUserName,
@@ -19,15 +20,16 @@ import cls from './LoginForm.module.scss';
 
 interface LoginFormProps {
     className?: string;
+    onSuccess: () => void
 }
 
 const initialsReducers: ReducersList = {
     login: loginReducer,
 };
 
-const LoginForm = ({ className }: LoginFormProps) => {
+const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
     const { t } = useTranslation();
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     useDynamicModuleLoader(initialsReducers, true);
 
@@ -35,19 +37,6 @@ const LoginForm = ({ className }: LoginFormProps) => {
     const isLoading = useSelector(getIsLoading);
     const password = useSelector(getPassword);
     const username = useSelector(getUserName);
-
-    const handlePasswordWithCallback = useCallback(
-        handlePassword,
-        [dispatch],
-    );
-    const handleUserNameWithCallback = useCallback(
-        handleUserName,
-        [dispatch],
-    );
-    const handleClickWithCallback = useCallback(
-        handleClick,
-        [dispatch, password, username],
-    );
 
     return (
         <div className={classNames(cls.LoginForm, {}, [className])}>
@@ -58,20 +47,20 @@ const LoginForm = ({ className }: LoginFormProps) => {
                 type="text"
                 className={cls.input}
                 value={username}
-                onChange={handleUserNameWithCallback}
+                onChange={handleUserName}
                 placeholder={t('Введите username')}
             />
             <Input
                 type="text"
                 value={password}
                 className={cls.input}
-                onChange={handlePasswordWithCallback}
+                onChange={handlePassword}
                 placeholder={t('Введите пароль')}
             />
             <Button
                 theme={ButtonTheme.OUTLINE}
                 className={cls.loginBtn}
-                onClick={handleClickWithCallback}
+                onClick={handleClick}
                 disabled={isLoading}
             >
                 {t('Войти')}
@@ -87,9 +76,12 @@ const LoginForm = ({ className }: LoginFormProps) => {
         dispatch(loginAction.setUserName(value));
     }
 
-    function handleClick() {
-        dispatch(loginByUserName({ username, password }));
+    async function handleClick() {
+        const res = await dispatch(loginByUserName({ username, password }));
+        if (res.meta.requestStatus === 'fulfilled') {
+            onSuccess();
+        }
     }
-};
+});
 
 export default LoginForm;
