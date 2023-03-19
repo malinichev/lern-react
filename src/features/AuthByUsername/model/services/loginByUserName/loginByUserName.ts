@@ -7,7 +7,7 @@ interface LoginByUserNameProps {
     password:string
 }
 
-export const loginByUserName = createAsyncThunk<User, LoginByUserNameProps, {rejectValue: string}>(
+export const loginByUserName = createAsyncThunk<User, LoginByUserNameProps, { rejectValue: string }>(
     'login/loginByUserName',
     async (authData, thunkAPI) => {
         try {
