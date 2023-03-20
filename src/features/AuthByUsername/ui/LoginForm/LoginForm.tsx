@@ -5,17 +5,16 @@ import { Input } from 'shared/ui/Input/Input';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
 import { useSelector } from 'react-redux';
 
-import { getError } from 'features/AuthByUsername/model/selector/getError/getError';
-import { getIsLoading } from 'features/AuthByUsername/model/selector/getIsLoading/getIsLoading';
 import { ReducersList, useDynamicModuleLoader } from 'shared/lib/useDynamicModuleLoader';
 
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
-import { memo } from 'react';
+import { memo, useCallback } from 'react';
 import { loginAction, loginReducer } from '../../model/slice/LoginSlice';
 import {
-    getPassword, getUserName,
+    getError, getIsLoading,
+    getPassword, getUserName, loginByUserName,
 } from '../../model';
-import { loginByUserName } from '../../model/services/loginByUserName/loginByUserName';
+
 import cls from './LoginForm.module.scss';
 
 interface LoginFormProps {
@@ -38,6 +37,21 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
     const password = useSelector(getPassword);
     const username = useSelector(getUserName);
 
+    const onChangeUsername = useCallback((value: string) => {
+        dispatch(loginAction.setUserName(value));
+    }, [dispatch]);
+
+    const onChangePassword = useCallback((value: string) => {
+        dispatch(loginAction.setPassword(value));
+    }, [dispatch]);
+
+    const onLoginClick = useCallback(async () => {
+        const result = await dispatch(loginByUserName({ username, password }));
+        if (result.meta.requestStatus === 'fulfilled') {
+            onSuccess();
+        }
+    }, [onSuccess, dispatch, password, username]);
+
     return (
         <div className={classNames(cls.LoginForm, {}, [className])}>
             <Text title={t('Форма авторизации')} />
@@ -47,41 +61,26 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
                 type="text"
                 className={cls.input}
                 value={username}
-                onChange={handleUserName}
+                onChange={onChangeUsername}
                 placeholder={t('Введите username')}
             />
             <Input
                 type="text"
                 value={password}
                 className={cls.input}
-                onChange={handlePassword}
+                onChange={onChangePassword}
                 placeholder={t('Введите пароль')}
             />
             <Button
                 theme={ButtonTheme.OUTLINE}
                 className={cls.loginBtn}
-                onClick={handleClick}
+                onClick={onLoginClick}
                 disabled={isLoading}
             >
                 {t('Войти')}
             </Button>
         </div>
     );
-
-    function handlePassword(value:string) {
-        dispatch(loginAction.setPassword(value));
-    }
-
-    function handleUserName(value:string) {
-        dispatch(loginAction.setUserName(value));
-    }
-
-    async function handleClick() {
-        const res = await dispatch(loginByUserName({ username, password }));
-        if (res.meta.requestStatus === 'fulfilled') {
-            onSuccess();
-        }
-    }
 });
 
 export default LoginForm;
