@@ -7,7 +7,7 @@ import {
 } from '@reduxjs/toolkit';
 import { ProfileSchema } from 'entities/Profile';
 import { AxiosInstance } from 'axios';
-import { NavigateFunction } from 'react-router-dom';
+import { NavigateFunction, NavigateOptions, To } from 'react-router-dom';
 
 export interface StateSchema {
     counter: CounterSchema
@@ -33,7 +33,7 @@ export interface ReduxStoreWithManager extends EnhancedStore<StateSchema> {
 
 export interface ThunkExtraArg {
     api: AxiosInstance
-    navigate: NavigateFunction
+    navigate?: (to: To, options?: NavigateOptions) => void,
 }
 
 export interface ThunkConfig<T> {

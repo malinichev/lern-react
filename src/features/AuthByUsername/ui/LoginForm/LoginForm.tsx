@@ -11,8 +11,8 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
 import { memo, useCallback } from 'react';
 import { loginAction, loginReducer } from '../../model/slice/LoginSlice';
 import {
-    getError, getIsLoading,
-    getPassword, getUserName, loginByUserName,
+    getLoginError, getLoginIsLoading,
+    getLoginPassword, getLoginUsername, loginByUserName,
 } from '../../model';
 
 import cls from './LoginForm.module.scss';
@@ -32,10 +32,10 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
 
     useDynamicModuleLoader(initialsReducers, true);
 
-    const error = useSelector(getError);
-    const isLoading = useSelector(getIsLoading);
-    const password = useSelector(getPassword);
-    const username = useSelector(getUserName);
+    const error = useSelector(getLoginError);
+    const isLoading = useSelector(getLoginIsLoading);
+    const password = useSelector(getLoginPassword);
+    const username = useSelector(getLoginUsername);
 
     const onChangeUsername = useCallback((value: string) => {
         dispatch(loginAction.setUserName(value));
