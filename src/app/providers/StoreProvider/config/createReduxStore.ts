@@ -6,10 +6,10 @@ import { StateSchema } from 'app/providers/StoreProvider';
 import { userReducer } from 'entities/User';
 import { counterReducer } from 'entities/Counter';
 import { createReducerManager } from 'app/providers/StoreProvider/config/createReducerManager';
-import { authMiddleware } from 'app/providers/StoreProvider/middlewares/authMiddleware';
 import { $api } from 'shared/api/api';
 import { NavigateOptions, To } from 'react-router-dom';
 import { ThunkExtraArg } from 'app/providers/StoreProvider/config/StateSchema';
+import { authMiddleware } from 'app/providers/StoreProvider/middlewares/authMiddleware';
 
 export function createReduxStore(
     initialState: StateSchema,

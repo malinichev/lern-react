@@ -3,7 +3,7 @@ import { memo } from 'react';
 import cls from './Text.module.scss';
 
 export enum TextTheme {
-    PRIMARY = 'primary',
+     PRIMARY = 'primary',
     INVERTED = 'inverted',
     ERROR = 'error',
 }

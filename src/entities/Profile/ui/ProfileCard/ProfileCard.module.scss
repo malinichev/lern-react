@@ -3,16 +3,8 @@
     border: 2px solid var(--inverted-bg-color);
 }
 
-.input {
+.input:not(:first-child) {
     margin-top: 10px;
-}
-
-.header {
-    display: flex;
-}
-
-.editBtn {
-    margin-left: auto;
 }
 
 .loading,

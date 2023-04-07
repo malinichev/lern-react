@@ -17,10 +17,10 @@ export const loginByUserName = createAsyncThunk<User, LoginByUserNameProps, Thun
             if (!response.data) {
                 throw new Error();
             }
-
+            console.log('loginByUserName', response);
             dispatch(userActions.setAuthData(response.data));
 
-            extra.navigate?.('/about');
+            // extra.navigate?.('/about');
             return response.data;
         } catch (e) {
             console.log(e);

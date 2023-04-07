@@ -17,6 +17,10 @@
     &:focus {
         outline: none;
     }
+
+    &:first-child {
+        margin-top: 0;
+    }
 }
 
 .caretWrapper {
@@ -32,6 +36,10 @@
     left: 0;
     position: absolute;
     animation: blink 0.7s forwards infinite;
+}
+
+.readonly {
+    opacity: 0.7;
 }
 
 @keyframes blink {
