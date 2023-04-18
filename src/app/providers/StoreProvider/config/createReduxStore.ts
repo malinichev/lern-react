@@ -12,7 +12,7 @@ import { ThunkExtraArg } from 'app/providers/StoreProvider/config/StateSchema';
 import { authMiddleware } from 'app/providers/StoreProvider/middlewares/authMiddleware';
 
 export function createReduxStore(
-    initialState: StateSchema,
+    initialState?: StateSchema,
     asyncReducers?:ReducersMapObject<StateSchema>,
     navigate?: (to: To, options?: NavigateOptions) => void,
 ) {

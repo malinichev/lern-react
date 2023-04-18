@@ -94,7 +94,6 @@ export const ProfileCard = (props: ProfileCardProps) => {
                 />
                 <Input
                     value={data?.age}
-                    type="number"
                     placeholder={t('Ваш возраст')}
                     className={cls.input}
                     onChange={onChangeAge}
