@@ -1,4 +1,8 @@
 export {
+    getInitAuthData,
+} from './model/selectors/getInitAuthData/getInitAuthData';
+
+export {
     getUserAuthData,
 } from './model/selectors/getUserAuthData/getUserAuthData';
 
