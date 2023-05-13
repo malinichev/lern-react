@@ -1,0 +1,11 @@
+.ArticleTextBlockComponent {
+    display: block;
+}
+
+.title {
+    margin-bottom: 16px;
+}
+
+.paragraph:not(:last-child) {
+    margin-bottom: 8px;
+}

@@ -1,0 +1,34 @@
+.ArticleDetail {
+    min-height: 100%;
+}
+
+.articleInfo {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-gap: 10px;
+    align-items: center;
+}
+
+.icons {
+    color: var(--primary-color);
+}
+
+.avatarWrapper {
+    display: flex;
+}
+
+.block {
+    margin-top: 20px;
+}
+
+.avatar {
+    margin: 0 auto;
+}
+
+.title {
+    margin-top: 20px;
+}
+
+.skeleton {
+    margin-top: 15px;
+}

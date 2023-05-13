@@ -24,8 +24,10 @@ module.exports = {
         'react-hooks',
     ],
     rules: {
+        'no-unused-vars': 0,
         'react/jsx-indent': [2, 4],
         'react/jsx-indent-props': [2, 4],
+        'no-console': 'off',
         indent: [2, 4],
         'react/jsx-filename-extension': [
             2,
@@ -33,7 +35,6 @@ module.exports = {
         ],
         'import/no-unresolved': 'off',
         'import/prefer-default-export': 'off',
-        'no-unused-vars': 'warn',
         'react/require-default-props': 'off',
         'react/react-in-jsx-scope': 'off',
         'react/jsx-props-no-spreading': 'warn',
