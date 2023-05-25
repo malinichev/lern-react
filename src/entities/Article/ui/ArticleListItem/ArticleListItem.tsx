@@ -42,7 +42,6 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
     }, [navigete, article.id]);
 
     if (view === ArticleView.BIG) {
-        console.log(article)
         const textBlock = article.blocks?.find(
             (block) => block.type === ArticleBlockType.TEXT,
         ) as ArticleTextBlock;
