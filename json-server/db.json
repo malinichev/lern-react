@@ -14,6 +14,7 @@
   "articles": [
     {
       "id": "1",
+      "userId": "1",
       "title": "Javascript news",
       "subtitle": "Что нового в JS за 2022 год?",
       "img": "https://teknotower.com/wp-content/uploads/2020/11/js.png",
@@ -102,6 +103,48 @@
       "text": "some comment 3",
       "articleId": "1",
       "userId": "1"
+    },
+    {
+      "articleId": "1",
+      "userId": "1",
+      "text": "Привет",
+      "id": "fp8eVJc"
+    },
+    {
+      "articleId": "1",
+      "userId": "1",
+      "text": "Привет 2",
+      "id": "EPkien0"
+    },
+    {
+      "articleId": "1",
+      "userId": "2",
+      "text": "Привет 3",
+      "id": "67RPJZG"
+    },
+    {
+      "articleId": "1",
+      "userId": "2",
+      "text": "Привет 4",
+      "id": "cpyxn4l"
+    },
+    {
+      "articleId": "1",
+      "userId": "2",
+      "text": "Привет мир!",
+      "id": "vHrvSIY"
+    },
+    {
+      "articleId": "1",
+      "userId": "1",
+      "text": "Hellow World!",
+      "id": "D0-wiko"
+    },
+    {
+      "articleId": "1",
+      "userId": "1",
+      "text": "ууууу",
+      "id": "8_RxmVZ"
     }
   ],
   "users": [
@@ -120,14 +163,28 @@
       "avatar": "https://xakep.ru/wp-content/uploads/2018/05/171485/KuroiSH-hacker.jpg"
     }
   ],
-  "profile": {
-    "first": "jgh",
-    "lastname": "asf",
-    "age": 465,
-    "currency": "RUB",
-    "country": "Belarus",
-    "city": "Moscow",
-    "username": "admin213",
-    "avatar": "https://avatars.mds.yandex.net/get-zen_doc/3413519/pub_5ff887b2fe4e686f6ae6ba3f_5ff887d7f906b16872a69755/scale_1200"
-  }
+  "profile": [
+    {
+      "id": "1",
+      "firstname": "Serg2",
+      "lastname": "Malinichev",
+      "age": 465,
+      "currency": "RUB",
+      "country": "Belarus",
+      "city": "Moscow",
+      "username": "admin213",
+      "avatar": "https://pixelbox.ru/wp-content/uploads/2022/08/avatars-viber-pixelbox.ru-33.jpg"
+    },
+    {
+      "id": "2",
+      "firstname": "Adm",
+      "lastname": "asf",
+      "age": 465,
+      "currency": "RUB",
+      "country": "Belarus",
+      "city": "Moscow",
+      "username": "admin213",
+      "avatar": "https://yt3.ggpht.com/ytc/AAUvwngFzM_Rf6MNwOnFcuphoj93k7VFjlIrj-kSMxbh=s900-c-k-c0x00ffffff-no-rj"
+    }
+  ]
 }

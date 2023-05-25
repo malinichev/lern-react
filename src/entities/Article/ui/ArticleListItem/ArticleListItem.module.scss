@@ -1,0 +1,139 @@
+.ArticleListItem {
+  display: block;
+}
+
+.BIG {
+  margin-bottom: 15px;
+
+  .header {
+    display: flex;
+    align-items: center;
+  }
+  .createdAt {
+    margin-left: auto;
+  }
+
+  .avatarWrap {
+    display: flex;
+    align-items: center;
+  }
+  .avatarImage {
+    margin-right: 11px;
+  }
+  .titleBig {
+  }
+
+  .types {
+  }
+
+  .image {
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: var(--inverted-bg-color);
+    background-position: center;
+    height: 178px;
+  }
+
+  .footer {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+  }
+
+  .viewsNumber {
+    display: grid;
+    grid-auto-flow: column;
+    grid-gap: 5px;
+    align-items: center;
+    margin-left: auto;
+  }
+  
+  .textBlock {
+    max-height: 200px;
+    overflow: hidden;
+  }
+
+  .skeletonMarginTop {
+    margin-top: 10px;
+  }
+
+  .skeletonMLauto {
+    margin-left: auto;
+  }
+}
+
+.SMALL {
+  width: 230px;
+  transition: 0.2s;
+
+  .date {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  &:hover {
+    opacity: 0.8;
+    transform: scale(1.01);
+    cursor: pointer;
+
+    .date {
+      display: block;
+    }
+  }
+
+  .card {
+    padding: 15px;
+    border-radius: 12px;
+    background-color: var(--card-bg);
+  }
+
+  .imageWrapper {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 10px;
+  }
+
+  .image {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: auto;
+    height: 100%;
+    transform: translateX(-50%);
+  }
+
+  .subtitleWrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  .viewsNumber {
+    display: grid;
+    grid-auto-flow: column;
+    grid-gap: 5px;
+    align-items: center;
+    margin-left: auto;
+  }
+
+  .types p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 125px;
+    white-space: nowrap;
+  }
+
+  .title p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 200px;
+    white-space: nowrap;
+  }
+
+  .skeletonTitle {
+    margin-top: 10px;
+  }
+}

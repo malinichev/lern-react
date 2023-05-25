@@ -1,1 +1,3 @@
-{}
+{
+    "i18next.i18nPaths": "/Users/malini4/WebstormProjects/lern-react/public/locales,/Users/malini4/WebstormProjects/lern-react/src/shared/config/i18n"
+}

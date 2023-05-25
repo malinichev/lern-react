@@ -5,6 +5,7 @@ import { updateProfileData } from 'entities/Profile/model/service/updateProfileD
 import { profileActions, profileReducer } from './profileSlice';
 
 const data = {
+    id: '1',
     firstname: 'Sergey',
     lastname: 'Malinichev',
     age: 39,
@@ -74,7 +75,7 @@ describe('profileSlice.test', () => {
         };
         expect(profileReducer(
             state as ProfileSchema,
-            fetchProfileData.fulfilled(data, ''),
+            fetchProfileData.fulfilled(data, '1', ''),
         )).toEqual({
             isLoading: false,
             form: data,
