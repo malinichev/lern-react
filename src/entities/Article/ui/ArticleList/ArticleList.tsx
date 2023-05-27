@@ -20,7 +20,8 @@ export const ArticleList = memo((props: ArticleListProps) => {
 
     return (
         <div className={classNames(cls.ArticleList, {}, [className, cls[view]])}>
-            {isLoading ? renderSkeleton() : articles.length > 0 && articles.map(renderArticleListItem)}
+            {articles.length > 0 ? articles.map(renderArticleListItem) : null}
+            {isLoading && renderSkeleton()}
         </div>
     );
 

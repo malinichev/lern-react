@@ -1,8 +1,4 @@
-import {
-    createSlice,
-    createEntityAdapter,
-    PayloadAction,
-} from '@reduxjs/toolkit';
+import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { StateSchema } from 'app/providers/StoreProvider';
 import { Article } from 'entities/Article';
 import { ArticleView } from 'entities/Article/model/types/article';
@@ -24,6 +20,8 @@ export const articlePageSlice = createSlice({
         view: ArticleView.SMALL,
         ids: [],
         entities: {},
+        hasMore: true,
+        page: 1,
     }),
     reducers: {
         setView: (state, actions: PayloadAction<ArticleView>) => {
@@ -31,7 +29,15 @@ export const articlePageSlice = createSlice({
             localStorage.setItem(ARTICLES_VIEW_LOCALSTORAGE_KEY, actions.payload);
         },
         initState: (state) => {
-            state.view = localStorage.getItem(ARTICLES_VIEW_LOCALSTORAGE_KEY) as ArticleView;
+            const view = localStorage.getItem(ARTICLES_VIEW_LOCALSTORAGE_KEY) as ArticleView;
+            state.view = view;
+            state.limit = view === ArticleView.SMALL ? 9 : 4;
+        },
+        setPage: (state, actions: PayloadAction<number>) => {
+            state.page = actions.payload;
+        },
+        setHasMore: (state, actions: PayloadAction<boolean>) => {
+            state.hasMore = actions.payload;
         },
     },
     extraReducers: (builder) => {
@@ -45,7 +51,8 @@ export const articlePageSlice = createSlice({
                 action: PayloadAction<Article[]>,
             ) => {
                 state.isLoading = false;
-                articlesAdapter.setAll(state, action.payload);
+                articlesAdapter.addMany(state, action.payload);
+                state.hasMore = action.payload.length > 0;
             })
             .addCase(fetchArticlesList.rejected, (state, action) => {
                 state.error = action.payload;

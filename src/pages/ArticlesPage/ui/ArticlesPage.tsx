@@ -10,6 +10,8 @@ import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect';
 import { ArticleViewSelector } from 'entities/Article';
 import { ArticleView } from 'entities/Article/model/types/article';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { Page } from 'shared/ui/Page/Page';
+import { fetchNextArticlesPage } from 'pages/ArticlesPage/model/service/fetchNextArticlesPage/fetchNextArticlesPage';
 import {
     articlesPageActions,
     articlesPageReducer,
@@ -39,17 +41,31 @@ const ArticlesPage = memo(() => {
         [dispatch],
     );
 
+    const onLoadNextPart = useCallback(
+        () => {
+            dispatch(fetchNextArticlesPage());
+        },
+        [dispatch],
+    );
+
     useInitialEffect(() => {
-        dispatch(fetchArticlesList());
         dispatch(articlesPageActions.initState());
+        dispatch(fetchArticlesList({ page: 1 }));
     });
+
+    if (error) {
+        return <div>{error}</div>;
+    }
 
     return (
         <DynamicModuleLoader reducers={reducers}>
-            <div className={classNames(cls.ArticlesPage, {}, [])}>
+            <Page
+                className={classNames(cls.ArticlesPage, {}, [])}
+                onScrollEnd={onLoadNextPart}
+            >
                 <ArticleViewSelector view={view} onViewClick={onChangeView} />
-                <ArticleList isLoading={!!isLoading} view={view} articles={articles} />
-            </div>
+                <ArticleList isLoading={isLoading} view={view} articles={articles} />
+            </Page>
         </DynamicModuleLoader>
     );
 });
