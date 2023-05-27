@@ -100,15 +100,9 @@
         width: 200px;
         height: 200px;
         margin: 0 auto 10px;
-    }
-
-    .image {
-        position: absolute;
-        top: 0;
-        left: 50%;
-        width: auto;
-        height: 100%;
-        transform: translateX(-50%);
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
     }
 
     .subtitleWrapper {

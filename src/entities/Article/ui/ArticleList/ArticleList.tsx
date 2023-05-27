@@ -1,4 +1,3 @@
-import { useTranslation } from 'react-i18next';
 import { memo } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Article } from 'entities/Article';
@@ -18,26 +17,21 @@ export const ArticleList = memo((props: ArticleListProps) => {
     const {
         className, articles, isLoading, view = ArticleView.SMALL,
     } = props;
-    const { t } = useTranslation();
-
-    if (isLoading) {
-        const renderArticleSkeleton = (_: number, index: number) => (
-            <ArticleListItemSkeleton key={String(index)} view={view} />
-        );
-        return (
-            <div className={classNames(cls.ArticleList, {}, [className, cls[view]])}>
-                {Array(view === ArticleView.BIG ? 3 : 9).fill(0).map(renderArticleSkeleton)}
-            </div>
-        );
-    }
-
-    const renderArticleListItem = (article: Article) => (
-        <ArticleListItem key={article.id} view={view} article={article} />
-    );
 
     return (
         <div className={classNames(cls.ArticleList, {}, [className, cls[view]])}>
-            {articles.length ? articles.map(renderArticleListItem) : null}
+            {isLoading ? renderSkeleton() : articles.length > 0 && articles.map(renderArticleListItem)}
         </div>
     );
+
+    function renderArticleListItem(article: Article, index:number) {
+        return <ArticleListItem key={`${article.id}-${index}`} view={view} article={article} />;
+    }
+
+    function renderSkeleton() {
+        const renderArticleSkeleton = (_: number, index: number) => (
+            <ArticleListItemSkeleton key={String(index)} view={view} />
+        );
+        return Array(view === ArticleView.BIG ? 3 : 9).fill(0).map(renderArticleSkeleton);
+    }
 });
