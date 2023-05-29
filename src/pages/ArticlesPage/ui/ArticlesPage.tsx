@@ -18,12 +18,12 @@ import {
     getArticles,
 } from '../model/slice/articlePageSlice';
 import cls from './ArticlesPage.module.scss';
-import { fetchArticlesList } from '../model/service/fetchArticlesList/fetchArticlesList';
 import {
     getArticlesPageView,
     getArticlesPageIsLoading,
     getArticlesPageError,
 } from '../model/selectors/articlesPageSelectors';
+import { initArticlesPages } from '../model/service/initArticlesPages/initArticlesPages';
 
 const reducers: ReducersList = {
     articlesPage: articlesPageReducer,
@@ -49,8 +49,7 @@ const ArticlesPage = memo(() => {
     );
 
     useInitialEffect(() => {
-        dispatch(articlesPageActions.initState());
-        dispatch(fetchArticlesList({ page: 1 }));
+        dispatch(initArticlesPages());
     });
 
     if (error) {
@@ -58,7 +57,7 @@ const ArticlesPage = memo(() => {
     }
 
     return (
-        <DynamicModuleLoader reducers={reducers}>
+        <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
             <Page
                 className={classNames(cls.ArticlesPage, {}, [])}
                 onScrollEnd={onLoadNextPart}
