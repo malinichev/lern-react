@@ -10,15 +10,16 @@ import {
 } from '@reduxjs/toolkit';
 import { ProfileSchema } from 'entities/Profile';
 import { AxiosInstance } from 'axios';
-import { NavigateOptions, To } from 'react-router-dom';
 import { ArticleDetailsSchema } from 'entities/Article';
 import { ArticleDetailsCommentsSchema } from 'pages/ArticlesDetailsPage';
 import { CommentType } from 'features/AddCommentForm';
 import { ArticlePageSchema } from 'pages/ArticlesPage';
+import { PageRestoreScrollSchema } from 'widgets/Page';
 
 export interface StateSchema {
   counter: CounterSchema;
   user: UserSchema;
+  pageRestoreScroll: PageRestoreScrollSchema;
 
   // Асинхронные редюсеры
   login?: LoginSchema;

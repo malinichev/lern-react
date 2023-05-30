@@ -10,7 +10,7 @@ import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect';
 import { ArticleViewSelector } from 'entities/Article';
 import { ArticleView } from 'entities/Article/model/types/article';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { Page } from 'shared/ui/Page/Page';
+import { Page } from 'widgets/Page';
 import { fetchNextArticlesPage } from 'pages/ArticlesPage/model/service/fetchNextArticlesPage/fetchNextArticlesPage';
 import {
     articlesPageActions,

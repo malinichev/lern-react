@@ -17,7 +17,7 @@ import { AddCommentForm } from 'features/AddCommentForm';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
-import { Page } from 'shared/ui/Page/Page';
+import { Page } from 'widgets/Page';
 import { addCommentForArticle } from '../models/service/addCommentForArticle/addCommentForArticle';
 import cls from './ArticlesDetailsPage.module.scss';
 import {
