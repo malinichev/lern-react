@@ -1,5 +1,5 @@
 import { StateSchema } from 'app/providers/StoreProvider';
-import { ArticleView } from 'entities/Article/model/types/article';
+import { ArticlesSortField, ArticleView } from 'entities/Article';
 
 export const getArticlesPageIsLoading = (state:StateSchema) => state.articlesPage?.isLoading || false;
 export const getArticlesPageError = (state:StateSchema) => state.articlesPage?.error;
@@ -8,3 +8,6 @@ export const getArticlesPageNum = (state:StateSchema) => state.articlesPage?.pag
 export const getArticlesPageLimit = (state:StateSchema) => state.articlesPage?.limit || 9;
 export const getArticlesPageHasMore = (state:StateSchema) => state.articlesPage?.hasMore;
 export const getArticlesPageInited = (state:StateSchema) => state.articlesPage?._inited;
+export const getArticlesPageSort = (state:StateSchema) => state.articlesPage?.sort ?? ArticlesSortField.CREATED;
+export const getArticlesPageOrder = (state:StateSchema) => state.articlesPage?.order ?? 'asc';
+export const getArticlesPageSearch = (state:StateSchema) => state.articlesPage?.search ?? '';
