@@ -23,10 +23,10 @@ declare const __PROJECT__: 'frontend' | 'storybook' | 'jest';
 type DeepPartial<T> = T extends object ? {
     [P in keyof T]?: DeepPartial<T[P]>;
 } : T;
-//
-// types OptionalRecord<K extends keyof any, T> = {
-//     [P in K]?: T;
-// };
+
+type OptionalRecord<K extends keyof any, T> = {
+    [P in K]?: T;
+};
 //
 // types OptionalRecord<K extends keyof any, T> = {
 //     [P in K]?: T;

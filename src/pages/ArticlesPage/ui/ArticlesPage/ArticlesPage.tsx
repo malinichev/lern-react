@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Page } from 'widgets/Page';
+import { useSearchParams } from 'react-router-dom';
 import { fetchNextArticlesPage } from '../../model/service/fetchNextArticlesPage/fetchNextArticlesPage';
 import { ArticlesPageFilters } from '../ArticlesPageFilters/ArticlesPageFilters';
 import {
@@ -33,6 +34,7 @@ const ArticlesPage = memo(() => {
     const view = useSelector(getArticlesPageView);
     const isLoading = useSelector(getArticlesPageIsLoading);
     const error = useSelector(getArticlesPageError);
+    const [searchParam] = useSearchParams();
 
     const onLoadNextPart = useCallback(
         () => {
@@ -42,7 +44,7 @@ const ArticlesPage = memo(() => {
     );
 
     useInitialEffect(() => {
-        dispatch(initArticlesPages());
+        dispatch(initArticlesPages(searchParam));
     });
 
     if (error) {

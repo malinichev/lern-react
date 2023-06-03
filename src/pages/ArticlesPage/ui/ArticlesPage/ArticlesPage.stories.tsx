@@ -5,7 +5,7 @@ import { Theme } from 'app/providers/ThemeProvider';
 import ArticlesPage from './ArticlesPage';
 
 export default {
-    title: 'pages/ArticlesDetailsPage',
+    title: 'pages/Article/ArticlesDetailsPage',
     component: ArticlesPage,
     argTypes: {
         backgroundColor: { control: 'color' },
