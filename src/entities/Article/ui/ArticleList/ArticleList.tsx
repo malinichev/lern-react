@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { HTMLAttributeAnchorTarget, memo } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Article } from 'entities/Article';
 import { ArticleView } from 'entities/Article/model/types/article';
@@ -13,11 +13,12 @@ interface ArticleListProps {
   articles: Article[];
   isLoading: boolean;
   view?: ArticleView;
+  target?: HTMLAttributeAnchorTarget;
 }
 
 export const ArticleList = memo((props: ArticleListProps) => {
     const {
-        className, articles, isLoading, view = ArticleView.SMALL,
+        className, articles, isLoading, target, view = ArticleView.SMALL,
     } = props;
     const { t } = useTranslation();
 
@@ -39,6 +40,7 @@ export const ArticleList = memo((props: ArticleListProps) => {
     function renderArticleListItem(article: Article, index: number) {
         return (
             <ArticleListItem
+                target={target}
                 key={`${article.id}-${index}`}
                 view={view}
                 article={article}
