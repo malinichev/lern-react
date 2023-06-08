@@ -11,6 +11,10 @@
     margin-left: auto;
 }
 
+.appTitle {
+    width: calc(var(--sidebar-width) - 20px);
+}
+
 .mainLink {
     margin-right: 15px;
 }

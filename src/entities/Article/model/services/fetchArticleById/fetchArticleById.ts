@@ -1,6 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
-import { USER_LOCALSTORAGE_KEY } from 'shared/const/localstorage';
 import { Article } from 'entities/Article';
 
 export const fetchArticleById = createAsyncThunk<
@@ -11,12 +10,10 @@ export const fetchArticleById = createAsyncThunk<
         'articleDetails/fetchArticleById',
         async (articleId, thunkApi) => {
             const { extra, rejectWithValue } = thunkApi;
-
             try {
-                const authorization = localStorage.getItem(USER_LOCALSTORAGE_KEY) || '';
                 const response = await extra.api.get<Article>(`/articles/${articleId}`, {
-                    headers: {
-                        authorization,
+                    params: {
+                        _expand: 'user',
                     },
                 });
 

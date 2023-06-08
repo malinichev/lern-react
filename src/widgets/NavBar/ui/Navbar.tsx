@@ -7,6 +7,10 @@ import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { LoginModal } from 'features/AuthByUsername';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserAuthData, userActions } from 'entities/User';
+import { Text, TextTheme } from 'shared/ui/Text/Text';
+import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+
+import { useNavigate } from 'react-router-dom';
 import cls from './Navbar.module.scss';
 
 interface NavbarProps {
@@ -16,7 +20,7 @@ interface NavbarProps {
 export const Navbar = memo(({ className }: NavbarProps) => {
     const { t } = useTranslation();
     const [isAuthModal, setIsAuthModal] = useState(false);
-
+    const navigate = useNavigate();
     const authData = useSelector(getUserAuthData);
 
     const dispatch = useDispatch();
@@ -39,16 +43,31 @@ export const Navbar = memo(({ className }: NavbarProps) => {
         dispatch(userActions.logout());
     }, [dispatch]);
 
+    const toNewArticle = useCallback(() => {
+        navigate(`${RoutePath.articles_details_new}`);
+    }, [navigate]);
+
     return (
         <header className={classNames(cls.Navbar, {}, [className])}>
+            <Text className={cls.appTitle} theme={TextTheme.INVERTED} title={t('Sergey App')} />
+
             {authData ? (
-                <Button
-                    theme={ButtonTheme.CLEAR_INVERTED}
-                    className={cls.links}
-                    onClick={logOut}
-                >
-                    {t('Выйти')}
-                </Button>
+                <>
+                    <Button
+                        theme={ButtonTheme.CLEAR_INVERTED}
+                        className={cls.newArticle}
+                        onClick={toNewArticle}
+                    >
+                        {t('Создать новую статью')}
+                    </Button>
+                    <Button
+                        theme={ButtonTheme.CLEAR_INVERTED}
+                        className={cls.links}
+                        onClick={logOut}
+                    >
+                        {t('Выйти')}
+                    </Button>
+                </>
             ) : (
                 <Button
                     theme={ButtonTheme.CLEAR_INVERTED}
