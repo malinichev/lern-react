@@ -8,7 +8,7 @@ import { getInitAuthData, userActions } from 'entities/User';
 
 import { useSelector } from 'react-redux';
 
-function App() {
+export const App = () => {
     const dispatch = useAppDispatch();
     const _initAuth = useSelector(getInitAuthData);
 
@@ -27,6 +27,4 @@ function App() {
             </Suspense>
         </div>
     );
-}
-
-export default App;
+};
