@@ -17,6 +17,7 @@ const ArticleEditPage = memo((props: ArticleEditPageProps) => {
 
     return (
         <Page className={classNames(cls.ArticleEditPage, {}, [className])}>
+            {/* i18next-extract-disable-next-line */}
             {canEdit ? t(`Редактировать статью ${id}`) : t('Создание статьи')}
         </Page>
     );
