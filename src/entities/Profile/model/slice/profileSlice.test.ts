@@ -1,7 +1,7 @@
-import { fetchProfileData, ProfileSchema } from 'entities/Profile';
-import { ValidateProfileErrors } from 'entities/Profile/model/types/profile';
 import { Country, Currency } from 'shared/const/common';
-import { updateProfileData } from 'entities/Profile/model/service/updateProfileData/updateProfileData';
+import { ValidateProfileErrors, ProfileSchema } from '../types/profile';
+import { updateProfileData } from '../service/updateProfileData/updateProfileData';
+import { fetchProfileData } from '../service/fetchProfileData/fetchProfileData';
 import { profileActions, profileReducer } from './profileSlice';
 
 const data = {

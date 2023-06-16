@@ -1,4 +1,4 @@
-import { CommentType } from 'features/AddCommentForm';
+import { CommentType } from '../types/commentType';
 import { addCommentFormActions, addCommentFormReducer } from './addCommentFormSlice';
 
 describe('addCommentFormSlice.test', () => {

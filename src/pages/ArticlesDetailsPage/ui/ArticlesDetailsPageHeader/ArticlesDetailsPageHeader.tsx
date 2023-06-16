@@ -5,8 +5,8 @@ import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { useNavigate } from 'react-router-dom';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { useSelector } from 'react-redux';
-import { canEditArticle } from 'pages/ArticlesDetailsPage/models/selectors/article';
 import { getArticleDetailsData } from 'entities/Article';
+import { canEditArticle } from '../../models/selectors/article';
 import cls from './ArticlesDetailsPageHeader.module.scss';
 
 interface ArticlesDetailsPageHeaderProps {

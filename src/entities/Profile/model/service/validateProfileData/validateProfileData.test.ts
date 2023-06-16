@@ -1,5 +1,5 @@
 import { Country, Currency } from 'shared/const/common';
-import { ValidateProfileErrors } from 'entities/Profile/model/types/profile';
+import { ValidateProfileErrors } from '../../types/profile';
 import { validateProfileData } from './validateProfileData';
 
 const data = {

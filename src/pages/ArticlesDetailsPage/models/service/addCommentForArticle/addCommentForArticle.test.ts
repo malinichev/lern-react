@@ -1,6 +1,6 @@
 import { TestAsyncThunk } from 'shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
 
-import { addCommentForArticle } from 'pages/ArticlesDetailsPage/models/service/addCommentForArticle/addCommentForArticle';
+import { addCommentForArticle } from '../addCommentForArticle/addCommentForArticle';
 
 const data = {
     articleId: '1',

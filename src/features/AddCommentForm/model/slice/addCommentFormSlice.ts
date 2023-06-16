@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { CommentType } from 'features/AddCommentForm';
+import { CommentType } from '../../model/types/commentType';
 
 const initialState: CommentType = {
     error: undefined,

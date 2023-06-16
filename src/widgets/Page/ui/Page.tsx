@@ -4,12 +4,13 @@ import {
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useInfinityScroll } from 'shared/lib/hooks/useInfinityScroll/useInfinityScroll';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
-import { getPageScrollByPath, pageRestoreScrollActions } from 'widgets/Page';
 import { useLocation } from 'react-router-dom';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect';
 import { useSelector } from 'react-redux';
 import { StateSchema } from 'app/providers/StoreProvider';
 import { useThrottle } from 'shared/lib/hooks/useThrottle/useThrottle';
+import { getPageScrollByPath } from '../model/selector/pageRestoreScroll';
+import { pageRestoreScrollActions } from '../model/slice/pageRestoreScrollSlice';
 import cls from './Page.module.scss';
 
 interface PageProps {

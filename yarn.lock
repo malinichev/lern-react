@@ -6839,6 +6839,13 @@ eslint-plugin-jsx-a11y@^6.5.1:
     object.fromentries "^2.0.6"
     semver "^6.3.0"
 
+eslint-plugin-malini4-plugin@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-malini4-plugin/-/eslint-plugin-malini4-plugin-0.0.1.tgz#3a473615ecb2b085f35ab06ec443494895ba7c38"
+  integrity sha512-Y3n1M6iMZjUxROhW0LGQVzOwRtKGq918caGTJIluLiOWkuQYKN6uUA3bhkOyIMJ97HvinNnIy+tkmJT6L7wPrw==
+  dependencies:
+    requireindex "^1.2.0"
+
 eslint-plugin-n@^15.1.0:
   version "15.6.1"
   resolved "https://registry.yarnpkg.com/eslint-plugin-n/-/eslint-plugin-n-15.6.1.tgz#f7e77f24abb92a550115cf11e29695da122c398c"
@@ -12375,6 +12382,11 @@ require-from-string@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/require-from-string/-/require-from-string-2.0.2.tgz#89a7fdd938261267318eafe14f9c32e598c36909"
   integrity sha512-Xf0nWe6RseziFMu+Ap9biiUbmplq6S9/p+7w7YXP/JBHhrUDDUhwa+vANyubuqfZWTveU//DYVGsDG7RKL/vEw==
+
+requireindex@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/requireindex/-/requireindex-1.2.0.tgz#3463cdb22ee151902635aa6c9535d4de9c2ef1ef"
+  integrity sha512-L9jEkOi3ASd9PYit2cwRfyppc9NoABujTP8/5gFcbERmo5jUoAKovIC3fsF17pkTnGsrByysqX+Kxd2OTNI1ww==
 
 requireindex@~1.1.0:
   version "1.1.0"

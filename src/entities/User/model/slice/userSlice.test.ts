@@ -1,4 +1,4 @@
-import { User, UserSchema } from 'entities/User';
+import { User, UserSchema } from '../types/user';
 import { userActions, userReducer } from './userSlice';
 
 const data:User = {
