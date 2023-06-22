@@ -4,6 +4,7 @@ import { memo } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useSelector } from 'react-redux';
 import { getUserAuthData } from 'entities/User';
+import { HStack } from 'shared/ui/Stack';
 import cls from './SidebarItem.module.scss';
 import { SidebarItemType } from '../../model/types/sidebar';
 
@@ -22,13 +23,15 @@ export const SidebarItem = memo(({ item, collapsed, authOnly }: SidebarItemProps
         <AppLink
             theme={AppLinkTheme.SECONDARY}
             to={item.path}
-            className={classNames(cls.item, { [cls.collapsed]: collapsed })}
+            className={classNames('', { [cls.collapsed]: collapsed })}
         >
-            <item.Icon className={cls.icon} />
-            <span className={cls.link}>
-                {/* i18next-extract-disable-next-line */}
-                {t(item.text)}
-            </span>
+            <HStack align="start">
+                <item.Icon className={cls.icon} />
+                <span className={cls.link}>
+                    {/* i18next-extract-disable-next-line */}
+                    {t(item.text)}
+                </span>
+            </HStack>
         </AppLink>
     );
 });

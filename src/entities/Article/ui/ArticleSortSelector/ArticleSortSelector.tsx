@@ -3,6 +3,7 @@ import { memo, useMemo } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Select, SelectOption } from 'shared/ui/Select/Select';
 import { SortOrder } from 'shared/types';
+import { HStack } from 'shared/ui/Stack';
 import { ArticlesSortField } from '../../model/types/article';
 import cls from './ArticleSortSelector.module.scss';
 
@@ -54,18 +55,20 @@ export const ArticleSortSelector = memo((props: ArticleSortSelectorProps) => {
 
     return (
         <div className={classNames(cls.ArticleSortSelector, {}, [className])}>
-            <Select<ArticlesSortField>
-                value={sort}
-                options={sortFieldOptions}
-                onChange={onChangeSort}
-                label={t('Сортировать по')}
-            />
-            <Select<SortOrder>
-                value={order}
-                options={orderOptions}
-                onChange={onChangeOrder}
-                label={t('по')}
-            />
+            <HStack gap="16" align="center">
+                <Select<ArticlesSortField>
+                    value={sort}
+                    options={sortFieldOptions}
+                    onChange={onChangeSort}
+                    label={t('Сортировать по')}
+                />
+                <Select<SortOrder>
+                    value={order}
+                    options={orderOptions}
+                    onChange={onChangeOrder}
+                    label={t('по')}
+                />
+            </HStack>
         </div>
     );
 });

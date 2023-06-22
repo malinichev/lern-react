@@ -3,7 +3,8 @@ import { memo, useCallback } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import {
     ArticleSortSelector,
-    ArticlesSortField, ArticleTypeTabs,
+    ArticlesSortField,
+    ArticleTypeTabs,
     ArticleView,
     ArticleViewSelector,
 } from 'entities/Article';
@@ -18,6 +19,7 @@ import { useDebounce } from 'shared/lib/hooks/useDebounce/useDebounce';
 
 import { ArticleType } from 'entities/Article/model/types/article';
 
+import { HStack } from 'shared/ui/Stack';
 import { articlesPageActions } from '../../model/slice/articlePageSlice';
 import { fetchArticlesList } from '../../model/service/fetchArticlesList/fetchArticlesList';
 import {
@@ -94,7 +96,7 @@ export const ArticlesPageFilters = memo((props: ArticlesPageFiltersProps) => {
 
     return (
         <div className={classNames(cls.ArticlesPageFilters, {}, [className])}>
-            <div className={cls.sortWrapper}>
+            <HStack justify="between" align="center">
                 <ArticleSortSelector
                     onChangeSort={onChangeSort}
                     onChangeOrder={onChangeOrder}
@@ -102,7 +104,7 @@ export const ArticlesPageFilters = memo((props: ArticlesPageFiltersProps) => {
                     order={order}
                 />
                 <ArticleViewSelector view={view} onViewClick={onChangeView} />
-            </div>
+            </HStack>
             <Card>
                 <Input
                     value={search}

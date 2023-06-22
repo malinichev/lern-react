@@ -1,4 +1,4 @@
-import { CSSProperties, memo, ReactNode } from 'react';
+import { CSSProperties, ReactNode } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import cls from './Flex.module.scss';
 
@@ -10,9 +10,9 @@ type FlexGap = '4' | '8' | '16' | '32';
 export interface FlexProps {
   className?: string;
   children: ReactNode;
-  justify: FlexJustify;
-  align: FlexAlign;
-  direction: FlexDirection;
+  justify?: FlexJustify;
+  align?: FlexAlign;
+  direction?: FlexDirection;
   max?:boolean
   style?: CSSProperties
     gap?: FlexGap

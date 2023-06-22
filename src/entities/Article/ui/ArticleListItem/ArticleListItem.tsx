@@ -9,6 +9,7 @@ import { Card } from 'shared/ui/Card/Card';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+import { HStack } from 'shared/ui/Stack';
 import {
     Article,
     ArticleBlockType,
@@ -80,10 +81,12 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
                         />
                     )}
                     <div className={cls.footer}>
-                        <AppLink target={target} to={RoutePath.articles_details + article.id}>
-                            <Button theme={ButtonTheme.OUTLINE}>{t('Читать далее')}</Button>
-                        </AppLink>
-                        <div className={cls.viewsNumber}>{views}</div>
+                        <HStack align="center">
+                            <AppLink target={target} to={RoutePath.articles_details + article.id}>
+                                <Button theme={ButtonTheme.OUTLINE}>{t('Читать далее')}</Button>
+                            </AppLink>
+                            <div className={cls.viewsNumber}>{views}</div>
+                        </HStack>
                     </div>
                 </Card>
             </div>
@@ -103,11 +106,10 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
                 >
                     <Text text={article.createdAt} className={cls.date} />
                 </div>
-
-                <div className={cls.subtitleWrapper}>
+                <HStack align="center">
                     {types}
                     <div className={cls.viewsNumber}>{views}</div>
-                </div>
+                </HStack>
                 <Text text={article.title} className={cls.title} />
             </Card>
         </AppLink>

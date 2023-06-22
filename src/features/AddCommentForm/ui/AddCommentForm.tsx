@@ -6,6 +6,7 @@ import { Input } from 'shared/ui/Input/Input';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
+import { HStack } from 'shared/ui/Stack';
 import { addCommentFormActions, addCommentFormReducer } from '../model/slice/addCommentFormSlice';
 import cls from './AddCommentForm.module.scss';
 
@@ -40,15 +41,17 @@ const AddCommentForm = memo((props: AddCommentFormProps) => {
     return (
         <DynamicModuleLoader reducers={reducers}>
             <div className={classNames(cls.AddCommentForm, {}, [className])}>
-                <Input
-                    className={cls.Input}
-                    value={text}
-                    placeholder={t('Добавить комментариий')}
-                    onChange={handleInputChange}
-                />
-                <Button onClick={onSendHandler} theme={ButtonTheme.OUTLINE}>
-                    {t('Отправить')}
-                </Button>
+                <HStack justify="between" align="center">
+                    <Input
+                        className={cls.Input}
+                        value={text}
+                        placeholder={t('Добавить комментариий')}
+                        onChange={handleInputChange}
+                    />
+                    <Button onClick={onSendHandler} theme={ButtonTheme.OUTLINE}>
+                        {t('Отправить')}
+                    </Button>
+                </HStack>
             </div>
         </DynamicModuleLoader>
     );

@@ -10,6 +10,7 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
 import { getProfileData, profileActions } from 'entities/Profile';
 import { updateProfileData } from 'entities/Profile/model/service/updateProfileData/updateProfileData';
 import { getUserAuthData } from 'entities/User';
+import { HStack } from 'shared/ui/Stack';
 import cls from './ProfilePageHeader.module.scss';
 
 interface PageProps {
@@ -37,14 +38,13 @@ const ProfilePageHeader = memo(({ className }: PageProps) => {
                 <div className={cls.canEdit}>
                     {readonly ? (
                         <Button
-                            className={cls.editBtn}
                             theme={ButtonTheme.OUTLINE}
                             onClick={onEdit}
                         >
                             {t('Редактировать')}
                         </Button>
                     ) : (
-                        <div className={cls.editBtn}>
+                        <HStack gap="8">
                             <Button
                                 theme={ButtonTheme.OUTLINE}
                                 onClick={onCancelEdit}
@@ -58,7 +58,8 @@ const ProfilePageHeader = memo(({ className }: PageProps) => {
                             >
                                 {t('Сохранить')}
                             </Button>
-                        </div>
+                        </HStack>
+
                     )}
                 </div>
             )}
