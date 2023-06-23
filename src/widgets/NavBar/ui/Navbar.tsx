@@ -1,7 +1,7 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import React, {
-    memo, useCallback, useEffect, useState,
+    memo, useCallback, useState,
 } from 'react';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { LoginModal } from 'features/AuthByUsername';
@@ -10,7 +10,9 @@ import { getUserAuthData, userActions } from 'entities/User';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 
-import { useNavigate } from 'react-router-dom';
+import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
+import { Dropdown } from 'shared/ui/Dropdown/Dropdown';
+import { Avatar } from 'shared/ui/Avatar/Avatar';
 import cls from './Navbar.module.scss';
 
 interface NavbarProps {
@@ -20,67 +22,68 @@ interface NavbarProps {
 export const Navbar = memo(({ className }: NavbarProps) => {
     const { t } = useTranslation();
     const [isAuthModal, setIsAuthModal] = useState(false);
-    const navigate = useNavigate();
     const authData = useSelector(getUserAuthData);
-
     const dispatch = useDispatch();
 
-    const onClose = useCallback(() => {
+    const onCloseModal = useCallback(() => {
         setIsAuthModal(false);
     }, []);
 
-    useEffect(() => {
-        if (authData) {
-            onClose();
-        }
-    }, [authData, onClose]);
-
-    const openModal = useCallback(() => {
+    const onShowModal = useCallback(() => {
         setIsAuthModal(true);
     }, []);
 
-    const logOut = useCallback(() => {
+    const onLogout = useCallback(() => {
         dispatch(userActions.logout());
     }, [dispatch]);
 
-    const toNewArticle = useCallback(() => {
-        navigate(`${RoutePath.articles_details_new}`);
-    }, [navigate]);
+    if (authData) {
+        return (
+            <header className={classNames(cls.Navbar, {}, [className])}>
+                <Text
+                    className={cls.appName}
+                    title={t('Ulbi TV App')}
+                    theme={TextTheme.INVERTED}
+                />
+                <AppLink
+                    to={RoutePath.articles_details_new}
+                    theme={AppLinkTheme.SECONDARY}
+                    className={cls.createBtn}
+                >
+                    {t('Создать статью')}
+                </AppLink>
+                <Dropdown
+                    direction="bottom left"
+                    className={cls.dropdown}
+                    items={[
+                        {
+                            content: t('Профиль'),
+                            href: RoutePath.profile + authData.id,
+                        },
+                        {
+                            content: t('Выйти'),
+                            onClick: onLogout,
+                        },
+                    ]}
+                    trigger={<Avatar size={30} src={authData.avatar} />}
+                />
+            </header>
+        );
+    }
 
     return (
         <header className={classNames(cls.Navbar, {}, [className])}>
-            <Text className={cls.appTitle} theme={TextTheme.INVERTED} title={t('Sergey App')} />
-
-            {authData ? (
-                <>
-                    <Button
-                        theme={ButtonTheme.CLEAR_INVERTED}
-                        className={cls.newArticle}
-                        onClick={toNewArticle}
-                    >
-                        {t('Создать новую статью')}
-                    </Button>
-                    <Button
-                        theme={ButtonTheme.CLEAR_INVERTED}
-                        className={cls.links}
-                        onClick={logOut}
-                    >
-                        {t('Выйти')}
-                    </Button>
-                </>
-            ) : (
-                <Button
-                    theme={ButtonTheme.CLEAR_INVERTED}
-                    className={cls.links}
-                    onClick={openModal}
-                >
-                    {t('Войти')}
-                </Button>
-            )}
+            <Button
+                theme={ButtonTheme.CLEAR_INVERTED}
+                className={cls.links}
+                onClick={onShowModal}
+            >
+                {t('Войти')}
+            </Button>
             {isAuthModal && (
                 <LoginModal
                     isOpen={isAuthModal}
-                    onClose={onClose}
+                    onClose={onCloseModal}
                 />
             )}
         </header>

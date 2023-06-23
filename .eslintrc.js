@@ -55,6 +55,7 @@ module.exports = {
                     'max',
                     'style',
                     'gap',
+                    'as',
                 ],
             },
         ],
