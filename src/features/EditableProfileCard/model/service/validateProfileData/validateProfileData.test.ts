@@ -1,6 +1,7 @@
 import { Country, Currency } from 'shared/const/common';
-import { ValidateProfileErrors } from '../../types/profile';
+
 import { validateProfileData } from './validateProfileData';
+import { ValidateProfileErrors } from '../../types/EditableProfileCardSchema';
 
 const data = {
     firstname: 'Sergey',

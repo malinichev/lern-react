@@ -9,8 +9,8 @@ import { ArticleListItemSkeleton } from '../ArticleListItem/ArticleListItemSkele
 
 interface ArticleListProps {
   className?: string;
-  articles: Article[];
-  isLoading: boolean;
+  articles?: Article[];
+  isLoading?: boolean;
   view?: ArticleView;
   target?: HTMLAttributeAnchorTarget;
 }
@@ -21,7 +21,7 @@ export const ArticleList = memo((props: ArticleListProps) => {
     } = props;
     const { t } = useTranslation();
 
-    if (!isLoading && !articles.length) {
+    if (!isLoading && !articles?.length) {
         return (
             <div className={classNames(cls.ArticleList, {}, [className, cls[view]])}>
                 <Text size={TextSize.L} title={t('Статьи не найдены')} />
@@ -31,7 +31,7 @@ export const ArticleList = memo((props: ArticleListProps) => {
 
     return (
         <div className={classNames(cls.ArticleList, {}, [className, cls[view]])}>
-            {articles.length > 0 ? articles.map(renderArticleListItem) : null}
+            {articles && articles.length > 0 ? articles.map(renderArticleListItem) : null}
             {isLoading && renderSkeleton()}
         </div>
     );

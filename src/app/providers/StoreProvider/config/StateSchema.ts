@@ -8,28 +8,28 @@ import {
     Reducer,
     ReducersMapObject,
 } from '@reduxjs/toolkit';
-import { ProfileSchema } from 'entities/Profile';
+
 import { AxiosInstance } from 'axios';
 import { ArticleDetailsSchema } from 'entities/Article';
-import {
-    ArticleDetailPageSchema,
-} from 'pages/ArticlesDetailsPage';
+import { ArticleDetailPageSchema } from 'pages/ArticlesDetailsPage';
 import { CommentType } from 'features/AddCommentForm';
 import { ArticlePageSchema } from 'pages/ArticlesPage';
 import { PageRestoreScrollSchema } from 'widgets/Page';
+import { rtkApi } from 'shared/api/rtkApi';
+import { ProfileSchema } from 'features/EditableProfileCard';
 
 export interface StateSchema {
   counter: CounterSchema;
   user: UserSchema;
   pageRestoreScroll: PageRestoreScrollSchema;
-
+  [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
   // Асинхронные редюсеры
   login?: LoginSchema;
   profile?: ProfileSchema;
   articleDetails?: ArticleDetailsSchema;
   addCommentForm?: CommentType;
   articlesPage?: ArticlePageSchema;
-  articleDetailPage?:ArticleDetailPageSchema
+  articleDetailPage?: ArticleDetailPageSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

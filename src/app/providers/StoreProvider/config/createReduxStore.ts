@@ -10,6 +10,7 @@ import { $api } from 'shared/api/api';
 import { ThunkExtraArg } from 'app/providers/StoreProvider/config/StateSchema';
 import { authMiddleware } from 'app/providers/StoreProvider/middlewares/authMiddleware';
 import { pageRestoreScrollReducer } from 'widgets/Page';
+import { rtkApi } from 'shared/api/rtkApi';
 
 export function createReduxStore(
     initialState?: StateSchema,
@@ -20,6 +21,7 @@ export function createReduxStore(
         counter: counterReducer,
         user: userReducer,
         pageRestoreScroll: pageRestoreScrollReducer,
+        [rtkApi.reducerPath]: rtkApi.reducer,
     };
 
     const reducerManager = createReducerManager(rootReducers);
@@ -36,7 +38,7 @@ export function createReduxStore(
             thunk: {
                 extraArgument: extraArg,
             },
-        }).concat(authMiddleware),
+        }).concat(rtkApi.middleware, authMiddleware),
     });
 
     // @ts-ignore

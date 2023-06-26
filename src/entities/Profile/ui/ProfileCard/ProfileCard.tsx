@@ -8,7 +8,7 @@ import { Currency } from 'entities/Currency/model/types/currency';
 import { CurrencySelect } from 'entities/Currency';
 import { Country } from 'entities/Country/model/types/country';
 import { CountrySelect } from 'entities/Country';
-import { HStack } from 'shared/ui/Stack';
+import { HStack, VStack } from 'shared/ui/Stack';
 import cls from './ProfileCard.module.scss';
 import { Profile } from '../../model/types/profile';
 
@@ -48,7 +48,9 @@ export const ProfileCard = (props: ProfileCardProps) => {
 
     if (isLoading) {
         return (
-            <div
+            <VStack
+                max
+                gap="16"
                 className={classNames(cls.ProfileCard, { [cls.loading]: true }, [
                     className,
                 ])}
@@ -56,7 +58,7 @@ export const ProfileCard = (props: ProfileCardProps) => {
                 <HStack align="center" justify="center">
                     <Loader />
                 </HStack>
-            </div>
+            </VStack>
         );
     }
 
@@ -80,10 +82,17 @@ export const ProfileCard = (props: ProfileCardProps) => {
     };
 
     return (
-        <div className={classNames(cls.ProfileCard, mods, [className])}>
-            <div className={cls.data}>
+        <div
+            className={classNames(cls.ProfileCard, mods, [className])}
+        >
+            <VStack
+                max
+                gap="16"
+                align="start"
+                className={cls.data}
+            >
                 {data?.avatar && (
-                    <HStack justify="center">
+                    <HStack max justify="center">
                         <Avatar src={data?.avatar} />
                     </HStack>
                 )}
@@ -141,7 +150,7 @@ export const ProfileCard = (props: ProfileCardProps) => {
                     onChange={onChangeCountry}
                     readOnly={readOnly}
                 />
-            </div>
+            </VStack>
         </div>
     );
 };
