@@ -17,7 +17,6 @@ import { ArticlePageSchema } from 'pages/ArticlesPage';
 import { PageRestoreScrollSchema } from 'widgets/Page';
 import { rtkApi } from 'shared/api/rtkApi';
 import { ProfileSchema } from 'features/EditableProfileCard';
-import { UISchema } from 'features/UI';
 
 export interface StateSchema {
   counter: CounterSchema;
@@ -25,7 +24,6 @@ export interface StateSchema {
   pageRestoreScroll: PageRestoreScrollSchema;
   [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
   // Асинхронные редюсеры
-  ui?: UISchema;
   login?: LoginSchema;
   profile?: ProfileSchema;
   articleDetails?: ArticleDetailsSchema;

@@ -16,8 +16,7 @@ interface FetchArticlesListProps {
   replace?: boolean;
 }
 
-export const fetchArticlesList = createAsyncThunk<
-  Article[],
+export const fetchArticlesList = createAsyncThunk<{ articles:Article[], total:number },
   FetchArticlesListProps,
   ThunkConfig<string>
 >('articlesPage/fetchArticlesList', async (props, thunkApi) => {
@@ -31,7 +30,10 @@ export const fetchArticlesList = createAsyncThunk<
 
     try {
         addQueryParams({
-            sort, order, search, type,
+            sort,
+            order,
+            search,
+            type,
         });
         const response = await extra.api.get<Article[]>('/articles', {
             params: {
@@ -49,7 +51,10 @@ export const fetchArticlesList = createAsyncThunk<
             throw new Error();
         }
 
-        return response.data;
+        return {
+            articles: response.data,
+            total: response?.headers['x-total-count'] || 0,
+        };
     } catch (e) {
         return rejectWithValue('error');
     }

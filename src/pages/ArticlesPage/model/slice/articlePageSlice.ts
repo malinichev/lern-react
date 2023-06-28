@@ -78,12 +78,12 @@ export const articlePageSlice = createSlice({
                     action,
                 ) => {
                     state.isLoading = false;
-                    state.hasMore = action.payload.length > state.limit;
+                    state.hasMore = action.payload.total > action.payload.articles.length;
 
                     if (action.meta.arg.replace) {
-                        articlesAdapter.setAll(state, action.payload);
+                        articlesAdapter.setAll(state, action.payload.articles);
                     } else {
-                        articlesAdapter.addMany(state, action.payload);
+                        articlesAdapter.addMany(state, action.payload.articles);
                     }
                 },
             )

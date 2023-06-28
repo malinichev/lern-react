@@ -49,7 +49,7 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
                 {collapsed ? '>' : '<'}
             </Button>
             <nav className={cls.items}>
-                <VStack gap="8">
+                <VStack gap="8" max align="start">
                     {itemsList}
                 </VStack>
             </nav>
