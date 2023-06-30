@@ -634,8 +634,8 @@
   "profile": [
     {
       "id": "1",
-      "first": "jghwer",
-      "lastname": "asfewr",
+      "firstname": "Сергей",
+      "lastname": "Малиничев",
       "age": 465,
       "currency": "RUB",
       "country": "Belarus",
@@ -645,7 +645,7 @@
     },
     {
       "id": "2",
-      "first": "Sergey",
+      "firstname": "Sergey",
       "lastname": "Malinichev",
       "age": 465,
       "currency": "RUB",
