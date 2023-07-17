@@ -37,7 +37,7 @@ const ArticlesDetailsPage = memo(() => {
                         id={__PROJECT__ === 'storybook' ? '1' : (id as string)}
                     />
                     <ArticleRecommendationList />
-                    <ArticlesDetailsComments id={id} />
+                    <ArticlesDetailsComments id={__PROJECT__ === 'storybook' ? '1' : (id as string)} />
                 </VStack>
             </Page>
         </DynamicModuleLoader>

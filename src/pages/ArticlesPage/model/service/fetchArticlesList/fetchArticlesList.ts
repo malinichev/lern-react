@@ -16,7 +16,7 @@ interface FetchArticlesListProps {
   replace?: boolean;
 }
 
-export const fetchArticlesList = createAsyncThunk<{ articles:Article[], total:number },
+export const fetchArticlesList = createAsyncThunk<{ articles:Article[], total:number|string },
   FetchArticlesListProps,
   ThunkConfig<string>
 >('articlesPage/fetchArticlesList', async (props, thunkApi) => {

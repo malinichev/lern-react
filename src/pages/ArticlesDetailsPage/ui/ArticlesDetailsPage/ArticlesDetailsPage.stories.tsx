@@ -3,20 +3,27 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from 'app/providers/ThemeProvider';
 import { Article } from 'entities/Article';
-import { ArticleBlockType, ArticleType } from 'entities/Article/model/types/article';
+import {
+    ArticleBlockType,
+    ArticleType,
+} from 'entities/Article/model/types/article';
 import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
+import { ReducersList } from 'shared/lib/DynamicModuleLoader/DynamicModuleLoader';
+import withMock from 'storybook-addon-mock';
+import { articleDetailPageReducer } from '../../models/slice';
 import ArticlesDetailsPage from './ArticlesDetailsPage';
 
 export default {
     title: 'pages/ArticlesDetailsPage',
     component: ArticlesDetailsPage,
+    decorators: [withMock],
 } as ComponentMeta<typeof ArticlesDetailsPage>;
 
-const article:Article = {
+const article: Article = {
     id: '1',
     title: 'Javascript news',
     subtitle: 'Что нового в JS за 2022 год?',
-    img: 'https://teknotower.com/wp-content/uploads/2020/11/js.png',
+    img: '',
     user: {
         id: '1',
         username: 'serg',
@@ -52,7 +59,7 @@ const article:Article = {
         {
             id: '2',
             type: ArticleBlockType.IMAGE,
-            src: 'https://hsto.org/r/w1560/getpro/habr/post_images/d56/a02/ffc/d56a02ffc62949b42904ca00c63d8cc1.png',
+            src: '',
             title: 'Рисунок 1 - скриншот сайта',
         },
         {
@@ -72,7 +79,7 @@ const article:Article = {
         {
             id: '8',
             type: ArticleBlockType.IMAGE,
-            src: 'https://hsto.org/r/w1560/getpro/habr/post_images/d56/a02/ffc/d56a02ffc62949b42904ca00c63d8cc1.png',
+            src: '',
             title: 'Рисунок 1 - скриншот сайта',
         },
         {
@@ -86,26 +93,65 @@ const article:Article = {
     ],
 };
 
-const Template: ComponentStory<typeof ArticlesDetailsPage> = () => <ArticlesDetailsPage />;
+const Template: ComponentStory<typeof ArticlesDetailsPage> = () => (
+    <ArticlesDetailsPage />
+);
+
+const reducers: ReducersList = {
+    articleDetailPage: articleDetailPageReducer,
+};
 
 export const Normal = Template.bind({});
+Normal.args = {};
+Normal.decorators = [
+    StoreDecorator(
+        {
+            articleDetails: {
+                data: article,
+            },
+        },
+    ),
 
-Normal.args = {
-
+];
+Normal.parameters = {
+    mockData: [
+        {
+            url: `${__API__}/articles?_limit=3`,
+            method: 'GET',
+            status: 200,
+            response: [
+                { ...article, id: '1' },
+                { ...article, id: '2' },
+                { ...article, id: '3' },
+            ],
+        },
+    ],
 };
-
-Normal.decorators = [StoreDecorator({
-    articleDetails: {
-        data: article,
-    },
-})];
 
 export const Dark = Template.bind({});
-Dark.args = {
+Dark.args = {};
+Dark.decorators = [
+    ThemeDecorator(Theme.DARK),
+    StoreDecorator(
+        {
+            articleDetails: {
+                data: article,
+            },
+        },
+    ),
+];
 
+Dark.parameters = {
+    mockData: [
+        {
+            url: `${__API__}/articles?_limit=3`,
+            method: 'GET',
+            status: 200,
+            response: [
+                { ...article, id: '1' },
+                { ...article, id: '2' },
+                { ...article, id: '3' },
+            ],
+        },
+    ],
 };
-Dark.decorators = [ThemeDecorator(Theme.DARK), StoreDecorator({
-    articleDetails: {
-        data: article,
-    },
-})];

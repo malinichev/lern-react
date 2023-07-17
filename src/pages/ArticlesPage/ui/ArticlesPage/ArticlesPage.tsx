@@ -30,13 +30,17 @@ const ArticlesPage = memo(() => {
 
     const onLoadNextPart = useCallback(
         () => {
-            dispatch(fetchNextArticlesPage());
+            if (__PROJECT__ !== 'storybook') {
+                dispatch(fetchNextArticlesPage());
+            }
         },
         [dispatch],
     );
 
     useInitialEffect(() => {
-        dispatch(initArticlesPages(searchParam));
+        if (__PROJECT__ !== 'storybook') {
+            dispatch(initArticlesPages(searchParam));
+        }
     });
 
     return (
