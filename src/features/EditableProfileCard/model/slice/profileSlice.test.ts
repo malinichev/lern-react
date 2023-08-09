@@ -1,9 +1,10 @@
 import { Country, Currency } from 'shared/const/common';
 
+import { ValidateProfileErrors } from '../consts/consts';
 import { updateProfileData } from '../service/updateProfileData/updateProfileData';
 import { fetchProfileData } from '../service/fetchProfileData/fetchProfileData';
 import { profileActions, profileReducer } from './profileSlice';
-import { ProfileSchema, ValidateProfileErrors } from '../types/EditableProfileCardSchema';
+import { ProfileSchema } from '../types/EditableProfileCardSchema';
 
 const data = {
     id: '1',

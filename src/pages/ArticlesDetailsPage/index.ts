@@ -1,8 +1,8 @@
 import { ArticlesDetailsPageAsync } from './ui/ArticlesDetailsPage/ArticlesDetailsPage.async';
 
-export { ArticleDetailPageSchema } from './models/types';
+export type { ArticleDetailPageSchema } from './models/types';
 
-export {
+export type {
     ArticleDetailsRecommendationSchema,
 } from './models/types/ArticleDetailsRecommendationSchema';
 

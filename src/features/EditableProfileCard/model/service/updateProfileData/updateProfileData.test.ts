@@ -1,8 +1,8 @@
 import { TestAsyncThunk } from 'shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
 import { Country, Currency } from 'shared/const/common';
 
+import { ValidateProfileErrors } from '../../consts/consts';
 import { updateProfileData } from './updateProfileData';
-import { ValidateProfileErrors } from '../../types/EditableProfileCardSchema';
 
 const data = {
     id: '1',

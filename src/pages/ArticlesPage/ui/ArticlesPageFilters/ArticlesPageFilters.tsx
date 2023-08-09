@@ -3,7 +3,7 @@ import { memo, useCallback } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import {
     ArticleSortSelector,
-    ArticlesSortField,
+    ArticlesSortField, ArticleType,
     ArticleTypeTabs,
     ArticleView,
     ArticleViewSelector,
@@ -16,8 +16,6 @@ import { Card } from 'shared/ui/Card/Card';
 
 import { SortOrder } from 'shared/types';
 import { useDebounce } from 'shared/lib/hooks/useDebounce/useDebounce';
-
-import { ArticleType } from 'entities/Article/model/types/article';
 
 import { HStack } from 'shared/ui/Stack';
 import { articlesPageActions } from '../../model/slice/articlePageSlice';

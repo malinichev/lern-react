@@ -17,7 +17,6 @@ const ThemeProvider = (props:ThemeProviderProps) => {
     } = props;
 
     const [theme, setTheme] = useState<Theme>(initialTheme || defaultTheme);
-    console.log('theme', theme);
     const defaultProps = useMemo(() => ({
         theme,
         setTheme,
