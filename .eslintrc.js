@@ -54,6 +54,7 @@ module.exports = {
                     'align',
                     'direction',
                     'max',
+                    'border',
                     'style',
                     'gap',
                     'as',
