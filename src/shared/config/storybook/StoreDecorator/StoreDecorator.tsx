@@ -1,13 +1,13 @@
 import { Story } from '@storybook/react';
-import { StateSchema, StoreProvider } from 'app/providers/StoreProvider';
-import { loginReducer } from 'features/AuthByUsername/model/slice/LoginSlice';
+import { StateSchema, StoreProvider } from '@/app/providers/StoreProvider';
+import { loginReducer } from '@/features/AuthByUsername/model/slice/LoginSlice';
 
-import { articleDetailsReducer } from 'entities/Article/model/slice/articleDetailsSlice';
-import { addCommentFormReducer } from 'features/AddCommentForm/model/slice/addCommentFormSlice';
-import { ReducersList } from 'shared/lib/DynamicModuleLoader/DynamicModuleLoader';
-import { articleDetailPageReducer } from 'pages/ArticlesDetailsPage/models/slice';
-import { profileReducer } from 'features/EditableProfileCard/model/slice/profileSlice';
-import { pageRestoreScrollReducer } from 'widgets/Page';
+import { articleDetailsReducer } from '@/entities/Article/model/slice/articleDetailsSlice';
+import { addCommentFormReducer } from '@/features/AddCommentForm/model/slice/addCommentFormSlice';
+import { ReducersList } from '@/shared/lib/DynamicModuleLoader/DynamicModuleLoader';
+import { articleDetailPageReducer } from '@/pages/ArticlesDetailsPage/models/slice';
+import { profileReducer } from '@/features/EditableProfileCard/model/slice/profileSlice';
+import { pageRestoreScrollReducer } from '@/widgets/Page';
 
 const defaultAsyncReducers: ReducersList = {
     login: loginReducer,

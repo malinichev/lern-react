@@ -2,15 +2,15 @@ import {
     CombinedState,
     configureStore, Reducer, ReducersMapObject,
 } from '@reduxjs/toolkit';
-import { StateSchema } from 'app/providers/StoreProvider';
-import { userReducer } from 'entities/User';
-import { counterReducer } from 'entities/Counter';
-import { createReducerManager } from 'app/providers/StoreProvider/config/createReducerManager';
-import { $api } from 'shared/api/api';
-import { ThunkExtraArg } from 'app/providers/StoreProvider/config/StateSchema';
-import { authMiddleware } from 'app/providers/StoreProvider/middlewares/authMiddleware';
-import { pageRestoreScrollReducer } from 'widgets/Page';
-import { rtkApi } from 'shared/api/rtkApi';
+import { StateSchema } from '@/app/providers/StoreProvider';
+import { userReducer } from '@/entities/User';
+import { counterReducer } from '@/entities/Counter';
+import { createReducerManager } from '@/app/providers/StoreProvider/config/createReducerManager';
+import { $api } from '@/shared/api/api';
+import { ThunkExtraArg } from '@/app/providers/StoreProvider/config/StateSchema';
+import { authMiddleware } from '@/app/providers/StoreProvider/middlewares/authMiddleware';
+import { pageRestoreScrollReducer } from '@/widgets/Page';
+import { rtkApi } from '@/shared/api/rtkApi';
 
 export function createReduxStore(
     initialState?: StateSchema,

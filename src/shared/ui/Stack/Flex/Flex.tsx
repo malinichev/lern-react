@@ -1,5 +1,5 @@
 import { CSSProperties, ReactNode } from 'react';
-import { classNames } from 'shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './Flex.module.scss';
 
 type FlexJustify = 'start' | 'center' | 'end' | 'between';

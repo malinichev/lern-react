@@ -1,5 +1,5 @@
-import { TestAsyncThunk } from 'shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
-import { Country, Currency } from 'shared/const/common';
+import { TestAsyncThunk } from '@/shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
+import { Country, Currency } from '@/shared/const/common';
 import { fetchProfileData } from './fetchProfileData';
 
 describe('fetchProfileData.test', () => {

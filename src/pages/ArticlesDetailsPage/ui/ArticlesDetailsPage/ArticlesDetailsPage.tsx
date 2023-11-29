@@ -1,17 +1,17 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { ArticleDetail } from 'entities/Article';
 import { useParams } from 'react-router-dom';
+import { ArticleDetail } from '@/entities/Article';
 import {
     DynamicModuleLoader,
     ReducersList,
-} from 'shared/lib/DynamicModuleLoader/DynamicModuleLoader';
+} from '@/shared/lib/DynamicModuleLoader/DynamicModuleLoader';
 
-import { Page } from 'widgets/Page';
+import { Page } from '@/widgets/Page';
 
-import { VStack } from 'shared/ui/Stack';
-import { ArticleRecommendationList } from 'features/ArticleRecommendationList';
+import { VStack } from '@/shared/ui/Stack';
+import { ArticleRecommendationList } from '@/features/ArticleRecommendationList';
 import { ArticlesDetailsComments } from '../ArticlesDetailsComments/ArticlesDetailsComments';
 import { ArticlesDetailsPageHeader } from '../ArticlesDetailsPageHeader/ArticlesDetailsPageHeader';
 import { articleDetailPageReducer } from '../../models/slice';

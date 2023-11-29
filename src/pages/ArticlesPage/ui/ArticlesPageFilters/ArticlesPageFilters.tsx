@@ -1,23 +1,23 @@
 import { useTranslation } from 'react-i18next';
 import { memo, useCallback } from 'react';
-import { classNames } from 'shared/lib/classNames/classNames';
+import { useSelector } from 'react-redux';
+import { classNames } from '@/shared/lib/classNames/classNames';
 import {
     ArticleSortSelector,
     ArticlesSortField, ArticleType,
     ArticleTypeTabs,
     ArticleView,
     ArticleViewSelector,
-} from 'entities/Article';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
-import { useSelector } from 'react-redux';
+} from '@/entities/Article';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
 
-import { Input } from 'shared/ui/Input/Input';
-import { Card } from 'shared/ui/Card/Card';
+import { Input } from '@/shared/ui/Input/Input';
+import { Card } from '@/shared/ui/Card/Card';
 
-import { SortOrder } from 'shared/types';
-import { useDebounce } from 'shared/lib/hooks/useDebounce/useDebounce';
+import { SortOrder } from '@/shared/types';
+import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce';
 
-import { HStack } from 'shared/ui/Stack';
+import { HStack } from '@/shared/ui/Stack';
 import { articlesPageActions } from '../../model/slice/articlePageSlice';
 import { fetchArticlesList } from '../../model/service/fetchArticlesList/fetchArticlesList';
 import {

@@ -1,8 +1,7 @@
-import { useTranslation } from 'react-i18next';
 import { memo } from 'react';
-import { classNames } from 'shared/lib/classNames/classNames';
-import { ArticleList } from 'entities/Article/ui/ArticleList/ArticleList';
 import { useSelector } from 'react-redux';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { ArticleList } from '@/entities/Article/ui/ArticleList/ArticleList';
 import { getArticles } from '../../model/slice/articlePageSlice';
 import {
     getArticlesPageError,
@@ -11,7 +10,7 @@ import {
 } from '../../model/selectors/articlesPageSelectors';
 
 interface ArticleInfinityListProps {
-    className?: string;
+  className?: string;
 }
 
 export const ArticleInfinityList = memo((props: ArticleInfinityListProps) => {

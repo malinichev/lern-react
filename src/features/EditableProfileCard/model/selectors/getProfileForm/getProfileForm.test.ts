@@ -1,5 +1,5 @@
-import { StateSchema } from 'app/providers/StoreProvider';
-import { Country, Currency } from 'shared/const/common';
+import { StateSchema } from '@/app/providers/StoreProvider';
+import { Country, Currency } from '@/shared/const/common';
 
 import { getProfileForm } from './getProfileForm';
 

@@ -1,4 +1,4 @@
-import { Country, Currency } from 'shared/const/common';
+import { Country, Currency } from '@/shared/const/common';
 
 import { ValidateProfileErrors } from '../consts/consts';
 import { updateProfileData } from '../service/updateProfileData/updateProfileData';

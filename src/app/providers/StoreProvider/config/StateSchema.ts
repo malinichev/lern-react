@@ -1,6 +1,3 @@
-import type { CounterSchema } from 'entities/Counter';
-import type { LoginSchema } from 'features/AuthByUsername';
-import type { UserSchema } from 'entities/User';
 import { EnhancedStore } from '@reduxjs/toolkit/src/configureStore';
 import {
     AnyAction,
@@ -8,15 +5,18 @@ import {
     Reducer,
     ReducersMapObject,
 } from '@reduxjs/toolkit';
-
 import { AxiosInstance } from 'axios';
-import { ArticleDetailsSchema } from 'entities/Article';
-import { ArticleDetailPageSchema } from 'pages/ArticlesDetailsPage';
-import { CommentType } from 'features/AddCommentForm';
-import { ArticlePageSchema } from 'pages/ArticlesPage';
-import { PageRestoreScrollSchema } from 'widgets/Page';
-import { rtkApi } from 'shared/api/rtkApi';
-import { ProfileSchema } from 'features/EditableProfileCard';
+import type { CounterSchema } from '@/entities/Counter';
+import type { LoginSchema } from '@/features/AuthByUsername';
+import type { UserSchema } from '@/entities/User';
+
+import { ArticleDetailsSchema } from '@/entities/Article';
+import { ArticleDetailPageSchema } from '@/pages/ArticlesDetailsPage';
+import { CommentType } from '@/features/AddCommentForm';
+import { ArticlePageSchema } from '@/pages/ArticlesPage';
+import { PageRestoreScrollSchema } from '@/widgets/Page';
+import { rtkApi } from '@/shared/api/rtkApi';
+import { ProfileSchema } from '@/features/EditableProfileCard';
 
 export interface StateSchema {
   counter: CounterSchema;
