@@ -10,7 +10,7 @@ interface PopoverProps {
     className?: string;
     direction?: DropdownDirection;
     trigger: ReactNode;
-    children?:ReactNode;
+    children?: ReactNode;
 }
 
 export const Popover = memo((props: PopoverProps) => {
@@ -21,7 +21,12 @@ export const Popover = memo((props: PopoverProps) => {
 
     return (
         <HPopover className={classNames('', {}, [className, popupCls.popup])}>
-            <HPopover.Button className={popupCls.trigger}>{trigger}</HPopover.Button>
+            <HPopover.Button
+                as="div"
+                className={popupCls.trigger}
+            >
+                {trigger}
+            </HPopover.Button>
 
             <HPopover.Panel className={classNames(cls.panel, {}, menuClasses)}>
                 {children}
