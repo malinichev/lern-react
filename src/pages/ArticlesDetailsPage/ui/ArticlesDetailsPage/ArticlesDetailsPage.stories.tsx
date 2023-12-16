@@ -5,9 +5,7 @@ import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDe
 import { Theme } from '@/app/providers/ThemeProvider';
 import { Article, ArticleType } from '@/entities/Article';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
-import { ReducersList } from '@/shared/lib/DynamicModuleLoader/DynamicModuleLoader';
 import { ArticleBlockType } from '@/entities/Article/model/consts/consts';
-import { articleDetailPageReducer } from '../../models/slice';
 import ArticlesDetailsPage from './ArticlesDetailsPage';
 
 export default {
@@ -94,21 +92,20 @@ const Template: ComponentStory<typeof ArticlesDetailsPage> = () => (
     <ArticlesDetailsPage />
 );
 
-const reducers: ReducersList = {
-    articleDetailPage: articleDetailPageReducer,
-};
-
 export const Normal = Template.bind({});
 Normal.args = {};
 Normal.decorators = [
-    StoreDecorator(
-        {
-            articleDetails: {
-                data: article,
+    StoreDecorator({
+        articleDetails: {
+            data: article,
+        },
+        user: {
+            authData: {
+                id: '1',
+                username: 'serg',
             },
         },
-    ),
-
+    }),
 ];
 Normal.parameters = {
     mockData: [
@@ -122,6 +119,20 @@ Normal.parameters = {
                 { ...article, id: '3' },
             ],
         },
+        {
+            url: `${__API__}/article-ratings?userId=&articleId=1`,
+            method: 'GET',
+            status: 200,
+            response: [
+                {
+                    id: '1',
+                    rate: 4,
+                    feedback: 'Хорошая статья',
+                    userId: '1',
+                    articleId: '1',
+                },
+            ],
+        },
     ],
 };
 
@@ -129,13 +140,11 @@ export const Dark = Template.bind({});
 Dark.args = {};
 Dark.decorators = [
     ThemeDecorator(Theme.DARK),
-    StoreDecorator(
-        {
-            articleDetails: {
-                data: article,
-            },
+    StoreDecorator({
+        articleDetails: {
+            data: article,
         },
-    ),
+    }),
 ];
 
 Dark.parameters = {
@@ -148,6 +157,20 @@ Dark.parameters = {
                 { ...article, id: '1' },
                 { ...article, id: '2' },
                 { ...article, id: '3' },
+            ],
+        },
+        {
+            url: `${__API__}/article-ratings?userId=&articleId=1`,
+            method: 'GET',
+            status: 200,
+            response: [
+                {
+                    id: '1',
+                    rate: 4,
+                    feedback: 'Хорошая статья',
+                    userId: '1',
+                    articleId: '1',
+                },
             ],
         },
     ],
