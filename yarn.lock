@@ -7524,10 +7524,10 @@ eslint-plugin-jsx-a11y@^6.5.1:
     object.entries "^1.1.7"
     object.fromentries "^2.0.7"
 
-eslint-plugin-malini4-plugin@0.0.5:
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-malini4-plugin/-/eslint-plugin-malini4-plugin-0.0.5.tgz#95ab2c7aa9a7a8e41556b70a3526a33bf3849abf"
-  integrity sha512-1e4Lt1PVmB53pWuMLZFNWzI/g39BVcO7YFfVtjLEotqCzEo9BdOW1IiTqCl7MyiAgsorPRtayhmIfeC/7N8SqQ==
+eslint-plugin-malini4-plugin@0.0.6:
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-malini4-plugin/-/eslint-plugin-malini4-plugin-0.0.6.tgz#ba8ed737cc292dc43219ec8d3823ea0425d5c1e3"
+  integrity sha512-kwVPKLzn7ktVOzyAMT4P4OAQVxmyyLu1/awRGKyKTSINCTKCfFRkaXakWBi5UAPTZfu0btp163QwTH8c3CJUvQ==
   dependencies:
     requireindex "^1.2.0"
 

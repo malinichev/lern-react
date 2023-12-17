@@ -1,13 +1,14 @@
 import { memo } from 'react';
 import { useSelector } from 'react-redux';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { ArticleList } from '@/entities/Article/ui/ArticleList/ArticleList';
+
 import { getArticles } from '../../model/slice/articlePageSlice';
 import {
     getArticlesPageError,
     getArticlesPageIsLoading,
     getArticlesPageView,
 } from '../../model/selectors/articlesPageSelectors';
+import { ArticleList } from '@/entities/Article';
 
 interface ArticleInfinityListProps {
   className?: string;

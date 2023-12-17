@@ -2,9 +2,10 @@ import { useTranslation } from 'react-i18next';
 import { memo } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Text, TextSize } from '@/shared/ui/Text/Text';
-import { ArticleList } from '@/entities/Article/ui/ArticleList/ArticleList';
+
 import { VStack } from '@/shared/ui/Stack';
 import { useArticleRecommendationList } from '../../api/articleRecommendationListApi';
+import { ArticleList } from '@/entities/Article';
 
 interface ArticleRecommendationListProps {
   className?: string;
@@ -25,13 +26,17 @@ export const ArticleRecommendationList = memo(
         }
 
         return (
-            <VStack max gap="8" align="start" className={classNames('', {}, [className])}>
+            <VStack
+                max
+                gap="8"
+                align="start"
+                className={classNames('', {}, [className])}
+            >
                 <Text size={TextSize.L} title={t('Рекомендуем')} />
                 <ArticleList
                     target="_blank"
                     articles={articles}
                     isLoading={isLoading}
-                    virtualized={false}
                 />
             </VStack>
         );

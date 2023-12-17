@@ -5,9 +5,9 @@ import { Input } from '@/shared/ui/Input/Input';
 import { Loader } from '@/shared/ui/Loader/Loader';
 import { Avatar } from '@/shared/ui/Avatar/Avatar';
 import { Currency, CurrencySelect } from '@/entities/Currency';
-import { CountrySelect } from '@/entities/Country';
+import { Country, CountrySelect } from '@/entities/Country';
 import { HStack, VStack } from '@/shared/ui/Stack';
-import { Country } from '@/entities/Country/model/consts/consts';
+
 import cls from './ProfileCard.module.scss';
 import { Profile } from '../../model/types/profile';
 
@@ -81,15 +81,8 @@ export const ProfileCard = (props: ProfileCardProps) => {
     };
 
     return (
-        <div
-            className={classNames(cls.ProfileCard, mods, [className])}
-        >
-            <VStack
-                max
-                gap="16"
-                align="start"
-                className={cls.data}
-            >
+        <div className={classNames(cls.ProfileCard, mods, [className])}>
+            <VStack max gap="16" align="start" className={cls.data}>
                 {data?.avatar && (
                     <HStack max justify="center">
                         <Avatar src={data?.avatar} />

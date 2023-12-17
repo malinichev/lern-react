@@ -2,13 +2,14 @@ import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import withMock from 'storybook-addon-mock';
 import { Theme } from '@/app/providers/ThemeProvider';
-import { profileReducer } from '@/features/EditableProfileCard/model/slice/profileSlice';
+
 import ProfilePage from './ProfilePage';
 import { ThemeDecorator } from '../../../shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { StoreDecorator } from '../../../shared/config/storybook/StoreDecorator/StoreDecorator';
 import { Country, Currency } from '../../../shared/const/common';
 
 import avatar from '../../../shared/assets/avatar.jpeg';
+import { profileReducer } from '@/features/EditableProfileCard';
 
 const userId = '1';
 const profileId = '2';
