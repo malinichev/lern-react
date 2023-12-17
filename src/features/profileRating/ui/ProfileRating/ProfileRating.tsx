@@ -8,7 +8,7 @@ import { getUserAuthData } from '@/entities/User';
 import {
     useGetProfileRatingQuery,
     useRateProfileArgMutation,
-} from '@/features/profileRating/api/profileRatingApi';
+} from '../../api/profileRatingApi';
 import { Skeleton } from '@/shared/ui/Skeleton/Skeleton';
 
 interface ProfileRatingProps {

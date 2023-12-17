@@ -70,7 +70,7 @@ module.exports = {
         'react-hooks/exhaustive-deps': 'error', // Checks effect dependencies
         'no-undef': 'off',
         'arrow-body-style': 'off',
-        'malini4-plugin/path-checker': 'error',
+        'malini4-plugin/path-checker': ['error', { alias: '@' }],
     },
     globals: {
         __IS_DEV__: true,

@@ -22,7 +22,7 @@ Normal.args = {};
 export const SelectedStar = Template.bind({});
 
 SelectedStar.args = {
-    selectedStar: 4,
+    rate: 4,
 };
 
 export const WithModal = Template.bind({});

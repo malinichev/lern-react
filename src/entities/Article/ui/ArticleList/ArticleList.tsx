@@ -6,7 +6,7 @@ import { ArticleListItemSkeleton } from '../ArticleListItem/ArticleListItemSkele
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
 import cls from './ArticleList.module.scss';
 import { Article } from '../../model/types/article';
-import { ArticleView } from '@/entities/Article';
+import { ArticleView } from '../../model/consts/consts';
 
 interface ArticleListProps {
   className?: string;
