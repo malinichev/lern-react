@@ -10,9 +10,9 @@ import cls from './CommentCard.module.scss';
 import { Comment } from '../../model/types/comment';
 
 interface CommentCardProps {
-    className?: string;
-    comment?: Comment
-    isLoading?: boolean
+  className?: string;
+  comment?: Comment;
+  isLoading?: boolean;
 }
 
 export const CommentCard = memo((props: CommentCardProps) => {
@@ -20,10 +20,17 @@ export const CommentCard = memo((props: CommentCardProps) => {
 
     if (isLoading) {
         return (
-            <div className={classNames(cls.CommentCard, {}, [className, cls.loading])}>
+            <div
+                className={classNames(cls.CommentCard, {}, [className, cls.loading])}
+            >
                 <div className={cls.header}>
                     <HStack gap="4" align="center">
-                        <Skeleton className={cls.skeleton} width={30} height={30} border="50%" />
+                        <Skeleton
+                            className={cls.skeleton}
+                            width={30}
+                            height={30}
+                            border="50%"
+                        />
                         <Skeleton className={cls.skeleton} width={50} height={16} />
                     </HStack>
                 </div>
@@ -37,7 +44,11 @@ export const CommentCard = memo((props: CommentCardProps) => {
 
     return (
         <div className={classNames(cls.CommentCard, {}, [className])}>
-            <AppLink theme={AppLinkTheme.SECONDARY} to={`${RoutePath.profile}${comment.id}`} className={cls.header}>
+            <AppLink
+                theme={AppLinkTheme.SECONDARY}
+                to={`${RoutePath.profile}${comment.user.id}`}
+                className={cls.header}
+            >
                 {comment.user?.avatar && <Avatar size={20} src={comment.user.avatar} />}
                 <Text text={comment.user.username} />
             </AppLink>

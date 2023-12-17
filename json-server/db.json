@@ -760,11 +760,11 @@
       "profileId": "1"
     },
     {
-      "id": "2",
-      "rate": 4,
-      "feedback": "Хорошая статья",
       "userId": "1",
-      "profileId": "2"
+      "profileId": "2",
+      "rate": 3,
+      "feedback": "fffff",
+      "id": "F2bLJUl"
     }
   ]
 }

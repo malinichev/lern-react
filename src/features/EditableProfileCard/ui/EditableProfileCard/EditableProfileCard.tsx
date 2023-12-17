@@ -22,6 +22,7 @@ import { getProfileIsReadOnly } from '../../model/selectors/getProfileIsReadOnly
 import { getProfileValidateErrors } from '../../model/selectors/getProfileValidateErrors/getProfileValidateErrors';
 import { fetchProfileData } from '../../model/service/fetchProfileData/fetchProfileData';
 import { profileActions, profileReducer } from '../../model/slice/profileSlice';
+import { ProfileRating } from '@/features/profileRating';
 
 interface EditableProfileCardProps {
   className?: string;
@@ -121,17 +122,18 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
         <DynamicModuleLoader reducers={reducers}>
             <VStack gap="16" max>
                 <EditableProfileHeader />
+                <ProfileRating profileId={id} />
                 <VStack max gap="16" className={classNames('', {}, [className])}>
                     {validateError
-          && validateError.length > 0
-          && validateError.map((error: keyof typeof validateErrorTranslate) => (
-              <Text
-                  key={error}
-                  theme={TextTheme.ERROR}
-                  text={validateErrorTranslate[error]}
-                  data-testid="EditableProfileCard.Error"
-              />
-          ))}
+            && validateError.length > 0
+            && validateError.map((error: keyof typeof validateErrorTranslate) => (
+                <Text
+                    key={error}
+                    theme={TextTheme.ERROR}
+                    text={validateErrorTranslate[error]}
+                    data-testid="EditableProfileCard.Error"
+                />
+            ))}
                     <ProfileCard
                         data={formData}
                         isLoading={isLoading}
