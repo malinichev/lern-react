@@ -39,7 +39,18 @@ const options = {
     },
 };
 
+// Mock the matchMedia function
+window.matchMedia = jest.fn().mockImplementation((query) => ({
+    matches: query === '(max-width: 768px)',
+    addEventListener: jest.fn(),
+    removeEventListener: jest.fn(),
+}));
+
 describe('feutures/EditableProfileCard', () => {
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
+
     test('Режим reedOnly должен переключиться', async () => {
         componentRender(<EditableProfileCard id="1" />, options);
         await userEvent.click(screen.getByTestId('EditableProfileHeader.EditButton'));
