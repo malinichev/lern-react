@@ -3,11 +3,12 @@ import { StateSchema, StoreProvider } from '@/app/providers/StoreProvider';
 
 import { ReducersList } from '@/shared/lib/DynamicModuleLoader/DynamicModuleLoader';
 import { pageRestoreScrollReducer } from '@/widgets/Page';
-import { loginReducer } from '@/features/AuthByUsername';
-import { articleDetailsReducer } from '@/entities/Article';
-import { addCommentFormReducer } from '@/features/AddCommentForm';
-import { articleDetailPageReducer } from '@/pages/ArticlesDetailsPage';
-import { profileReducer } from '@/features/EditableProfileCard';
+
+import { articleDetailsReducer } from '@/entities/Article/testing';
+import { addCommentFormReducer } from '@/features/AddCommentForm/testing';
+import { articleDetailPageReducer } from '@/pages/ArticlesDetailsPage/testing';
+import { profileReducer } from '@/features/EditableProfileCard/testing';
+import { loginReducer } from '@/features/AuthByUsername/testing';
 
 const defaultAsyncReducers: ReducersList = {
     login: loginReducer,

@@ -1,4 +1,4 @@
-export { loginReducer, loginAction } from './model/slice/LoginSlice';
+export { loginAction } from './model/slice/LoginSlice';
 
 export { loginByUserName } from './model/services/loginByUserName/loginByUserName';
 

@@ -9,8 +9,8 @@ import { createReducerManager } from '@/app/providers/StoreProvider/config/creat
 import { $api } from '@/shared/api/api';
 import { ThunkExtraArg } from '@/app/providers/StoreProvider/config/StateSchema';
 import { authMiddleware } from '@/app/providers/StoreProvider/middlewares/authMiddleware';
-import { pageRestoreScrollReducer } from '@/widgets/Page';
 import { rtkApi } from '@/shared/api/rtkApi';
+import { pageRestoreScrollReducer } from '@/widgets/Page';
 
 export function createReduxStore(
     initialState?: StateSchema,

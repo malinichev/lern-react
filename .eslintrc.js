@@ -71,7 +71,17 @@ module.exports = {
         'no-undef': 'off',
         'arrow-body-style': 'off',
         'malini4-plugin/path-checker': ['error', { alias: '@' }],
-        'malini4-plugin/public-api-imports': ['error', { alias: '@' }],
+        'malini4-plugin/public-api-imports': [
+            'error',
+            {
+                alias: '@',
+                testFilesPatterns: [
+                    '**/*.test.ts',
+                    '**/*.test.ts',
+                    '**/StoreDecorator.tsx',
+                ],
+            },
+        ],
     },
     globals: {
         __IS_DEV__: true,
