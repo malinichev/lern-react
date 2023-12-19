@@ -22,7 +22,7 @@ import { getProfileIsReadOnly } from '../../model/selectors/getProfileIsReadOnly
 import { getProfileValidateErrors } from '../../model/selectors/getProfileValidateErrors/getProfileValidateErrors';
 import { fetchProfileData } from '../../model/service/fetchProfileData/fetchProfileData';
 import { profileActions, profileReducer } from '../../model/slice/profileSlice';
-import { ProfileRating } from '@/features/profileRating';
+import { ProfileRating } from '@/entities/profileRating';
 
 interface EditableProfileCardProps {
   className?: string;

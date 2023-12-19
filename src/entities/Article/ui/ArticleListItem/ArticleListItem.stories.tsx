@@ -2,11 +2,11 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { ArticleView } from '../../model/consts/consts';
-import { Theme } from '../../../../app/providers/ThemeProvider';
 import { ThemeDecorator } from '../../../../shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { ArticleListItem } from './ArticleListItem';
 import { Article } from '../../model/types/article';
 import avatar from '../../../../shared/assets/avatar.jpeg';
+import { Theme } from '@/shared/const/theme';
 
 const mockArticle = {
     id: '1',

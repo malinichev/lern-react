@@ -4,18 +4,20 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Button } from '../../../Button/Button';
 import { Popover } from './Popover';
 
+const Children = () => (
+    <div style={{ backgroundColor: 'yellow', padding: '10px' }}>
+        <p style={{ backgroundColor: 'blueviolet', color: 'white' }}>first</p>
+        <p>second</p>
+        <p>third</p>
+    </div>
+);
+
 export default {
     title: 'shared/popups/Popover',
     component: Popover,
     args: {
         trigger: <Button>Open</Button>,
-        children: () => (
-            <div style={{ backgroundColor: 'yellow', padding: '10px' }}>
-                <p style={{ backgroundColor: 'blueviolet', color: 'white' }}>first</p>
-                <p>second</p>
-                <p>third</p>
-            </div>
-        ),
+        children: <Children />,
 
     },
 } as ComponentMeta<typeof Popover>;

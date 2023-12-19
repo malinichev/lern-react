@@ -1,7 +1,6 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import withMock from 'storybook-addon-mock';
-import { Theme } from '@/app/providers/ThemeProvider';
 
 import ProfilePage from './ProfilePage';
 import { ThemeDecorator } from '../../../shared/config/storybook/ThemeDecorator/ThemeDecorator';
@@ -9,7 +8,9 @@ import { StoreDecorator } from '../../../shared/config/storybook/StoreDecorator/
 import { Country, Currency } from '../../../shared/const/common';
 
 import avatar from '../../../shared/assets/avatar.jpeg';
-import { profileReducer } from '@/features/EditableProfileCard';
+// eslint-disable-next-line malini4-plugin/public-api-imports
+import { profileReducer } from '@/features/EditableProfileCard/testing';
+import { Theme } from '@/shared/const/theme';
 
 const userId = '1';
 const profileId = '2';

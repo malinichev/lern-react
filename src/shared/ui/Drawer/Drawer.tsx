@@ -2,7 +2,6 @@ import React, {
     memo, ReactNode, useCallback, useEffect,
 } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { useTheme } from '@/app/providers/ThemeProvider';
 import {
     AnimationProvider,
     useAnimationLibs,
@@ -10,6 +9,7 @@ import {
 import { Overlay } from '../Overlay/Overlay';
 import cls from './Drawer.module.scss';
 import { Portal } from '../Portal/Portal';
+import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
 
 interface DrawerProps {
   className?: string;
@@ -83,6 +83,7 @@ export const DrawerContent = memo((props: DrawerProps) => {
     const display = y.to((py) => (py < height ? 'block' : 'none'));
 
     return (
+        // @ts-ignore
         <Portal>
             <div
                 className={classNames(cls.Drawer, {}, [className, theme, 'app_drawer'])}

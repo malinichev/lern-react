@@ -5,10 +5,10 @@ import {
 import { StateSchema } from '@/app/providers/StoreProvider';
 import { userReducer } from '@/entities/User';
 import { counterReducer } from '@/entities/Counter';
-import { createReducerManager } from '@/app/providers/StoreProvider/config/createReducerManager';
+import { createReducerManager } from './createReducerManager';
 import { $api } from '@/shared/api/api';
-import { ThunkExtraArg } from '@/app/providers/StoreProvider/config/StateSchema';
-import { authMiddleware } from '@/app/providers/StoreProvider/middlewares/authMiddleware';
+import { ThunkExtraArg } from './StateSchema';
+import { authMiddleware } from '../middlewares/authMiddleware';
 import { rtkApi } from '@/shared/api/rtkApi';
 import { pageRestoreScrollReducer } from '@/widgets/Page';
 

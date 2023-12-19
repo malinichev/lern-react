@@ -37,6 +37,7 @@ export const Modal = (props: ModalProps) => {
     }
 
     return (
+        // @ts-ignore
         <Portal>
             <div className={classNames(cls.Modal, mods, [className])}>
                 <Overlay className={cls.overlay} onClick={close} />
