@@ -4,11 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
-import { RoutePath } from '@/shared/config/routeConfig/routeConfig';
 import { getArticleDetailsData } from '@/entities/Article';
 import { HStack } from '@/shared/ui/Stack';
 import { canEditArticle } from '../../models/selectors/article';
 import cls from './ArticlesDetailsPageHeader.module.scss';
+import { RoutePath } from '@/shared/const/router';
 
 interface ArticlesDetailsPageHeaderProps {
   className?: string;

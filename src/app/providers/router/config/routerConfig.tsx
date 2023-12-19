@@ -1,46 +1,15 @@
-import { RouteProps } from 'react-router-dom';
 import { MainPage } from '@/pages/MainPage';
 import { AboutPage } from '@/pages/AboutPage';
-import { NotFoundPage } from '@/pages/NotFoundPage';
-import { ProfilePage } from '@/pages/ProfilePage';
-import { ArticlesPage } from '@/pages/ArticlesPage';
-import { ArticlesDetailsPage } from '@/pages/ArticlesDetailsPage';
-import { ArticleEditPage } from '@/pages/ArticleEditPage';
 import { AdminPage } from '@/pages/AdminPage';
 import { UserRole } from '@/entities/User';
 import { ForbiddenPage } from '@/pages/ForbiddenPage';
-
-export type AppRotesProps = RouteProps & {
-  authOnly?: boolean;
-  roles?: UserRole[];
-};
-
-export enum AppRoutes {
-  MAIN = 'main',
-  ADMIN = 'admin',
-  ABOUT = 'about',
-  FORBIDDEN = 'forbidden',
-  PROFILE = 'profile',
-  ARTICLES = 'articles',
-  ARTICLES_DETAILS = 'articles_details',
-  ARTICLES_DETAILS_CREATE = 'articles_details_new',
-  ARTICLES_DETAILS_EDIT = 'articles_details_edit',
-  NOT_FOUND = 'not_found',
-}
-
-export const RoutePath: Record<AppRoutes, string> = {
-    [AppRoutes.MAIN]: '/',
-    [AppRoutes.ABOUT]: '/about',
-    [AppRoutes.ADMIN]: '/admin',
-    [AppRoutes.FORBIDDEN]: '/forbidden',
-    [AppRoutes.PROFILE]: '/profile/', // +id
-    [AppRoutes.ARTICLES]: '/articles',
-    [AppRoutes.ARTICLES_DETAILS]: '/articles/', // +id
-    [AppRoutes.ARTICLES_DETAILS_CREATE]: '/articles/new',
-    [AppRoutes.ARTICLES_DETAILS_EDIT]: '/articles/:id/edit', // +id
-    // последний
-    [AppRoutes.NOT_FOUND]: '*',
-};
+import { ProfilePage } from '@/pages/ProfilePage';
+import { ArticlesDetailsPage } from '@/pages/ArticlesDetailsPage';
+import { ArticleEditPage } from '@/pages/ArticleEditPage';
+import { ArticlesPage } from '@/pages/ArticlesPage';
+import { NotFoundPage } from '@/pages/NotFoundPage';
+import { AppRotesProps } from '@/shared/types/router';
+import { AppRoutes, RoutePath } from '@/shared/const/router';
 
 export const routeConfig: Record<AppRoutes, AppRotesProps> = {
     [AppRoutes.MAIN]: {
