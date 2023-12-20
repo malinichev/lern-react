@@ -19,9 +19,11 @@ module.exports = {
         'i18next',
         'react-hooks',
         'malini4-plugin',
+        'unused-imports',
     ],
     rules: {
         'no-unused-vars': 0,
+        'unused-imports/no-unused-imports': 'error',
         'react/jsx-indent': [2, 4],
         'react/jsx-indent-props': [2, 4],
         'no-console': 'off',
