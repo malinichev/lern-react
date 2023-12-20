@@ -6,7 +6,7 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect';
 import { Country, Currency } from '@/shared/const/common';
-import { Text, TextTheme } from '@/shared/ui/Text/Text';
+import { Text, TextTheme } from '@/shared/ui/Text';
 import {
     DynamicModuleLoader,
     ReducersList,

@@ -9,7 +9,7 @@ import {
     useGetProfileRatingQuery,
     useRateProfileArgMutation,
 } from '../../api/profileRatingApi';
-import { Skeleton } from '@/shared/ui/Skeleton/Skeleton';
+import { Skeleton } from '@/shared/ui/Skeleton';
 
 interface ProfileRatingProps {
   className?: string;
