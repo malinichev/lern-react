@@ -1,4 +1,4 @@
-export { getPageScrollByPath } from './model/selector/pageRestoreScroll';
+export { getPageScrollByPath } from './model/selectors/pageRestoreScroll';
 
 export type { PageRestoreScrollSchema } from './model/types/pageRestoreScroll';
 export { Page } from './ui/Page';

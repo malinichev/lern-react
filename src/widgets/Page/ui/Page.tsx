@@ -9,7 +9,7 @@ import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect';
 import { StateSchema } from '@/app/providers/StoreProvider';
 import { useThrottle } from '@/shared/lib/hooks/useThrottle/useThrottle';
-import { getPageScrollByPath } from '../model/selector/pageRestoreScroll';
+import { getPageScrollByPath } from '../model/selectors/pageRestoreScroll';
 import { pageRestoreScrollActions } from '../model/slice/pageRestoreScrollSlice';
 import cls from './Page.module.scss';
 
