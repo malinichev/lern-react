@@ -3,6 +3,10 @@
     text-decoration: none;
 }
 
+.card {
+    position: relative;
+}
+
 .BIG {
     margin-bottom: 15px;
 
@@ -33,11 +37,7 @@
     }
 
     .image {
-        width: 100%;
-        background-repeat: no-repeat;
-        background-size: contain;
-        background-color: var(--inverted-bg-color);
-        background-position: center;
+        width: auto;
         height: 178px;
     }
 
@@ -74,8 +74,8 @@
     .date {
         display: none;
         position: absolute;
-        top: 0;
-        right: 0;
+        top: 20px;
+        right: 25px;
     }
 
     &:hover {
@@ -95,13 +95,10 @@
     }
 
     .imageWrapper {
-        position: relative;
+        //position: relative;
         width: 200px;
         height: 200px;
         margin: 0 auto 10px;
-        background-size: contain;
-        background-position: center;
-        background-repeat: no-repeat;
     }
 
     .viewsNumber {

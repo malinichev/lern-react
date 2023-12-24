@@ -17,6 +17,8 @@ import {
 import cls from './ArticleListItem.module.scss';
 import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
 import { getRouteArticleDetails } from '@/shared/const/router';
+import { AppImage } from '@/shared/ui/AppImage';
+import { Skeleton } from '@/shared/ui/Skeleton';
 
 interface ArticleListItemProps {
   className?: string;
@@ -69,10 +71,17 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
                         className={cls.titleBig}
                     />
                     {types}
-                    <div
-                        style={{ backgroundImage: `url(${article.img})` }}
+                    <AppImage
+                        src={article.img}
+                        alt={article.title}
                         className={cls.image}
+                        errorFallback={renderErrorFallback()}
+                        fallback={<Skeleton width="100%" height={250} />}
                     />
+                    {/* <div */}
+                    {/*    style={{ backgroundImage: `url(${article.img})` }} */}
+                    {/*    className={cls.image} */}
+                    {/* /> */}
                     {textBlock && (
                         <ArticleTextBlockComponent
                             block={textBlock}
@@ -98,13 +107,20 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
             to={getRouteArticleDetails(article.id)}
             className={classNames(cls.ArticleListItem, {}, [className, cls[view]])}
         >
-            <Card>
-                <div
+            <Card className={cls.card}>
+                {/* <div */}
+                {/*    className={cls.imageWrapper} */}
+                {/*    style={{ backgroundImage: `url(${article.img})` }} */}
+                {/* > */}
+                {/* </div> */}
+                <AppImage
+                    src={article.img}
+                    alt={article.title}
                     className={cls.imageWrapper}
-                    style={{ backgroundImage: `url(${article.img})` }}
-                >
-                    <Text text={article.createdAt} className={cls.date} />
-                </div>
+                    errorFallback={renderErrorFallback()}
+                    fallback={<Skeleton width={200} height={200} />}
+                />
+                <Text text={article.createdAt} className={cls.date} />
                 <HStack align="center">
                     {types}
                     <div className={cls.viewsNumber}>{views}</div>
@@ -113,4 +129,8 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
             </Card>
         </AppLink>
     );
+
+    function renderErrorFallback() {
+        return <div style={{ width: '200px', height: '200px', backgroundColor: 'gray' }} />;
+    }
 });
