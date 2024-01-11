@@ -12,8 +12,9 @@ import { useThrottle } from '@/shared/lib/hooks/useThrottle/useThrottle';
 import { getPageScrollByPath } from '../model/selectors/pageRestoreScroll';
 import { pageRestoreScrollActions } from '../model/slice/pageRestoreScrollSlice';
 import cls from './Page.module.scss';
+import { TestProps } from '@/shared/types/tests';
 
-interface PageProps {
+interface PageProps extends TestProps{
   className?: string;
   children: ReactNode;
   onScrollEnd?: () => void;
@@ -44,7 +45,13 @@ export const Page = memo((props: PageProps) => {
     });
 
     return (
-        <main id={PAGE_ID} onScroll={handleScroll} ref={wrapperRef} className={classNames(cls.Page, {}, [className])}>
+        <main
+            id={PAGE_ID}
+            ref={wrapperRef}
+            data-testid={props['data-testid'] ?? 'Page'}
+            onScroll={handleScroll}
+            className={classNames(cls.Page, {}, [className])}
+        >
             {children}
             {onScrollEnd ? <div className={cls.trigger} ref={triggerRef} /> : null}
         </main>

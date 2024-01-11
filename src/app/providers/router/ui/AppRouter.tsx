@@ -1,9 +1,9 @@
 import React, { Suspense, useCallback } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { PageLoader } from '@/widgets/PageLoader';
 import { RequireAuth } from './RequireAuth';
 import { routeConfig } from '../config/routerConfig';
 import { AppRotesProps } from '@/shared/types/router';
+import { PageLoader } from '@/widgets/PageLoader';
 
 const AppRouter = () => {
     const renderWithRoute = useCallback(
