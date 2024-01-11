@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "private": false,
   "scripts": {
     "dev": "concurrently \"yarn start\" \"yarn start:dev:server\"",
     "dev:vite": "concurrently \"yarn start:vite\" \"yarn start:dev:server\"",
@@ -11,7 +12,7 @@
     "start:dev:server": "node ./json-server/index.js",
     "build:prod": "webpack  --env mode=production apiUrl=https://malini4-product-server-rust.vercel.app/",
     "build:dev": "webpack  --env mode=development",
-    "lint:ts": "eslint \"**/*.{ts,tsx}\" --quiet",
+    "lint:ts": "eslint \"**/*.{ts,tsx}\"",
     "lint:ts:fix": "eslint \"**/*.{ts,tsx}\" --fix --quiet",
     "lint:scss": "npx stylelint \"**/*.scss\"",
     "lint:scss:fix": "npx stylelint \"**/*.scss\" --fix",
@@ -25,8 +26,9 @@
     "storybook": "start-storybook -p 6006 -c ./config/storybook",
     "storybook:build": "build-storybook -c ./config/storybook",
     "generate:slice": "node ./scripts/createSlice/index.js",
-    "postinstall": "node ./scripts/clear-cache.js",
-    "prepare": "husky install"
+    "postinstall": "node ./scripts/clear-cache.js && husky install",
+    "prepack": "pinst --disable",
+    "postpack": "pinst --enable"
   },
   "lint-staged": {
     "**/*.{ts,tsx}": "eslint"
@@ -92,6 +94,7 @@
     "lint-staged": "^15.2.0",
     "loki": "^0.32.0",
     "mini-css-extract-plugin": "^2.5.3",
+    "pinst": "^3.0.0",
     "postcss": "^8.4.32",
     "react-refresh": "^0.12.0",
     "reg-cli": "^0.17.6",
