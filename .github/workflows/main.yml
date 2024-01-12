@@ -84,14 +84,14 @@ jobs:
         uses: actions/configure-pages@v4
         if: always()
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v2
         if: always()
         with:
           path: '.loki'
       - name: Deploy to GitHub Pages
         id: deployment
         if: always()
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v3
 
   checks:
     runs-on: ubuntu-latest
