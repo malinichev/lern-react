@@ -11,10 +11,12 @@ import { Page } from '@/widgets/Page';
 
 import { VStack } from '@/shared/ui/Stack';
 import { ArticleRecommendationList } from '@/features/ArticleRecommendationList';
-import { ArticlesDetailsComments } from '../ArticlesDetailsComments/ArticlesDetailsComments';
-import { ArticlesDetailsPageHeader } from '../ArticlesDetailsPageHeader/ArticlesDetailsPageHeader';
 import { articleDetailPageReducer } from '../../models/slice';
 import { ArticleRating } from '@/features/articleRating';
+import {
+    ArticlesDetailsPageHeader,
+} from '../ArticlesDetailsPageHeader/ArticlesDetailsPageHeader';
+import { ArticlesDetailsComments } from '../ArticlesDetailsComments/ArticlesDetailsComments';
 
 const reducers: ReducersList = {
     articleDetailPage: articleDetailPageReducer,
