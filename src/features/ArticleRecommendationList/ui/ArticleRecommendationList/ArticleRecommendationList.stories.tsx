@@ -1,7 +1,6 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import withMock from 'storybook-addon-mock';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { Article } from '@/entities/Article';
 import { ArticleRecommendationList } from './ArticleRecommendationList';
@@ -24,7 +23,6 @@ const mockArticle: Article = {
 export default {
     title: 'features/ArticleRecommendationList',
     component: ArticleRecommendationList,
-    decorators: [withMock],
 } as ComponentMeta<typeof ArticleRecommendationList>;
 
 const Template: ComponentStory<typeof ArticleRecommendationList> = (args) => (

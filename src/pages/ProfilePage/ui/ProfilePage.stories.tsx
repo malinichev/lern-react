@@ -1,6 +1,5 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import withMock from 'storybook-addon-mock';
 
 import ProfilePage from './ProfilePage';
 import { ThemeDecorator } from '../../../shared/config/storybook/ThemeDecorator/ThemeDecorator';
@@ -28,7 +27,6 @@ export const Normal = Template.bind({});
 Normal.args = {};
 
 Normal.decorators = [
-    withMock,
     StoreDecorator(
         {
             profile: {
@@ -79,7 +77,6 @@ Normal.parameters = {
 export const Dark = Template.bind({});
 Dark.args = {};
 Dark.decorators = [
-    withMock,
     ThemeDecorator(Theme.DARK),
     StoreDecorator(
         {

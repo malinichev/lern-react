@@ -1,6 +1,4 @@
-import {
-    Action, Dispatch, isAnyOf, isFulfilled,
-} from '@reduxjs/toolkit';
+import { Dispatch, isAnyOf, isFulfilled } from '@reduxjs/toolkit';
 import { USER_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
 
 import { userActions } from '@/entities/User';
@@ -14,7 +12,7 @@ interface Store {
 const isLoggedIn = isFulfilled(loginByUserName);
 const isLoggedOut = isAnyOf(userActions.logout);
 
-export const authMiddleware = (store: Store) => (next: (action: Action) => void) => (action: Action): void => {
+export const authMiddleware = (store: Store) => (next: (action: unknown) => unknown) => (action: unknown): void => {
     if (isLoggedIn(action)) {
         localStorage.setItem(USER_LOCALSTORAGE_KEY, JSON.stringify(action.payload));
     }
