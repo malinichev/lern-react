@@ -7,6 +7,8 @@ yarn dev или yarn dev:vite - запуск сервера + frontend прое�
 
 ----
 
+## Ссылка на [сгенерированные отчеты](https://malinichev.github.io/lern-react/)
+
 ## Скрипты
 
 - `yarn start` - Запуск frontend проекта на webpack dev server
