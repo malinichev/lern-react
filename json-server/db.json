@@ -686,6 +686,14 @@
         "USER"
       ],
       "avatar": "https://api.slingacademy.com/public/sample-users/2.png"
+    },    {
+      "id": "3",
+      "username": "testuser",
+      "password": "123",
+      "roles": [
+        "USER"
+      ],
+      "avatar": "https://api.slingacademy.com/public/sample-users/2.png"
     }
   ],
   "profile": [
