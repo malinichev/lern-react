@@ -1,4 +1,5 @@
 import {
+    CombinedState,
     configureStore, Reducer, ReducersMapObject,
 } from '@reduxjs/toolkit';
 import { StateSchema } from '@/app/providers/StoreProvider';
@@ -7,9 +8,9 @@ import { counterReducer } from '@/entities/Counter';
 import { createReducerManager } from './createReducerManager';
 import { $api } from '@/shared/api/api';
 import { ThunkExtraArg } from './StateSchema';
+import { authMiddleware } from '../middlewares/authMiddleware';
 import { rtkApi } from '@/shared/api/rtkApi';
 import { pageRestoreScrollReducer } from '@/widgets/Page';
-import { authMiddleware } from '../middlewares/authMiddleware';
 
 export function createReduxStore(
     initialState?: StateSchema,
@@ -30,7 +31,7 @@ export function createReduxStore(
     };
 
     const store = configureStore({
-        reducer: reducerManager.reduce as Reducer<StateSchema>,
+        reducer: reducerManager.reduce as Reducer<CombinedState<StateSchema>>,
         devTools: __IS_DEV__,
         preloadedState: initialState,
         middleware: (getDefaultMiddleware) => getDefaultMiddleware({
