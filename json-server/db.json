@@ -686,7 +686,8 @@
         "USER"
       ],
       "avatar": "https://api.slingacademy.com/public/sample-users/2.png"
-    },    {
+    },
+    {
       "id": "3",
       "username": "testuser",
       "password": "123",
@@ -717,6 +718,17 @@
       "country": "Russia",
       "city": "Moscow",
       "username": "Sergey",
+      "avatar": "https://api.slingacademy.com/public/sample-users/2.png"
+    },
+    {
+      "id": "3",
+      "firstname": "test",
+      "lastname": "user",
+      "age": 465,
+      "currency": "RUB",
+      "country": "Russia",
+      "city": "Moscow",
+      "username": "testuser",
       "avatar": "https://api.slingacademy.com/public/sample-users/2.png"
     }
   ],

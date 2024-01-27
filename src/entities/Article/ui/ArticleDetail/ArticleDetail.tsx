@@ -81,11 +81,11 @@ export const ArticleDetail = memo((props: ArticleDetailProps) => {
         content = <Text title={t('Ошибка')} align={TextAlign.CENTER} />;
     } else {
         content = (
-            <div className={classNames(cls.ArticleDetail, {}, [className])}>
+            <div data-testid="ArticleDetail.Info" className={classNames(cls.ArticleDetail, {}, [className])}>
                 <div className={cls.avatarWrapper}>
                     <Avatar className={cls.avatar} src={article?.img} alt={article?.title} />
                 </div>
-                <Text title={article?.title} text={article?.subtitle} size={TextSize.L} />
+                <Text data-testid="Title" title={article?.title} text={article?.subtitle} size={TextSize.L} />
                 <div className={cls.articleInfo}>
                     <Icon className={cls.icons} Svg={EyeIcon} />
                     <Text text={String(article?.views)} />

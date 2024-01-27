@@ -27,6 +27,7 @@ export const ArticleRecommendationList = memo(
 
         return (
             <VStack
+                data-testid="ArticleRecommendationList"
                 max
                 gap="8"
                 align="start"
