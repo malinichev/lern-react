@@ -31,27 +31,32 @@ describe.only('Пользователь заходит на страницу с�
         cy.removeArticle(articleId);
     });
 
-    it('и статьи успешно подгружаются', () => {
-        cy.getByTestId('ArticleDetail.Info').should('exist');
-        cy.getByTestId('Title.Header').contains(testArticle.title);
-        cy.getByTestId('Title.Paragraph').contains(testArticle.subtitle);
+    describe('Работает на реальном АПИ', () => {
+        it('и статьи успешно подгружаются', () => {
+            cy.getByTestId('ArticleDetail.Info').should('exist');
+            cy.getByTestId('Title.Header').contains(testArticle.title);
+            cy.getByTestId('Title.Paragraph').contains(testArticle.subtitle);
+        });
+
+        it('и подгружаются список рекомендаций', () => {
+            cy.getByTestId('ArticleRecommendationList').should('exist');
+        });
+
+        it('и оставляет комментарий', () => {
+            cy.getByTestId('ArticleRecommendationList').should('exist');
+            cy.getByTestId('AddCommentForm').scrollIntoView();
+            cy.addComment('comment text');
+            cy.getByTestId('CommentCard.Content').should('have.length', 1);
+        });
     });
 
-    it('и подгружаются список рекомендаций', () => {
-        cy.getByTestId('ArticleRecommendationList').should('exist');
-    });
-
-    it('и оставляет комментарий', () => {
-        cy.getByTestId('ArticleRecommendationList').should('exist');
-        cy.getByTestId('AddCommentForm').scrollIntoView();
-        cy.addComment('comment text');
-        cy.getByTestId('CommentCard.Content').should('have.length', 1);
-    });
-
-    it('и ставит оценку ', () => {
-        cy.getByTestId('ArticleRecommendationList').should('exist');
-        cy.getByTestId('RatingCard').scrollIntoView();
-        cy.setRating(4, 'feedback');
-        cy.get('[data-selected=true]').should('have.length', 4);
+    describe('Работает на стабах (фикстурах)', () => {
+        it('и ставит оценку', () => {
+            cy.intercept('GET', '**/articles/*', { fixture: 'article-details.json' });
+            cy.getByTestId('ArticleRecommendationList').should('exist');
+            cy.getByTestId('RatingCard').scrollIntoView();
+            cy.setRating(4, 'feedback');
+            cy.get('[data-selected=true]').should('have.length', 4);
+        });
     });
 });
