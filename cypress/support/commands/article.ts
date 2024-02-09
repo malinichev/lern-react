@@ -6,13 +6,11 @@ const defaultArticle = {
     img: 'https://api.slingacademy.com/public/sample-users/1.png',
     views: 10,
     createdAt: '01.01.2024',
-    type: [
-        'IT',
-    ],
+    type: ['IT'],
     blocks: [],
 } as Omit<Article, 'id' | 'user'>;
 
-export const removeArticle = (articleId:string) => {
+export const removeArticle = (articleId: string) => {
     return cy.request({
         method: 'DELETE',
         headers: { Authorization: 'asdasd' },
@@ -20,7 +18,7 @@ export const removeArticle = (articleId:string) => {
     });
 };
 
-export const createArticle = (userId:string, article?:Article) => {
+export const createArticle = (userId: string, article?: Article) => {
     let body = { ...defaultArticle, userId };
 
     if (article) {
@@ -39,8 +37,11 @@ export const createArticle = (userId:string, article?:Article) => {
 declare global {
     namespace Cypress {
         interface Chainable {
-            removeArticle(articleId:string): Chainable<void>;
-            createArticle(userId:string, article?:Omit<Article, 'id' | 'user'>): Chainable<Article>;
+            removeArticle(articleId: string): Chainable<void>;
+            createArticle(
+                userId: string,
+                article?: Omit<Article, 'id' | 'user'>,
+            ): Chainable<Article>;
         }
     }
 }

@@ -13,7 +13,6 @@ describe('getProfileData.test', () => {
             country: Country.Russia,
             city: 'Irk',
             username: 'malin',
-
         };
         const state: DeepPartial<StateSchema> = {
             profile: {

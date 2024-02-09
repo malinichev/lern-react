@@ -4,9 +4,9 @@ import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { Article } from '@/entities/Article';
 
 export const fetchRecommendations = createAsyncThunk<
-  Article[],
-  void,
-  ThunkConfig<string>
+    Article[],
+    void,
+    ThunkConfig<string>
 >('articlesDetailPage/fetchRecommendation', async (props, thunkApi) => {
     const { extra, rejectWithValue } = thunkApi;
 

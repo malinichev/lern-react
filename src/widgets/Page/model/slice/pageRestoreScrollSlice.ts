@@ -9,7 +9,10 @@ export const pageRestoreScrollSlice = createSlice({
     name: 'pageRestoreScroll',
     initialState,
     reducers: {
-        setPosition: (state, { payload }: PayloadAction<{ path:string; position:number }>) => {
+        setPosition: (
+            state,
+            { payload }: PayloadAction<{ path: string; position: number }>,
+        ) => {
             state.scroll[payload.path] = payload.position;
         },
     },

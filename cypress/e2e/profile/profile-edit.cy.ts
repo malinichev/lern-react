@@ -19,7 +19,13 @@ describe('Пользователь заходит на страницу проф
         const newFirstName = 'new';
         const newLastName = 'lastName';
         cy.updateProfile(newFirstName, newLastName);
-        cy.getByTestId('ProfileCard.FirstName').should('have.value', newFirstName);
-        cy.getByTestId('ProfileCard.LastName').should('have.value', newLastName);
+        cy.getByTestId('ProfileCard.FirstName').should(
+            'have.value',
+            newFirstName,
+        );
+        cy.getByTestId('ProfileCard.LastName').should(
+            'have.value',
+            newLastName,
+        );
     });
 });

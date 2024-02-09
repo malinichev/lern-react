@@ -10,8 +10,8 @@ import { getUserAuthData } from '@/entities/User';
 import { Skeleton } from '@/shared/ui/Skeleton';
 
 export interface ArticleRatingProps {
-  className?: string;
-  articleId: string;
+    className?: string;
+    articleId: string;
 }
 
 const ArticleRating = memo((props: ArticleRatingProps) => {

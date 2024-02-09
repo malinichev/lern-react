@@ -29,7 +29,7 @@ export const CounterSlice = buildSlice({
         increment: (state) => {
             state.value += 1;
         },
-        add: (state, { payload }:PayloadAction<number>) => {
+        add: (state, { payload }: PayloadAction<number>) => {
             state.value += payload;
         },
         decrement: (state) => {

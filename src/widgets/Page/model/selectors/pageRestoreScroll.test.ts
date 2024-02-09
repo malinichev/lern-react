@@ -1,8 +1,6 @@
 import { StateSchema } from '@/app/providers/StoreProvider';
 
-import {
-    getPageScroll, getPageScrollByPath,
-} from './pageRestoreScroll';
+import { getPageScroll, getPageScrollByPath } from './pageRestoreScroll';
 
 describe('pageRestoreScrollSlice.test', () => {
     test('should return scroll data', () => {
@@ -30,7 +28,9 @@ describe('pageRestoreScrollSlice.test', () => {
                 },
             },
         };
-        expect(getPageScrollByPath(state as StateSchema, 'pathname')).toEqual(500);
+        expect(getPageScrollByPath(state as StateSchema, 'pathname')).toEqual(
+            500,
+        );
     });
     test('should work with empty state', () => {
         const state: DeepPartial<StateSchema> = {};

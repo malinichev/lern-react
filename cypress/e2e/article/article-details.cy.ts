@@ -10,9 +10,7 @@ const testArticle = {
     img: 'https://api.slingacademy.com/public/sample-users/1.png',
     views: 10,
     createdAt: '01.01.2024',
-    type: [
-        'IT',
-    ],
+    type: ['IT'],
     blocks: [],
 } as Omit<Article, 'id' | 'user'>;
 
@@ -52,7 +50,9 @@ describe.only('Пользователь заходит на страницу с�
 
     describe('Работает на стабах (фикстурах)', () => {
         it('и ставит оценку', () => {
-            cy.intercept('GET', '**/articles/*', { fixture: 'article-details.json' });
+            cy.intercept('GET', '**/articles/*', {
+                fixture: 'article-details.json',
+            });
             cy.getByTestId('ArticleRecommendationList').should('exist');
             cy.getByTestId('RatingCard').scrollIntoView();
             cy.setRating(4, 'feedback');

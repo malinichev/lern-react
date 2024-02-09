@@ -1,4 +1,4 @@
 // фича редактирования
 export interface ArticleEditForm {
-    id?:string
+    id?: string;
 }

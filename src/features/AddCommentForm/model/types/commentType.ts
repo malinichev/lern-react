@@ -1,4 +1,4 @@
 export interface CommentType {
-    text: string
-    error?:string
+    text: string;
+    error?: string;
 }

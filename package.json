@@ -12,6 +12,7 @@
     "start:dev:server": "node ./json-server/index.js",
     "build:prod": "webpack  --env mode=production apiUrl=https://malini4-product-server-rust.vercel.app/",
     "build:dev": "webpack  --env mode=development",
+    "prettier": "npx prettier --write **/*.{ts,tsx}",
     "lint:ts": "eslint \"**/*.{ts,tsx}\"",
     "lint:ts:fix": "eslint \"**/*.{ts,tsx}\" --fix --quiet",
     "lint:scss": "npx stylelint \"**/*.scss\"",
@@ -32,7 +33,7 @@
     "postpack": "pinst --enable"
   },
   "lint-staged": {
-    "**/*.{ts,tsx}": "eslint"
+    "**/*.{ts,tsx}": ["prettier --list-different", "eslint"]
   },
   "keywords": [],
   "author": "",
@@ -76,6 +77,7 @@
     "cypress": "^13.6.2",
     "eslint": "^8.10.0",
     "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-i18next": "^5.1.2",
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-jsx-a11y": "^6.5.1",
@@ -99,6 +101,7 @@
     "mini-css-extract-plugin": "^2.5.3",
     "pinst": "^3.0.0",
     "postcss": "^8.4.32",
+    "prettier": "3.2.5",
     "react-refresh": "^0.12.0",
     "reg-cli": "^0.17.6",
     "regenerator-runtime": "^0.13.9",

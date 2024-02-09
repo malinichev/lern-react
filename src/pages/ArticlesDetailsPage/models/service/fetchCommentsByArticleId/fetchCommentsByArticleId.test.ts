@@ -1,21 +1,21 @@
 import { TestAsyncThunk } from '@/shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
 
-import {
-    fetchCommentsByArticleId,
-} from './fetchCommentsByArticleId';
+import { fetchCommentsByArticleId } from './fetchCommentsByArticleId';
 
-const data = [{
-    articleId: '1',
-    userId: '1',
-    text: 'Привет',
-    id: 'fp8eVJc',
-},
-{
-    articleId: '1',
-    userId: '1',
-    text: 'Привет 2',
-    id: 'EPkien0',
-}];
+const data = [
+    {
+        articleId: '1',
+        userId: '1',
+        text: 'Привет',
+        id: 'fp8eVJc',
+    },
+    {
+        articleId: '1',
+        userId: '1',
+        text: 'Привет 2',
+        id: 'EPkien0',
+    },
+];
 
 describe('fetchCommentsByArticleId.test', () => {
     test('fetchComments success', async () => {

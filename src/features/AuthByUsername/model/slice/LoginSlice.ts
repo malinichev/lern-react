@@ -12,10 +12,10 @@ export const LoginSlice = createSlice({
     name: 'login',
     initialState,
     reducers: {
-        setUserName: (state, action:PayloadAction<string>) => {
+        setUserName: (state, action: PayloadAction<string>) => {
             state.userName = action.payload;
         },
-        setPassword: (state, action:PayloadAction<string>) => {
+        setPassword: (state, action: PayloadAction<string>) => {
             state.password = action.payload;
         },
     },

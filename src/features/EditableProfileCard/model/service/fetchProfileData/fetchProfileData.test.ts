@@ -13,7 +13,6 @@ describe('fetchProfileData.test', () => {
             country: Country.Russia,
             city: 'Irk',
             username: 'malin',
-
         };
 
         const thunk = new TestAsyncThunk(fetchProfileData);

@@ -1,7 +1,14 @@
-import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import {
+    createEntityAdapter,
+    createSlice,
+    PayloadAction,
+} from '@reduxjs/toolkit';
 import { StateSchema } from '@/app/providers/StoreProvider';
 import {
-    Article, ArticlesSortField, ArticleType, ArticleView,
+    Article,
+    ArticlesSortField,
+    ArticleType,
+    ArticleView,
 } from '@/entities/Article';
 import { ARTICLES_VIEW_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
 import { SortOrder } from '@/shared/types';
@@ -34,11 +41,16 @@ export const articlePageSlice = createSlice({
     reducers: {
         setView: (state, actions: PayloadAction<ArticleView>) => {
             state.view = actions.payload;
-            localStorage.setItem(ARTICLES_VIEW_LOCALSTORAGE_KEY, actions.payload);
+            localStorage.setItem(
+                ARTICLES_VIEW_LOCALSTORAGE_KEY,
+                actions.payload,
+            );
         },
         initState: (state) => {
-            const view = (localStorage.getItem(ARTICLES_VIEW_LOCALSTORAGE_KEY) as ArticleView)
-        || ArticleView.SMALL;
+            const view =
+                (localStorage.getItem(
+                    ARTICLES_VIEW_LOCALSTORAGE_KEY,
+                ) as ArticleView) || ArticleView.SMALL;
             state.view = view;
             state.limit = view === ArticleView.SMALL ? 9 : 4;
             state._inited = true;
@@ -72,22 +84,17 @@ export const articlePageSlice = createSlice({
                     articlesAdapter.removeAll(state);
                 }
             })
-            .addCase(
-                fetchArticlesList.fulfilled,
-                (
-                    state,
-                    action,
-                ) => {
-                    state.isLoading = false;
-                    state.hasMore = action.payload.total > action.payload.articles.length;
+            .addCase(fetchArticlesList.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.hasMore =
+                    action.payload.total > action.payload.articles.length;
 
-                    if (action.meta.arg.replace) {
-                        articlesAdapter.setAll(state, action.payload.articles);
-                    } else {
-                        articlesAdapter.addMany(state, action.payload.articles);
-                    }
-                },
-            )
+                if (action.meta.arg.replace) {
+                    articlesAdapter.setAll(state, action.payload.articles);
+                } else {
+                    articlesAdapter.addMany(state, action.payload.articles);
+                }
+            })
             .addCase(fetchArticlesList.rejected, (state, action) => {
                 state.error = action.payload;
                 state.isLoading = false;

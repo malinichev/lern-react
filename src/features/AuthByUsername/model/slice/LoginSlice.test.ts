@@ -7,26 +7,29 @@ describe('LoginSlice.test', () => {
         const state: DeepPartial<LoginSchema> = {
             userName: '123',
         };
-        expect(loginReducer(
-            state as LoginSchema,
-            loginAction.setUserName('123456'),
-        )).toEqual({ userName: '123456' });
+        expect(
+            loginReducer(
+                state as LoginSchema,
+                loginAction.setUserName('123456'),
+            ),
+        ).toEqual({ userName: '123456' });
     });
     test('test set password', () => {
         const state: DeepPartial<LoginSchema> = {
             password: '123',
         };
-        expect(loginReducer(
-            state as LoginSchema,
-            loginAction.setPassword('123456'),
-        )).toEqual({ password: '123456' });
+        expect(
+            loginReducer(
+                state as LoginSchema,
+                loginAction.setPassword('123456'),
+            ),
+        ).toEqual({ password: '123456' });
     });
     test('test set isLoad', () => {
         const state: DeepPartial<LoginSchema> = {};
-        expect(loginReducer(
-            state as LoginSchema,
-            loginByUserName.pending,
-        )).toEqual({
+        expect(
+            loginReducer(state as LoginSchema, loginByUserName.pending),
+        ).toEqual({
             isLoading: true,
         });
     });

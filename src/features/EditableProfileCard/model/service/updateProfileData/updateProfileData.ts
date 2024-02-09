@@ -7,9 +7,9 @@ import { validateProfileData } from '../validateProfileData/validateProfileData'
 import { getProfileForm } from '../../selectors/getProfileForm/getProfileForm';
 
 export const updateProfileData = createAsyncThunk<
-  Profile,
-  void,
-  ThunkConfig<ValidateProfileErrors[]>
+    Profile,
+    void,
+    ThunkConfig<ValidateProfileErrors[]>
 >('profile/updateProfileData', async (_, thunkApi) => {
     const { extra, rejectWithValue, getState } = thunkApi;
 

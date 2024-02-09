@@ -1,6 +1,8 @@
 import {
     CombinedState,
-    configureStore, Reducer, ReducersMapObject,
+    configureStore,
+    Reducer,
+    ReducersMapObject,
 } from '@reduxjs/toolkit';
 import { StateSchema } from '@/app/providers/StoreProvider';
 import { userReducer } from '@/entities/User';
@@ -14,7 +16,7 @@ import { pageRestoreScrollReducer } from '@/widgets/Page';
 
 export function createReduxStore(
     initialState?: StateSchema,
-    asyncReducers?:ReducersMapObject<StateSchema>,
+    asyncReducers?: ReducersMapObject<StateSchema>,
 ) {
     const rootReducers: ReducersMapObject<StateSchema> = {
         ...asyncReducers,
@@ -34,11 +36,12 @@ export function createReduxStore(
         reducer: reducerManager.reduce as Reducer<CombinedState<StateSchema>>,
         devTools: __IS_DEV__,
         preloadedState: initialState,
-        middleware: (getDefaultMiddleware) => getDefaultMiddleware({
-            thunk: {
-                extraArgument: extraArg,
-            },
-        }).concat(rtkApi.middleware, authMiddleware),
+        middleware: (getDefaultMiddleware) =>
+            getDefaultMiddleware({
+                thunk: {
+                    extraArgument: extraArg,
+                },
+            }).concat(rtkApi.middleware, authMiddleware),
     });
 
     // @ts-ignore
@@ -46,4 +49,4 @@ export function createReduxStore(
     return store;
 }
 
-export type AppDispatch = ReturnType<typeof createReduxStore>['dispatch']
+export type AppDispatch = ReturnType<typeof createReduxStore>['dispatch'];

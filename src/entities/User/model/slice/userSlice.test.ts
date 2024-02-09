@@ -1,7 +1,7 @@
 import { User, UserSchema } from '../types/user';
 import { userActions, userReducer } from './userSlice';
 
-const data:User = {
+const data: User = {
     id: '1',
     username: 'Sergey',
     avatar: 'url',
@@ -11,10 +11,9 @@ describe('userSlice.test', () => {
     test('test setAuthData, authData should be User', () => {
         const state: DeepPartial<UserSchema> = {};
 
-        expect(userReducer(
-            state as UserSchema,
-            userActions.setAuthData(data),
-        )).toEqual({ authData: data });
+        expect(
+            userReducer(state as UserSchema, userActions.setAuthData(data)),
+        ).toEqual({ authData: data });
     });
 
     test('test initAuthData, _initAuth should be true', () => {
@@ -22,10 +21,9 @@ describe('userSlice.test', () => {
             _initAuth: false,
         };
 
-        expect(userReducer(
-            state as UserSchema,
-            userActions.initAuthData(),
-        )).toEqual({ _initAuth: true });
+        expect(
+            userReducer(state as UserSchema, userActions.initAuthData()),
+        ).toEqual({ _initAuth: true });
     });
 
     test('test logout, authData should be undefined', () => {
@@ -35,9 +33,8 @@ describe('userSlice.test', () => {
             },
         };
 
-        expect(userReducer(
-            state as UserSchema,
-            userActions.logout(),
-        )).toEqual({ authData: undefined });
+        expect(userReducer(state as UserSchema, userActions.logout())).toEqual({
+            authData: undefined,
+        });
     });
 });

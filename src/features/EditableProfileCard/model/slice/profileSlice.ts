@@ -15,7 +15,7 @@ export const profileSlice = createSlice({
     name: 'profile',
     initialState,
     reducers: {
-        setReadOnly: (state, action: PayloadAction<boolean >) => {
+        setReadOnly: (state, action: PayloadAction<boolean>) => {
             state.readOnly = action.payload;
         },
         cancelEdit: (state) => {
@@ -36,14 +36,14 @@ export const profileSlice = createSlice({
                 state.validateError = undefined;
                 state.isLoading = true;
             })
-            .addCase(fetchProfileData.fulfilled, (
-                state,
-                action: PayloadAction<Profile>,
-            ) => {
-                state.isLoading = false;
-                state.data = action.payload;
-                state.form = action.payload;
-            })
+            .addCase(
+                fetchProfileData.fulfilled,
+                (state, action: PayloadAction<Profile>) => {
+                    state.isLoading = false;
+                    state.data = action.payload;
+                    state.form = action.payload;
+                },
+            )
             .addCase(fetchProfileData.rejected, (state, action) => {
                 state.error = action.payload;
                 state.isLoading = false;
@@ -52,16 +52,16 @@ export const profileSlice = createSlice({
                 state.validateError = undefined;
                 state.isLoading = true;
             })
-            .addCase(updateProfileData.fulfilled, (
-                state,
-                action: PayloadAction<Profile>,
-            ) => {
-                state.isLoading = false;
-                state.data = action.payload;
-                state.form = action.payload;
-                state.readOnly = true;
-                state.validateError = undefined;
-            })
+            .addCase(
+                updateProfileData.fulfilled,
+                (state, action: PayloadAction<Profile>) => {
+                    state.isLoading = false;
+                    state.data = action.payload;
+                    state.form = action.payload;
+                    state.readOnly = true;
+                    state.validateError = undefined;
+                },
+            )
             .addCase(updateProfileData.rejected, (state, action) => {
                 state.isLoading = false;
                 state.validateError = action.payload;
