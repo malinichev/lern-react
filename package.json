@@ -10,7 +10,7 @@
     "start:vite": "vite",
     "start": "webpack serve --env port=3000",
     "start:dev:server": "node ./json-server/index.js",
-    "build:prod": "webpack  --env mode=production apiUrl=https://malini4-product-server-rust.vercel.app/",
+    "build:prod": "webpack  --env mode=production",
     "build:dev": "webpack  --env mode=development",
     "prettier": "npx prettier --write **/*.{ts,tsx}",
     "lint:ts": "eslint \"**/*.{ts,tsx}\"",
