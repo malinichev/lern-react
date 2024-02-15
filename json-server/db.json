@@ -676,6 +676,10 @@
         "ADMIN",
         "MANAGER"
       ],
+      "features": {
+        "isArticleRatingEnabled": true,
+        "isCounterEnabled": true
+      },
       "avatar": "https://api.slingacademy.com/public/sample-users/1.png"
     },
     {
@@ -685,6 +689,10 @@
       "roles": [
         "USER"
       ],
+      "features": {
+        "isArticleRatingEnabled": true,
+        "isCounterEnabled": false
+      },
       "avatar": "https://api.slingacademy.com/public/sample-users/2.png"
     },
     {
@@ -694,6 +702,10 @@
       "roles": [
         "USER"
       ],
+      "features": {
+        "isArticleRatingEnabled": false,
+        "isCounterEnabled": false
+      },
       "avatar": "https://api.slingacademy.com/public/sample-users/2.png"
     }
   ],

@@ -13,10 +13,10 @@ import { VStack } from '@/shared/ui/Stack';
 import { ArticleRecommendationList } from '@/features/ArticleRecommendationList';
 import { articleDetailPageReducer } from '../../models/slice';
 import { ArticleRating } from '@/features/articleRating';
-import {
-    ArticlesDetailsPageHeader,
-} from '../ArticlesDetailsPageHeader/ArticlesDetailsPageHeader';
+import { ArticlesDetailsPageHeader } from '../ArticlesDetailsPageHeader/ArticlesDetailsPageHeader';
 import { ArticlesDetailsComments } from '../ArticlesDetailsComments/ArticlesDetailsComments';
+import { getFeatureFlag } from '@/shared/lib/features';
+import { Counter } from '@/entities/Counter';
 
 const reducers: ReducersList = {
     articleDetailPage: articleDetailPageReducer,
@@ -24,7 +24,8 @@ const reducers: ReducersList = {
 
 const ArticlesDetailsPage = memo(() => {
     const { id } = useParams<{ id: string }>();
-
+    const isArticleRatingEnabled = getFeatureFlag('isArticleRatingEnabled');
+    const isCounterEnabled = getFeatureFlag('isCounterEnabled');
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
             <Page>
@@ -33,9 +34,16 @@ const ArticlesDetailsPage = memo(() => {
                     <ArticleDetail
                         id={__PROJECT__ === 'storybook' ? '1' : (id as string)}
                     />
-                    <ArticleRating
-                        articleId={__PROJECT__ === 'storybook' ? '1' : (id as string)}
-                    />
+                    {isCounterEnabled && <Counter />}
+                    {isArticleRatingEnabled && (
+                        <ArticleRating
+                            articleId={
+                                __PROJECT__ === 'storybook'
+                                    ? '1'
+                                    : (id as string)
+                            }
+                        />
+                    )}
                     <ArticleRecommendationList />
                     <ArticlesDetailsComments
                         id={__PROJECT__ === 'storybook' ? '1' : (id as string)}
