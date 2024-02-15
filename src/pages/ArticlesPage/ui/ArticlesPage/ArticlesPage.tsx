@@ -13,9 +13,7 @@ import { Page } from '@/widgets/Page';
 import { ArticleInfinityList } from '../ArticleInfinityList/ArticleInfinityList';
 import { fetchNextArticlesPage } from '../../model/service/fetchNextArticlesPage/fetchNextArticlesPage';
 import { ArticlesPageFilters } from '../ArticlesPageFilters/ArticlesPageFilters';
-import {
-    articlesPageReducer,
-} from '../../model/slice/articlePageSlice';
+import { articlesPageReducer } from '../../model/slice/articlePageSlice';
 import cls from './ArticlesPage.module.scss';
 import { initArticlesPages } from '../../model/service/initArticlesPages/initArticlesPages';
 
@@ -28,14 +26,11 @@ const ArticlesPage = memo(() => {
 
     const [searchParam] = useSearchParams();
 
-    const onLoadNextPart = useCallback(
-        () => {
-            if (__PROJECT__ !== 'storybook') {
-                dispatch(fetchNextArticlesPage());
-            }
-        },
-        [dispatch],
-    );
+    const onLoadNextPart = useCallback(() => {
+        if (__PROJECT__ !== 'storybook') {
+            dispatch(fetchNextArticlesPage());
+        }
+    }, [dispatch]);
 
     useInitialEffect(() => {
         if (__PROJECT__ !== 'storybook') {
