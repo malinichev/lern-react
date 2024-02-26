@@ -26,6 +26,7 @@ const ArticlesDetailsPage = memo(() => {
     const { id } = useParams<{ id: string }>();
     const isArticleRatingEnabled = getFeatureFlag('isArticleRatingEnabled');
     const isCounterEnabled = getFeatureFlag('isCounterEnabled');
+
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
             <Page>

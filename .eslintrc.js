@@ -63,6 +63,7 @@ module.exports = {
                     'style',
                     'gap',
                     'as',
+                    'feature',
                 ],
             },
         ],
