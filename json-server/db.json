@@ -676,6 +676,11 @@
         "ADMIN",
         "MANAGER"
       ],
+      "jsonSettings": {
+        "theme": "app_theme_yellow",
+        "isFirstVisit": true,
+        "settingsPageHasBeenOpen": false
+      },
       "features": {
         "isArticleRatingEnabled": true,
         "isCounterEnabled": true
@@ -689,6 +694,11 @@
       "roles": [
         "USER"
       ],
+      "jsonSettings": {
+        "theme": "app_theme_dark",
+        "isFirstVisit": true,
+        "settingsPageHasBeenOpen": false
+      },
       "features": {
         "isArticleRatingEnabled": true,
         "isCounterEnabled": false
@@ -702,6 +712,11 @@
       "roles": [
         "USER"
       ],
+      "jsonSettings": {
+        "theme": "app_theme_dark",
+        "isFirstVisit": false,
+        "settingsPageHasBeenOpen": false
+      },
       "features": {
         "isArticleRatingEnabled": false,
         "isCounterEnabled": false
