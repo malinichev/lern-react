@@ -1,6 +1,4 @@
-import {
-    memo, MutableRefObject, ReactNode, useRef, UIEvent,
-} from 'react';
+import { memo, MutableRefObject, ReactNode, useRef, UIEvent } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { classNames } from '@/shared/lib/classNames/classNames';
@@ -13,11 +11,12 @@ import { getPageScrollByPath } from '../model/selectors/pageRestoreScroll';
 import { pageRestoreScrollActions } from '../model/slice/pageRestoreScrollSlice';
 import cls from './Page.module.scss';
 import { TestProps } from '@/shared/types/tests';
+import { toggleFeatures } from '@/shared/lib/features';
 
-interface PageProps extends TestProps{
-  className?: string;
-  children: ReactNode;
-  onScrollEnd?: () => void;
+interface PageProps extends TestProps {
+    className?: string;
+    children: ReactNode;
+    onScrollEnd?: () => void;
 }
 
 export const PAGE_ID = 'PAGE_ID';
@@ -29,16 +28,22 @@ export const Page = memo((props: PageProps) => {
     const dispatch = useAppDispatch();
     const { pathname } = useLocation();
 
-    const scrollPosition = useSelector(
-        (state:StateSchema) => getPageScrollByPath(state, pathname),
+    const scrollPosition = useSelector((state: StateSchema) =>
+        getPageScrollByPath(state, pathname),
     );
 
     useInfinityScroll({ triggerRef, wrapperRef, callback: onScrollEnd });
 
-    const handleScroll = useThrottle((e:UIEvent<HTMLDivElement>) => dispatch(pageRestoreScrollActions.setPosition({
-        path: pathname,
-        position: e.currentTarget.scrollTop,
-    })), 500);
+    const handleScroll = useThrottle(
+        (e: UIEvent<HTMLDivElement>) =>
+            dispatch(
+                pageRestoreScrollActions.setPosition({
+                    path: pathname,
+                    position: e.currentTarget.scrollTop,
+                }),
+            ),
+        500,
+    );
 
     useInitialEffect(() => {
         wrapperRef.current.scrollTop = scrollPosition;
@@ -50,10 +55,20 @@ export const Page = memo((props: PageProps) => {
             ref={wrapperRef}
             data-testid={props['data-testid'] ?? 'Page'}
             onScroll={handleScroll}
-            className={classNames(cls.Page, {}, [className])}
+            className={classNames(
+                toggleFeatures({
+                    name: 'isAppRedesigned',
+                    on: () => cls.PageRedesigned,
+                    off: () => cls.Page,
+                }),
+                {},
+                [className],
+            )}
         >
             {children}
-            {onScrollEnd ? <div className={cls.trigger} ref={triggerRef} /> : null}
+            {onScrollEnd ? (
+                <div className={cls.trigger} ref={triggerRef} />
+            ) : null}
         </main>
     );
 });

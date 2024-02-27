@@ -677,14 +677,15 @@
         "MANAGER"
       ],
       "jsonSettings": {
-        "theme": "app_theme_yellow",
+        "theme": "app_theme_dark",
         "isFirstVisit": true,
         "settingsPageHasBeenOpen": false,
         "isArticlePageWasOpened": true
       },
       "features": {
         "isArticleRatingEnabled": true,
-        "isCounterEnabled": true
+        "isCounterEnabled": true,
+        "isAppRedesigned": true
       },
       "avatar": "https://api.slingacademy.com/public/sample-users/1.png"
     },
