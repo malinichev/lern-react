@@ -9,7 +9,7 @@ import {
 
 import { Page } from '@/widgets/Page';
 
-import { VStack } from '@/shared/ui/deprecated/Stack';
+import { VStack } from '@/shared/ui/redesigned/Stack';
 import { ArticleRecommendationList } from '@/features/ArticleRecommendationList';
 import { articleDetailPageReducer } from '../../models/slice';
 import { ArticleRating } from '@/features/articleRating';

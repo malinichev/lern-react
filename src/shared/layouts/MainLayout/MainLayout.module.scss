@@ -3,11 +3,12 @@
   display: grid;
   grid-template-areas:
             'sidebar content rightbar';
-  grid-template-columns: 284px 1fr 100px;
+  grid-template-columns: min-content 1fr 100px;
 }
 
 
 .sidebar {
+  max-width: 284px;
   grid-area: sidebar;
   padding: 32px;
 }

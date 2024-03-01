@@ -11,7 +11,7 @@ import {
     DynamicModuleLoader,
     ReducersList,
 } from '@/shared/lib/DynamicModuleLoader/DynamicModuleLoader';
-import { VStack } from '@/shared/ui/deprecated/Stack';
+import { VStack } from '@/shared/ui/redesigned/Stack';
 import { loginAction, loginReducer } from '../../model/slice/LoginSlice';
 import {
     getLoginError,

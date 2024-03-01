@@ -15,7 +15,7 @@ import { Card } from '@/shared/ui/deprecated/Card';
 import { SortOrder } from '@/shared/types';
 import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce';
 
-import { HStack } from '@/shared/ui/deprecated/Stack';
+import { HStack } from '@/shared/ui/redesigned/Stack';
 import { articlesPageActions } from '../../model/slice/articlePageSlice';
 import { fetchArticlesList } from '../../model/service/fetchArticlesList/fetchArticlesList';
 import {

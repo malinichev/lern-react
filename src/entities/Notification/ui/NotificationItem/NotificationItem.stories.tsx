@@ -6,32 +6,14 @@ import { NotificationItem } from './NotificationItem';
 export default {
     title: 'entities/Notification/NotificationItem',
     component: NotificationItem,
-    args: {
-
+    argTypes: {
+        backgroundColor: { control: 'color' },
     },
 } as ComponentMeta<typeof NotificationItem>;
 
-const Template: ComponentStory<typeof NotificationItem> = (args) => <NotificationItem {...args} />;
+const Template: ComponentStory<typeof NotificationItem> = (args) => (
+    <NotificationItem {...args} />
+);
 
 export const Normal = Template.bind({});
-
-Normal.args = {
-    item: {
-        id: '1',
-        title: 'title',
-        description: 'description',
-        userId: 'userId',
-    },
-};
-
-export const WithHref = Template.bind({});
-
-WithHref.args = {
-    item: {
-        id: '1',
-        title: 'title WithHref',
-        description: 'description WithHref',
-        userId: 'userId',
-        href: '#',
-    },
-};
+Normal.args = {};

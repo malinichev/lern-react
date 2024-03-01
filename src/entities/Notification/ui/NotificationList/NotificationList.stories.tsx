@@ -1,21 +1,15 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
-
-import { Notification } from '../../model/types/notification';
 import { NotificationList } from './NotificationList';
-
-const mockNotification: Notification = {
-    id: '1',
-    title: 'title WithHref',
-    description: 'description WithHref',
-    userId: 'userId',
-};
+import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 
 export default {
     title: 'entities/Notification/NotificationList',
     component: NotificationList,
+    argTypes: {
+        backgroundColor: { control: 'color' },
+    },
 } as ComponentMeta<typeof NotificationList>;
 
 const Template: ComponentStory<typeof NotificationList> = (args) => (
@@ -23,6 +17,7 @@ const Template: ComponentStory<typeof NotificationList> = (args) => (
 );
 
 export const Normal = Template.bind({});
+Normal.args = {};
 Normal.decorators = [StoreDecorator({})];
 Normal.parameters = {
     mockData: [
@@ -30,12 +25,25 @@ Normal.parameters = {
             url: `${__API__}/notifications`,
             method: 'GET',
             status: 200,
-            delay: 1000,
             response: [
-                { ...mockNotification, id: '1' },
-                { ...mockNotification, id: '2' },
-                { ...mockNotification, id: '3' },
-                { ...mockNotification, id: '4', href: '#' },
+                {
+                    id: '1',
+                    title: 'Уведомление',
+                    description:
+                        'Поставь лайк и оставь комментарий под Ulbi TV',
+                },
+                {
+                    id: '2',
+                    title: 'Уведомление 2',
+                    description:
+                        'Поставь лайк и оставь комментарий под Ulbi TV',
+                },
+                {
+                    id: '3',
+                    title: 'Уведомление 3',
+                    description:
+                        'Поставь лайк и оставь комментарий под Ulbi TV',
+                },
             ],
         },
     ],
