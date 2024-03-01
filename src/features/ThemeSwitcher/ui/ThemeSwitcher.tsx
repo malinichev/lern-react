@@ -1,15 +1,14 @@
 import React, { memo, useCallback } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
-// import LightIcon from '@/shared/assets/icons/theme-light.svg';
-// import DarkIcon from '@/shared/assets/icons/theme-dark.svg';
+import ThemeIconDeprecated from '@/shared/assets/icons/theme-light.svg';
+import ThemeIcon from '@/shared/assets/icons/theme.svg';
 import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button';
 import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
 import { saveJsonSettings } from '@/entities/User';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-// import cls from './ThemeSwitcher.module.scss';
-// import { Theme } from '@/shared/const/theme';
-import Icon from '@/shared/assets/icons/change-theme.svg';
-import cls from './ThemeSwitcher.module.scss';
+import { Icon as IconDeprecated } from '@/shared/ui/deprecated/Icon';
+import { ToggleFeatures } from '@/shared/lib/features';
+import { Icon } from '@/shared/ui/redesigned/Icon';
 
 interface ThemeSwitcherProps {
     className?: string;
@@ -26,12 +25,23 @@ export const ThemeSwitcher = memo(({ className }: ThemeSwitcherProps) => {
     }, [dispatch, toggleTheme]);
 
     return (
-        <Button
-            theme={ButtonTheme.CLEAR}
-            className={classNames('', {}, [className])}
-            onClick={onToggleHandler}
-        >
-            <Icon className={classNames(cls.icon)} />
-        </Button>
+        <ToggleFeatures
+            feature="isAppRedesigned"
+            on={<Icon Svg={ThemeIcon} clickable onClick={onToggleHandler} />}
+            off={
+                <Button
+                    theme={ButtonTheme.CLEAR}
+                    className={classNames('', {}, [className])}
+                    onClick={onToggleHandler}
+                >
+                    <IconDeprecated
+                        Svg={ThemeIconDeprecated}
+                        width={40}
+                        height={40}
+                        inverted
+                    />
+                </Button>
+            }
+        />
     );
 });
