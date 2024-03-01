@@ -9,11 +9,11 @@ import {
     useGetProfileRatingQuery,
     useRateProfileArgMutation,
 } from '../../api/profileRatingApi';
-import { Skeleton } from '@/shared/ui/Skeleton';
+import { Skeleton } from '@/shared/ui/deprecated/Skeleton';
 
 interface ProfileRatingProps {
-  className?: string;
-  profileId?: string;
+    className?: string;
+    profileId?: string;
 }
 
 export const ProfileRating = memo((props: ProfileRatingProps) => {

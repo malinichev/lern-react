@@ -6,13 +6,13 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect';
 import { Country, Currency } from '@/shared/const/common';
-import { Text, TextTheme } from '@/shared/ui/Text';
+import { Text, TextTheme } from '@/shared/ui/deprecated/Text';
 import {
     DynamicModuleLoader,
     ReducersList,
 } from '@/shared/lib/DynamicModuleLoader/DynamicModuleLoader';
 import { ProfileCard } from '@/entities/Profile';
-import { VStack } from '@/shared/ui/Stack';
+import { VStack } from '@/shared/ui/deprecated/Stack';
 import { ValidateProfileErrors } from '../../model/consts/consts';
 import { EditableProfileHeader } from '../EditableProfileHeader/EditableProfileHeader';
 import { getProfileIsLoading } from '../../model/selectors/getProfileIsLoading/getProfileIsLoading';
@@ -25,8 +25,8 @@ import { profileActions, profileReducer } from '../../model/slice/profileSlice';
 import { ProfileRating } from '@/entities/profileRating';
 
 interface EditableProfileCardProps {
-  className?: string;
-  id?: string;
+    className?: string;
+    id?: string;
 }
 
 const reducers: ReducersList = {
@@ -123,17 +123,23 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
             <VStack gap="16" max>
                 <EditableProfileHeader />
                 <ProfileRating profileId={id} />
-                <VStack max gap="16" className={classNames('', {}, [className])}>
-                    {validateError
-            && validateError.length > 0
-            && validateError.map((error: keyof typeof validateErrorTranslate) => (
-                <Text
-                    key={error}
-                    theme={TextTheme.ERROR}
-                    text={validateErrorTranslate[error]}
-                    data-testid="EditableProfileCard.Error"
-                />
-            ))}
+                <VStack
+                    max
+                    gap="16"
+                    className={classNames('', {}, [className])}
+                >
+                    {validateError &&
+                        validateError.length > 0 &&
+                        validateError.map(
+                            (error: keyof typeof validateErrorTranslate) => (
+                                <Text
+                                    key={error}
+                                    theme={TextTheme.ERROR}
+                                    text={validateErrorTranslate[error]}
+                                    data-testid="EditableProfileCard.Error"
+                                />
+                            ),
+                        )}
                     <ProfileCard
                         data={formData}
                         isLoading={isLoading}

@@ -1,15 +1,15 @@
 import { memo } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 
-import { Card } from '@/shared/ui/Card';
+import { Card } from '@/shared/ui/deprecated/Card';
 
-import { Skeleton } from '@/shared/ui/Skeleton';
+import { Skeleton } from '@/shared/ui/deprecated/Skeleton';
 import { ArticleView } from '../../model/consts/consts';
 import cls from './ArticleListItem.module.scss';
 
 interface ArticleListItemSkeletonProps {
-  className?: string;
-  view: ArticleView;
+    className?: string;
+    view: ArticleView;
 }
 
 export const ArticleListItemSkeleton = memo(
@@ -36,7 +36,11 @@ export const ArticleListItemSkeleton = memo(
                                 />
                                 <Skeleton width={200} height={15} />
                             </div>
-                            <Skeleton width={150} height={15} className={cls.createdAt} />
+                            <Skeleton
+                                width={150}
+                                height={15}
+                                className={cls.createdAt}
+                            />
                         </div>
                         <Skeleton
                             width={250}
@@ -75,7 +79,11 @@ export const ArticleListItemSkeleton = memo(
                         />
                         <div className={cls.footer}>
                             <Skeleton width={133} height={38} />
-                            <Skeleton width={57} height={24} className={cls.skeletonMLauto} />
+                            <Skeleton
+                                width={57}
+                                height={24}
+                                className={cls.skeletonMLauto}
+                            />
                         </div>
                     </Card>
                 </div>
@@ -84,7 +92,10 @@ export const ArticleListItemSkeleton = memo(
 
         return (
             <div
-                className={classNames(cls.ArticleListItem, {}, [className, cls[view]])}
+                className={classNames(cls.ArticleListItem, {}, [
+                    className,
+                    cls[view],
+                ])}
             >
                 <Card>
                     <div className={cls.imageWrapper}>
@@ -96,7 +107,11 @@ export const ArticleListItemSkeleton = memo(
                             <Skeleton width={50} height={20} />
                         </div>
                     </div>
-                    <Skeleton width={200} height={20} className={cls.skeletonTitle} />
+                    <Skeleton
+                        width={200}
+                        height={20}
+                        className={cls.skeletonTitle}
+                    />
                 </Card>
             </div>
         );

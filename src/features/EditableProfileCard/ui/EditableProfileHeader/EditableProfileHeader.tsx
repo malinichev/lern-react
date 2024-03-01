@@ -2,9 +2,9 @@ import { useTranslation } from 'react-i18next';
 import { memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { HStack } from '@/shared/ui/Stack';
-import { Text } from '@/shared/ui/Text';
-import { Button, ButtonTheme } from '@/shared/ui/Button';
+import { HStack } from '@/shared/ui/deprecated/Stack';
+import { Text } from '@/shared/ui/deprecated/Text';
+import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
 import { getUserAuthData } from '@/entities/User';
 import { getProfileIsReadOnly } from '../../model/selectors/getProfileIsReadOnly/getProfileIsReadOnly';
@@ -26,14 +26,21 @@ export const EditableProfileHeader = memo(
             () => dispatch(profileActions.setReadOnly(false)),
             [dispatch],
         );
-        const onSave = useCallback(() => dispatch(updateProfileData()), [dispatch]);
+        const onSave = useCallback(
+            () => dispatch(updateProfileData()),
+            [dispatch],
+        );
         const onCancelEdit = useCallback(
             () => dispatch(profileActions.cancelEdit()),
             [dispatch],
         );
 
         return (
-            <HStack max justify="between" className={classNames('', {}, [className])}>
+            <HStack
+                max
+                justify="between"
+                className={classNames('', {}, [className])}
+            >
                 <Text title={t('Профиль')} />
 
                 {canEdit && readonly ? (
@@ -68,5 +75,5 @@ export const EditableProfileHeader = memo(
 );
 
 interface EditableProfileHeaderProps {
-  className?: string;
+    className?: string;
 }

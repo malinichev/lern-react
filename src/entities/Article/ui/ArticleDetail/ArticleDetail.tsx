@@ -2,14 +2,17 @@ import { useTranslation } from 'react-i18next';
 import { memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { DynamicModuleLoader, ReducersList } from '@/shared/lib/DynamicModuleLoader/DynamicModuleLoader';
+import {
+    DynamicModuleLoader,
+    ReducersList,
+} from '@/shared/lib/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
-import { Text, TextAlign, TextSize } from '@/shared/ui/Text';
-import { Skeleton } from '@/shared/ui/Skeleton';
-import { Avatar } from '@/shared/ui/Avatar';
+import { Text, TextAlign, TextSize } from '@/shared/ui/deprecated/Text';
+import { Skeleton } from '@/shared/ui/deprecated/Skeleton';
+import { Avatar } from '@/shared/ui/deprecated/Avatar';
 import EyeIcon from '@/shared/assets/icons/eye-20-20.svg';
 import CalendarIcon from '@/shared/assets/icons/calendar-20-20.svg';
-import { Icon } from '@/shared/ui/Icon';
+import { Icon } from '@/shared/ui/deprecated/Icon';
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect';
 import { ArticleBlockType } from '../../model/consts/consts';
 import { ArticleImageBlockComponent } from '../ArticleImageBlockComponent/ArticleImageBlockComponent';
@@ -30,7 +33,7 @@ interface ArticleDetailProps {
     id: string;
 }
 
-const reducers:ReducersList = {
+const reducers: ReducersList = {
     articleDetails: articleDetailsReducer,
 };
 
@@ -43,21 +46,36 @@ export const ArticleDetail = memo((props: ArticleDetailProps) => {
     const article = useSelector(getArticleDetailsData);
     const error = useSelector(getArticleDetailsError);
 
-    const renderBlocks = useCallback(
-        (block:ArticleBlock, index:number) => {
-            switch (block.type) {
+    const renderBlocks = useCallback((block: ArticleBlock, index: number) => {
+        switch (block.type) {
             case ArticleBlockType.CODE:
-                return <ArticleCodeBlockComponent key={String(index)} className={cls.block} block={block} />;
+                return (
+                    <ArticleCodeBlockComponent
+                        key={String(index)}
+                        className={cls.block}
+                        block={block}
+                    />
+                );
             case ArticleBlockType.TEXT:
-                return <ArticleTextBlockComponent key={String(index)} className={cls.block} block={block} />;
+                return (
+                    <ArticleTextBlockComponent
+                        key={String(index)}
+                        className={cls.block}
+                        block={block}
+                    />
+                );
             case ArticleBlockType.IMAGE:
-                return <ArticleImageBlockComponent key={String(index)} className={cls.block} block={block} />;
+                return (
+                    <ArticleImageBlockComponent
+                        key={String(index)}
+                        className={cls.block}
+                        block={block}
+                    />
+                );
             default:
                 return null;
-            }
-        },
-        [],
-    );
+        }
+    }, []);
 
     useInitialEffect(() => {
         if (__PROJECT__ !== 'storybook') {
@@ -70,7 +88,12 @@ export const ArticleDetail = memo((props: ArticleDetailProps) => {
     if (isLoading) {
         content = (
             <>
-                <Skeleton className={cls.avatar} width={200} height={200} border="50%" />
+                <Skeleton
+                    className={cls.avatar}
+                    width={200}
+                    height={200}
+                    border="50%"
+                />
                 <Skeleton className={cls.title} width={300} height={32} />
                 <Skeleton className={cls.skeleton} width={600} height={24} />
                 <Skeleton className={cls.skeleton} width="100%" height={200} />
@@ -81,11 +104,23 @@ export const ArticleDetail = memo((props: ArticleDetailProps) => {
         content = <Text title={t('Ошибка')} align={TextAlign.CENTER} />;
     } else {
         content = (
-            <div data-testid="ArticleDetail.Info" className={classNames(cls.ArticleDetail, {}, [className])}>
+            <div
+                data-testid="ArticleDetail.Info"
+                className={classNames(cls.ArticleDetail, {}, [className])}
+            >
                 <div className={cls.avatarWrapper}>
-                    <Avatar className={cls.avatar} src={article?.img} alt={article?.title} />
+                    <Avatar
+                        className={cls.avatar}
+                        src={article?.img}
+                        alt={article?.title}
+                    />
                 </div>
-                <Text data-testid="Title" title={article?.title} text={article?.subtitle} size={TextSize.L} />
+                <Text
+                    data-testid="Title"
+                    title={article?.title}
+                    text={article?.subtitle}
+                    size={TextSize.L}
+                />
                 <div className={cls.articleInfo}>
                     <Icon className={cls.icons} Svg={EyeIcon} />
                     <Text text={String(article?.views)} />

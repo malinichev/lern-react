@@ -21,6 +21,10 @@ interface PageProps extends TestProps {
 
 export const PAGE_ID = 'PAGE_ID';
 
+/**
+ * Устарел, используем компоненты из папки redesigned
+ * @deprecated
+ * */
 export const Page = memo((props: PageProps) => {
     const { className, children, onScrollEnd } = props;
     const triggerRef = useRef() as MutableRefObject<HTMLDivElement>;

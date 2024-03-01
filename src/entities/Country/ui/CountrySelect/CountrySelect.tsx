@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { memo, useCallback } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { Select } from '@/shared/ui/Select';
+import { Select } from '@/shared/ui/deprecated/Select';
 import { Country } from '../../model/consts/consts';
 
 interface CountrySelectProps {
@@ -19,23 +19,26 @@ const options = [
     { value: Country.Ukraine, content: Country.Ukraine },
 ];
 
-export const CountrySelect = memo(({
-    className, value, onChange, readOnly,
-}: CountrySelectProps) => {
-    const { t } = useTranslation('profile');
+export const CountrySelect = memo(
+    ({ className, value, onChange, readOnly }: CountrySelectProps) => {
+        const { t } = useTranslation('profile');
 
-    const onChangeHandler = useCallback((value: string) => {
-        onChange?.(value as Country);
-    }, [onChange]);
+        const onChangeHandler = useCallback(
+            (value: string) => {
+                onChange?.(value as Country);
+            },
+            [onChange],
+        );
 
-    return (
-        <Select
-            className={classNames('', {}, [className])}
-            label={t('Укажите страну')}
-            options={options}
-            value={value}
-            onChange={onChangeHandler}
-            readOnly={readOnly}
-        />
-    );
-});
+        return (
+            <Select
+                className={classNames('', {}, [className])}
+                label={t('Укажите страну')}
+                options={options}
+                value={value}
+                onChange={onChangeHandler}
+                readOnly={readOnly}
+            />
+        );
+    },
+);
