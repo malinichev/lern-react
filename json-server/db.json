@@ -697,9 +697,10 @@
         "USER"
       ],
       "jsonSettings": {
-        "theme": "app_theme_dark",
+        "theme": "app_theme_light",
         "isFirstVisit": true,
-        "settingsPageHasBeenOpen": false
+        "settingsPageHasBeenOpen": false,
+        "isArticlePageWasOpened": true
       },
       "features": {
         "isArticleRatingEnabled": true,
