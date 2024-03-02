@@ -1,4 +1,8 @@
 .ArticlesPage {
-    display: grid;
-    grid-gap: 20px;
+    min-height: 100%;
+
+    .list {
+        margin-top: 30px;
+    }
 }
+

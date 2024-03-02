@@ -1,9 +1,9 @@
 import { MutableRefObject, useEffect } from 'react';
 
 export interface UseInfinityScrollOptions {
-  callback?: () => void;
-  triggerRef: MutableRefObject<HTMLElement>;
-  wrapperRef: MutableRefObject<HTMLElement>;
+    callback?: () => void;
+    triggerRef: MutableRefObject<HTMLElement>;
+    wrapperRef?: MutableRefObject<HTMLElement>;
 }
 
 export const useInfinityScroll = ({
@@ -16,7 +16,7 @@ export const useInfinityScroll = ({
 
         // Используем замыкание чтоб элемент был доступен после демонтирования страницы
         const triggerEl = triggerRef.current;
-        const wrapperEl = wrapperRef.current;
+        const wrapperEl = wrapperRef?.current ?? null;
 
         if (callback) {
             const options = {

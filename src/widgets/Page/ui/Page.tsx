@@ -21,10 +21,6 @@ interface PageProps extends TestProps {
 
 export const PAGE_ID = 'PAGE_ID';
 
-/**
- * Устарел, используем компоненты из папки redesigned
- * @deprecated
- * */
 export const Page = memo((props: PageProps) => {
     const { className, children, onScrollEnd } = props;
     const triggerRef = useRef() as MutableRefObject<HTMLDivElement>;
@@ -36,7 +32,15 @@ export const Page = memo((props: PageProps) => {
         getPageScrollByPath(state, pathname),
     );
 
-    useInfinityScroll({ triggerRef, wrapperRef, callback: onScrollEnd });
+    useInfinityScroll({
+        triggerRef,
+        wrapperRef: toggleFeatures({
+            name: 'isAppRedesigned',
+            on: () => undefined,
+            off: () => wrapperRef,
+        }),
+        callback: onScrollEnd,
+    });
 
     const handleScroll = useThrottle(
         (e: UIEvent<HTMLDivElement>) =>
