@@ -1,8 +1,9 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { Country, Currency } from '../../../../shared/const/common';
+import { Country } from '@/entities/Country';
+import { Currency } from '@/entities/Currency';
+import avatar from '@/shared/assets/tests/storybook.jpg';
 import { ProfileCard } from './ProfileCard';
-import avatar from '../../../../shared/assets/avatar.jpeg';
 
 export default {
     title: 'entities/ProfileCard',
@@ -12,28 +13,30 @@ export default {
     },
 } as ComponentMeta<typeof ProfileCard>;
 
-const Template: ComponentStory<typeof ProfileCard> = (args) => <ProfileCard {...args} />;
+const Template: ComponentStory<typeof ProfileCard> = (args) => (
+    <ProfileCard {...args} />
+);
 
 export const Primary = Template.bind({});
 Primary.args = {
     data: {
-        firstname: 'Sergey',
-        lastname: 'Malinichev',
-        age: 39,
-        currency: Currency.RUB,
-        country: Country.Russia,
-        city: 'Irk',
-        username: 'malin',
+        username: 'admin',
+        age: 22,
+        country: Country.Ukraine,
+        lastname: 'Malinich',
+        firstname: 'asd',
+        city: 'asf',
+        currency: Currency.USD,
         avatar,
     },
+};
+
+export const withError = Template.bind({});
+withError.args = {
+    error: 'true',
 };
 
 export const Loading = Template.bind({});
 Loading.args = {
     isLoading: true,
-};
-
-export const Error = Template.bind({});
-Error.args = {
-    error: 'Ошибка',
 };

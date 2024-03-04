@@ -15,7 +15,6 @@ import { ProfileCard } from '@/entities/Profile';
 import { VStack } from '@/shared/ui/redesigned/Stack';
 import { ValidateProfileErrors } from '../../model/consts/consts';
 import { EditableProfileHeader } from '../EditableProfileHeader/EditableProfileHeader';
-import { getProfileIsLoading } from '../../model/selectors/getProfileIsLoading/getProfileIsLoading';
 import { getProfileForm } from '../../model/selectors/getProfileForm/getProfileForm';
 import { getProfileError } from '../../model/selectors/getProfileError/getProfileError';
 import { getProfileIsReadOnly } from '../../model/selectors/getProfileIsReadOnly/getProfileIsReadOnly';
@@ -23,6 +22,7 @@ import { getProfileValidateErrors } from '../../model/selectors/getProfileValida
 import { fetchProfileData } from '../../model/service/fetchProfileData/fetchProfileData';
 import { profileActions, profileReducer } from '../../model/slice/profileSlice';
 import { ProfileRating } from '@/entities/profileRating';
+import { getProfileIsLoading } from '../../model/selectors/getProfileIsLoading/getProfileIsLoading';
 
 interface EditableProfileCardProps {
     className?: string;
@@ -39,6 +39,7 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
     const dispatch = useAppDispatch();
     const formData = useSelector(getProfileForm);
     const isLoading = useSelector(getProfileIsLoading);
+
     const error = useSelector(getProfileError);
     const readOnly = useSelector(getProfileIsReadOnly);
     const validateError = useSelector(getProfileValidateErrors);

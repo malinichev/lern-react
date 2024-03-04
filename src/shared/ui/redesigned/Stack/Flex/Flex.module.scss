@@ -1,6 +1,5 @@
 .Flex {
     display: flex;
-    justify-content: space-between;
 }
 
 .justifyStart {
@@ -48,6 +47,10 @@
 }
 
 .gap16 {
+    gap: 16px;
+}
+
+.gap24 {
     gap: 16px;
 }
 

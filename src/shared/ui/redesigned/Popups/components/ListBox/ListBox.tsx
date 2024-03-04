@@ -61,6 +61,7 @@ export function ListBox<T extends string>(props: ListBoxProps<T>) {
                 <HListBox.Button
                     aria-disabled={readonly}
                     className={cls.trigger}
+                    as="div"
                 >
                     <Button
                         variant="filled"
