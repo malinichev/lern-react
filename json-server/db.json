@@ -815,18 +815,18 @@
   ],
   "profile-ratings": [
     {
-      "id": "1",
-      "rate": 4,
-      "feedback": "Хорошая статья",
-      "userId": "1",
-      "profileId": "1"
-    },
-    {
       "userId": "1",
       "profileId": "2",
       "rate": 3,
       "feedback": "fffff",
       "id": "F2bLJUl"
+    },
+    {
+      "userId": "1",
+      "profileId": "1",
+      "rate": 3,
+      "feedback": "Класс",
+      "id": "ndfyad6"
     }
   ]
 }
