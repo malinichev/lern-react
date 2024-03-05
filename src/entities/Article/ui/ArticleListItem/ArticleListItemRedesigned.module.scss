@@ -1,0 +1,16 @@
+.ArticleListItemRedesigned {
+
+}
+
+.BIG {
+  .image {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+  }
+
+  .textBlock {
+    overflow-y: hidden;
+    height: 72px;
+  }
+}
