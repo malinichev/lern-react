@@ -7,11 +7,11 @@
 .SMALL {
     display: flex;
     flex-wrap: wrap;
-    gap: 30px;
+    gap: 10px;
 
     .card {
         display: inline-flex;
-        height: 300px;
+        height: 350px;
     }
 
     .row {

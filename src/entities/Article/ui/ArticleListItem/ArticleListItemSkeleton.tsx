@@ -9,7 +9,8 @@ import { Skeleton as SkeletonDeprecated } from '@/shared/ui/deprecated/Skeleton'
 import { Skeleton as SkeletonRedesigned } from '@/shared/ui/redesigned/Skeleton';
 
 import { ArticleView } from '../../model/consts/consts';
-import cls from './ArticleListItem.module.scss';
+import clsDeprecated from './ArticleListItem.module.scss';
+import clsRedesigned from './ArticleListItemRedesigned.module.scss';
 import { toggleFeatures } from '@/shared/lib/features';
 
 interface ArticleListItemSkeletonProps {
@@ -21,6 +22,11 @@ export const ArticleListItemSkeleton = memo(
     (props: ArticleListItemSkeletonProps) => {
         const { className, view } = props;
 
+        const mainClass = toggleFeatures({
+            name: 'isAppRedesigned',
+            on: () => clsRedesigned.ArticleListItemRedesigned,
+            off: () => clsDeprecated.ArticleListItem,
+        });
         const Card = toggleFeatures({
             name: 'isAppRedesigned',
             on: () => CardRedesigned,
@@ -32,73 +38,49 @@ export const ArticleListItemSkeleton = memo(
             off: () => SkeletonDeprecated,
         });
 
+        const itemClass = toggleFeatures({
+            name: 'isAppRedesigned',
+            on: () => clsRedesigned,
+            off: () => clsDeprecated,
+        });
+
         if (view === ArticleView.BIG) {
             return (
                 <div
-                    className={classNames(cls.ArticleListItem, {}, [
+                    className={classNames(mainClass, {}, [
                         className,
-                        cls[view],
-                        cls.card,
+                        itemClass[view],
+                        itemClass.card,
                     ])}
                 >
-                    <Card>
-                        <div className={cls.header}>
-                            <div className={cls.avatarWrap}>
-                                <Skeleton
-                                    width={33}
-                                    height={33}
-                                    border="50%"
-                                    className={cls.avatarImage}
-                                />
-                                <Skeleton width={200} height={15} />
-                            </div>
+                    <Card className={itemClass.card}>
+                        <div className={itemClass.header}>
+                            <Skeleton border="50%" height={30} width={30} />
                             <Skeleton
                                 width={150}
-                                height={15}
-                                className={cls.createdAt}
+                                height={16}
+                                className={itemClass.skeletonMarginTop}
+                            />
+                            <Skeleton
+                                width={150}
+                                height={16}
+                                className={itemClass.skeletonMarginTop}
                             />
                         </div>
                         <Skeleton
                             width={250}
-                            height={20}
-                            className={cls.skeletonMarginTop}
+                            height={24}
+                            className={itemClass.skeletonMarginTop}
                         />
                         <Skeleton
-                            width={350}
-                            height={20}
-                            className={cls.skeletonMarginTop}
+                            height={200}
+                            className={itemClass.skeletonMarginTop}
                         />
-                        <Skeleton
-                            width="100%"
-                            height={178}
-                            className={cls.skeletonMarginTop}
-                        />
-                        <Skeleton
-                            width="90%"
-                            height={15}
-                            className={cls.skeletonMarginTop}
-                        />
-                        <Skeleton
-                            width="80%"
-                            height={15}
-                            className={cls.skeletonMarginTop}
-                        />
-                        <Skeleton
-                            width="100%"
-                            height={15}
-                            className={cls.skeletonMarginTop}
-                        />
-                        <Skeleton
-                            width="90%"
-                            height={15}
-                            className={cls.skeletonMarginTop}
-                        />
-                        <div className={cls.footer}>
-                            <Skeleton width={133} height={38} />
+                        <div className={itemClass.footer}>
                             <Skeleton
-                                width={57}
-                                height={24}
-                                className={cls.skeletonMLauto}
+                                height={36}
+                                width={200}
+                                className={itemClass.skeletonMarginTop}
                             />
                         </div>
                     </Card>
@@ -108,25 +90,25 @@ export const ArticleListItemSkeleton = memo(
 
         return (
             <div
-                className={classNames(cls.ArticleListItem, {}, [
+                className={classNames(mainClass, {}, [
                     className,
-                    cls[view],
+                    itemClass[view],
                 ])}
             >
-                <Card>
-                    <div className={cls.imageWrapper}>
-                        <Skeleton width={200} height={200} />
+                <Card padding="0" className={itemClass.card}>
+                    <div className={itemClass.imageWrapper}>
+                        <Skeleton width={240} height={140} />
                     </div>
-                    <div className={cls.subtitleWrapper}>
+                    <div className={itemClass.subtitleWrapper}>
                         <Skeleton width={125} height={20} />
-                        <div className={cls.viewsNumber}>
+                        <div className={itemClass.skeletonMarginTop}>
                             <Skeleton width={50} height={20} />
                         </div>
                     </div>
                     <Skeleton
                         width={200}
                         height={20}
-                        className={cls.skeletonTitle}
+                        className={itemClass.skeletonTitle}
                     />
                 </Card>
             </div>
