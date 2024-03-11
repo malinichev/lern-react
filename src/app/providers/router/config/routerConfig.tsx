@@ -12,10 +12,17 @@ import { AppRotesProps } from '@/shared/types/router';
 import {
     AppRoutes,
     getRouteAbout,
-    getRouteAdmin, getRouteArticleCreate, getRouteArticleDetails, getRouteArticleEdit, getRouteArticles,
+    getRouteAdmin,
+    getRouteArticleCreate,
+    getRouteArticleDetails,
+    getRouteArticleEdit,
+    getRouteArticles,
     getRouteForbidden,
-    getRouteMain, getRouteProfile,
+    getRouteMain,
+    getRouteProfile,
+    getRouteSettings,
 } from '@/shared/const/router';
+import { SettingsPage } from '@/pages/SettingsPage';
 
 export const routeConfig: Record<AppRoutes, AppRotesProps> = {
     [AppRoutes.MAIN]: {
@@ -25,6 +32,10 @@ export const routeConfig: Record<AppRoutes, AppRotesProps> = {
     [AppRoutes.ABOUT]: {
         path: getRouteAbout(),
         element: <AboutPage />,
+    },
+    [AppRoutes.SETTINGS]: {
+        path: getRouteSettings(),
+        element: <SettingsPage />,
     },
     [AppRoutes.ADMIN]: {
         path: getRouteAdmin(),
