@@ -11,7 +11,7 @@ import { Skeleton } from '@/shared/ui/deprecated/Skeleton';
 
 export interface ArticleRatingProps {
     className?: string;
-    articleId: string;
+    articleId?: string;
 }
 
 const ArticleRating = memo((props: ArticleRatingProps) => {

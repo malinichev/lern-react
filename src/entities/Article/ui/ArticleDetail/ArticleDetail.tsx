@@ -8,7 +8,8 @@ import {
 } from '@/shared/lib/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
 import { Text, TextAlign, TextSize } from '@/shared/ui/deprecated/Text';
-import { Skeleton } from '@/shared/ui/deprecated/Skeleton';
+import { Skeleton as SkeletonOld } from '@/shared/ui/deprecated/Skeleton';
+import { Skeleton as SkeletonNew } from '@/shared/ui/redesigned/Skeleton';
 import { Avatar } from '@/shared/ui/deprecated/Avatar';
 import EyeIcon from '@/shared/assets/icons/eye-20-20.svg';
 import CalendarIcon from '@/shared/assets/icons/calendar-20-20.svg';
@@ -27,10 +28,11 @@ import {
 } from '../../model/selector/articleDetails';
 import { articleDetailsReducer } from '../../model/slice/articleDetailsSlice';
 import cls from './ArticleDetail.module.scss';
+import { toggleFeatures } from '@/shared/lib/features';
 
 interface ArticleDetailProps {
     className?: string;
-    id: string;
+    id?: string;
 }
 
 const reducers: ReducersList = {
@@ -45,6 +47,12 @@ export const ArticleDetail = memo((props: ArticleDetailProps) => {
     const isLoading = useSelector(getArticleDetailsIsLoading);
     const article = useSelector(getArticleDetailsData);
     const error = useSelector(getArticleDetailsError);
+
+    const Skeleton = toggleFeatures({
+        name: 'isAppRedesigned',
+        on: () => SkeletonNew,
+        off: () => SkeletonOld,
+    });
 
     const renderBlocks = useCallback((block: ArticleBlock, index: number) => {
         switch (block.type) {

@@ -8,15 +8,17 @@ import {
 } from '@/shared/lib/DynamicModuleLoader/DynamicModuleLoader';
 
 import { Page } from '@/widgets/Page';
-
+import { ArticlesDetailsComments } from '../ArticlesDetailsComments/ArticlesDetailsComments';
 import { VStack } from '@/shared/ui/redesigned/Stack';
 import { ArticleRecommendationList } from '@/features/ArticleRecommendationList';
 import { articleDetailPageReducer } from '../../models/slice';
 import { ArticleRating } from '@/features/articleRating';
 import { ArticlesDetailsPageHeader } from '../ArticlesDetailsPageHeader/ArticlesDetailsPageHeader';
-import { ArticlesDetailsComments } from '../ArticlesDetailsComments/ArticlesDetailsComments';
-import { getFeatureFlag } from '@/shared/lib/features';
+import { getFeatureFlag, ToggleFeatures } from '@/shared/lib/features';
 import { Counter } from '@/entities/Counter';
+import { StickyContentLayout } from '@/shared/layouts/StickyContentLayout';
+import { DetailsContainer } from '../DetailsContainer/DetailsContainer';
+import { AdditionalInfoContainer } from '../AdditionalInfoContainer/AdditionalInfoContainer';
 
 const reducers: ReducersList = {
     articleDetailPage: articleDetailPageReducer,
@@ -29,28 +31,46 @@ const ArticlesDetailsPage = memo(() => {
 
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
-            <Page>
-                <VStack gap="8" max>
-                    <ArticlesDetailsPageHeader />
-                    <ArticleDetail
-                        id={__PROJECT__ === 'storybook' ? '1' : (id as string)}
+            <ToggleFeatures
+                feature="isAppRedesigned"
+                on={
+                    <StickyContentLayout
+                        content={
+                            <Page>
+                                <VStack gap="16" max>
+                                    <DetailsContainer />
+                                    <ArticleRating articleId={id} />
+                                    <ArticleRecommendationList />
+                                    <ArticlesDetailsComments id={id} />
+                                </VStack>
+                            </Page>
+                        }
+                        right={<AdditionalInfoContainer />}
                     />
-                    {isCounterEnabled && <Counter />}
-                    {isArticleRatingEnabled && (
-                        <ArticleRating
-                            articleId={
-                                __PROJECT__ === 'storybook'
-                                    ? '1'
-                                    : (id as string)
-                            }
-                        />
-                    )}
-                    <ArticleRecommendationList />
-                    <ArticlesDetailsComments
-                        id={__PROJECT__ === 'storybook' ? '1' : (id as string)}
-                    />
-                </VStack>
-            </Page>
+                }
+                off={
+                    <Page>
+                        <VStack gap="8" max>
+                            <ArticlesDetailsPageHeader />
+                            <ArticleDetail
+                                id={__PROJECT__ === 'storybook' ? '1' : id}
+                            />
+                            {isCounterEnabled && <Counter />}
+                            {isArticleRatingEnabled && (
+                                <ArticleRating
+                                    articleId={
+                                        __PROJECT__ === 'storybook' ? '1' : id
+                                    }
+                                />
+                            )}
+                            <ArticleRecommendationList />
+                            <ArticlesDetailsComments
+                                id={__PROJECT__ === 'storybook' ? '1' : id}
+                            />
+                        </VStack>
+                    </Page>
+                }
+            />
         </DynamicModuleLoader>
     );
 });

@@ -677,7 +677,7 @@
         "MANAGER"
       ],
       "jsonSettings": {
-        "theme": "app_theme_yellow",
+        "theme": "app_theme_light",
         "isFirstVisit": true,
         "settingsPageHasBeenOpen": false,
         "isArticlePageWasOpened": true
