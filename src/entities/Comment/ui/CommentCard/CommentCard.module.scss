@@ -1,17 +1,17 @@
 .CommentCard {
-    width: 100%;
-    border: 1px solid var(--primary-color);
     padding: 10px;
+    border: 1px solid var(--primary-color);
 }
 
 .header {
-    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
 }
 
-.skeleton {
-    margin-bottom: 10px;
+.username {
+    margin-left: 10px;
 }
 
 .loading {
-    border: 1px solid transparent;
+    border: none;
 }

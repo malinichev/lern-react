@@ -6,8 +6,13 @@ import {
     DynamicModuleLoader,
     ReducersList,
 } from '@/shared/lib/DynamicModuleLoader/DynamicModuleLoader';
-import { Input } from '@/shared/ui/deprecated/Input';
-import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button';
+import { Input as InputDeprecated } from '@/shared/ui/deprecated/Input';
+import { Input } from '@/shared/ui/redesigned/Input';
+import {
+    Button as ButtonDeprecated,
+    ButtonTheme,
+} from '@/shared/ui/deprecated/Button';
+import { Button } from '@/shared/ui/redesigned/Button';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
 import { HStack } from '@/shared/ui/redesigned/Stack';
 import {
@@ -20,6 +25,8 @@ import {
     getAddCommentFormError,
     getAddCommentFormText,
 } from '../model/selectors/addCommentFormSelectors';
+import { ToggleFeatures } from '@/shared/lib/features';
+import { Card } from '@/shared/ui/redesigned/Card';
 
 export interface AddCommentFormProps {
     className?: string;
@@ -37,39 +44,77 @@ const AddCommentForm = memo((props: AddCommentFormProps) => {
     const error = useSelector(getAddCommentFormError);
     const dispatch = useAppDispatch();
 
-    const handleInputChange = useCallback(
-        (value: string) => dispatch(addCommentFormActions.setText(value)),
+    const onCommentTextChange = useCallback(
+        (value: string) => {
+            dispatch(addCommentFormActions.setText(value));
+        },
         [dispatch],
     );
 
     const onSendHandler = useCallback(() => {
         onSendComment(text || '');
-        handleInputChange('');
-    }, [handleInputChange, onSendComment, text]);
+        onCommentTextChange('');
+    }, [onCommentTextChange, onSendComment, text]);
 
     return (
         <DynamicModuleLoader reducers={reducers}>
-            <div
-                data-testid="AddCommentForm"
-                className={classNames(cls.AddCommentForm, {}, [className])}
-            >
-                <HStack justify="between" align="center">
-                    <Input
-                        data-testid="AddCommentForm.Input"
-                        className={cls.Input}
-                        value={text}
-                        placeholder={t('Добавить комментариий')}
-                        onChange={handleInputChange}
-                    />
-                    <Button
-                        data-testid="AddCommentForm.Button"
-                        onClick={onSendHandler}
-                        theme={ButtonTheme.OUTLINE}
+            <ToggleFeatures
+                feature="isAppRedesigned"
+                on={
+                    <Card padding="24" border="round" max>
+                        <HStack
+                            data-testid="AddCommentForm"
+                            justify="between"
+                            max
+                            gap="16"
+                            className={classNames(
+                                cls.AddCommentFormRedesigned,
+                                {},
+                                [className],
+                            )}
+                        >
+                            <Input
+                                className={cls.input}
+                                placeholder={t('Введите текст комментария')}
+                                value={text}
+                                data-testid="AddCommentForm.Input"
+                                onChange={onCommentTextChange}
+                            />
+                            <Button
+                                data-testid="AddCommentForm.Button"
+                                onClick={onSendHandler}
+                            >
+                                {t('Отправить')}
+                            </Button>
+                        </HStack>
+                    </Card>
+                }
+                off={
+                    <HStack
+                        data-testid="AddCommentForm"
+                        justify="between"
+                        max
+                        className={classNames(cls.AddCommentForm, {}, [
+                            className,
+                        ])}
                     >
-                        {t('Отправить')}
-                    </Button>
-                </HStack>
-            </div>
+                        <InputDeprecated
+                            className={cls.input}
+                            placeholder={t('Введите текст комментария')}
+                            value={text}
+                            data-testid="AddCommentForm.Input"
+                            onChange={onCommentTextChange}
+                        />
+                        <ButtonDeprecated
+                            data-testid="AddCommentForm.Button"
+                            theme={ButtonTheme.OUTLINE}
+                            onClick={onSendHandler}
+                        >
+                            {t('Отправить')}
+                        </ButtonDeprecated>
+                    </HStack>
+                }
+            />
         </DynamicModuleLoader>
     );
 });

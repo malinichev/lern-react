@@ -2,7 +2,8 @@ import { useTranslation } from 'react-i18next';
 import { memo, useCallback, Suspense } from 'react';
 import { useSelector } from 'react-redux';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { Text, TextSize } from '@/shared/ui/deprecated/Text';
+import { Text as TextDeprecated, TextSize } from '@/shared/ui/deprecated/Text';
+import { Text } from '@/shared/ui/redesigned/Text';
 import { AddCommentForm } from '@/features/AddCommentForm';
 import { CommentList } from '@/entities/Comment';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
@@ -13,6 +14,7 @@ import { getArticleComments } from '../../models/slice/articleDetailsCommentsSli
 import { getArticleCommentsIsLoading } from '../../models/selectors/comments';
 import { addCommentForArticle } from '../../models/service/addCommentForArticle/addCommentForArticle';
 import { fetchCommentsByArticleId } from '../../models/service/fetchCommentsByArticleId/fetchCommentsByArticleId';
+import { ToggleFeatures } from '@/shared/lib/features';
 
 interface ArticlesDetailsCommentsProps {
     className?: string;
@@ -24,7 +26,7 @@ export const ArticlesDetailsComments = memo(
         const { className, id } = props;
         const { t } = useTranslation();
         const comments = useSelector(getArticleComments.selectAll);
-        const isLoading = useSelector(getArticleCommentsIsLoading);
+        const commentsIsLoading = useSelector(getArticleCommentsIsLoading);
         const dispatch = useAppDispatch();
 
         const onSendComment = useCallback(
@@ -35,18 +37,28 @@ export const ArticlesDetailsComments = memo(
         );
 
         useInitialEffect(() => {
-            if (__PROJECT__ !== 'storybook') {
-                dispatch(fetchCommentsByArticleId(id));
-            }
+            dispatch(fetchCommentsByArticleId(id));
         });
 
         return (
-            <VStack max gap="16" className={classNames('', {}, [className])}>
-                <Text size={TextSize.L} title={t('Комментарии')} />
+            <VStack gap="16" max className={classNames('', {}, [className])}>
+                <ToggleFeatures
+                    feature="isAppRedesigned"
+                    on={<Text size="l" title={t('Комментарии')} />}
+                    off={
+                        <TextDeprecated
+                            size={TextSize.L}
+                            title={t('Комментарии')}
+                        />
+                    }
+                />
                 <Suspense fallback={<Loader />}>
                     <AddCommentForm onSendComment={onSendComment} />
                 </Suspense>
-                <CommentList isLoading={isLoading} comments={comments} />
+                <CommentList
+                    isLoading={commentsIsLoading}
+                    comments={comments}
+                />
             </VStack>
         );
     },

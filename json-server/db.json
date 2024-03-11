@@ -665,6 +665,18 @@
       "userId": "1",
       "text": "sdf",
       "id": "zDePIEz"
+    },
+    {
+      "articleId": "7",
+      "userId": "1",
+      "text": "sdf",
+      "id": "-kVBjh7"
+    },
+    {
+      "articleId": "7",
+      "userId": "1",
+      "text": "sdf",
+      "id": "C9JZ3eA"
     }
   ],
   "users": [
@@ -677,7 +689,7 @@
         "MANAGER"
       ],
       "jsonSettings": {
-        "theme": "app_theme_light",
+        "theme": "app_theme_yellow",
         "isFirstVisit": true,
         "settingsPageHasBeenOpen": false,
         "isArticlePageWasOpened": true
