@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { ToggleFeatures } from '@/shared/lib/features';
-import { ArticleListItemRedesigned } from './ArticleListItemRedesigned';
-import { ArticleListItemDeprecated } from './ArticleListItemDeprecated';
+import { ArticleListItemDeprecated } from './ArticleListItemDeprecated/ArticleListItemDeprecated';
+import { ArticleListItemRedesigned } from './ArticleListItemRedesigned/ArticleListItemRedesigned';
 import { ArticleListItemProps } from './articleListItemProps';
 
 export const ArticleListItem = memo((props: ArticleListItemProps) => {

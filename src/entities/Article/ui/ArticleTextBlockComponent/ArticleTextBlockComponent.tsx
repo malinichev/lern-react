@@ -1,8 +1,10 @@
 import { memo } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { Text } from '@/shared/ui/deprecated/Text';
-import { ArticleTextBlock } from '../../model/types/article';
+import { Text as TextDeprecated } from '@/shared/ui/deprecated/Text';
+import { Text } from '@/shared/ui/redesigned/Text';
 import cls from './ArticleTextBlockComponent.module.scss';
+import { ArticleTextBlock } from '../../model/types/article';
+import { ToggleFeatures } from '@/shared/lib/features';
 
 interface ArticleTextBlockComponentProps {
     className?: string;
@@ -19,21 +21,38 @@ export const ArticleTextBlockComponent = memo(
                     className,
                 ])}
             >
-                {block?.title && (
-                    <Text title={block.title} className={cls.title} />
+                {block.title && (
+                    <ToggleFeatures
+                        feature="isAppRedesigned"
+                        on={<Text title={block.title} className={cls.title} />}
+                        off={
+                            <TextDeprecated
+                                title={block.title}
+                                className={cls.title}
+                            />
+                        }
+                    />
                 )}
-                {block?.paragraphs && block.paragraphs.map(renderParagraph)}
+                {block.paragraphs.map((paragraph, index) => (
+                    <ToggleFeatures
+                        feature="isAppRedesigned"
+                        on={
+                            <Text
+                                key={paragraph}
+                                text={paragraph}
+                                className={cls.paragraph}
+                            />
+                        }
+                        off={
+                            <TextDeprecated
+                                key={paragraph}
+                                text={paragraph}
+                                className={cls.paragraph}
+                            />
+                        }
+                    />
+                ))}
             </div>
         );
-
-        function renderParagraph(paragraph: string) {
-            return (
-                <Text
-                    key={paragraph}
-                    className={cls.paragraph}
-                    text={paragraph}
-                />
-            );
-        }
     },
 );
