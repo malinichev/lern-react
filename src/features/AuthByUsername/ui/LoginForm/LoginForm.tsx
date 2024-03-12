@@ -2,16 +2,22 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { memo, useCallback } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button';
-import { Input } from '@/shared/ui/deprecated/Input';
-import { Text, TextTheme } from '@/shared/ui/deprecated/Text';
+import {
+    Button as ButtonOld,
+    ButtonTheme,
+} from '@/shared/ui/deprecated/Button';
+import { Button } from '@/shared/ui/redesigned/Button';
+import { Input as InputOld } from '@/shared/ui/deprecated/Input';
+import { Input } from '@/shared/ui/redesigned/Input';
+import { Text as TextOld, TextTheme } from '@/shared/ui/deprecated/Text';
+import { Text } from '@/shared/ui/redesigned/Text';
 
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
 import {
     DynamicModuleLoader,
     ReducersList,
 } from '@/shared/lib/DynamicModuleLoader/DynamicModuleLoader';
-import { VStack } from '@/shared/ui/redesigned/Stack';
+import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 import { loginAction, loginReducer } from '../../model/slice/LoginSlice';
 import {
     getLoginError,
@@ -22,6 +28,7 @@ import {
 } from '../../model';
 
 import cls from './LoginForm.module.scss';
+import { ToggleFeatures } from '@/shared/lib/features';
 
 interface LoginFormProps {
     className?: string;
@@ -64,40 +71,88 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
 
     return (
         <DynamicModuleLoader reducers={reducers}>
-            <div className={classNames(cls.LoginForm, {}, [className])}>
-                <VStack>
-                    <Text title={t('Форма авторизации')} />
-                    {error && (
-                        <Text
-                            text={t('Вы ввели неверный логин или пароль')}
-                            theme={TextTheme.ERROR}
-                        />
-                    )}
-                    <Input
-                        autofocus
-                        type="text"
-                        className={cls.input}
-                        value={username}
-                        onChange={onChangeUsername}
-                        placeholder={t('Введите username')}
-                    />
-                    <Input
-                        type="text"
-                        value={password}
-                        className={cls.input}
-                        onChange={onChangePassword}
-                        placeholder={t('Введите пароль')}
-                    />
-                    <Button
-                        theme={ButtonTheme.OUTLINE}
-                        className={cls.loginBtn}
-                        onClick={onLoginClick}
-                        disabled={isLoading}
+            <ToggleFeatures
+                feature="isAppRedesigned"
+                on={
+                    <VStack
+                        className={classNames(cls.LoginForm, {}, [className])}
+                        gap="16"
+                        justify="end"
                     >
-                        {t('Войти')}
-                    </Button>
-                </VStack>
-            </div>
+                        <Text title={t('Форма авторизации')} />
+
+                        <Input
+                            autofocus
+                            type="text"
+                            value={username}
+                            onChange={onChangeUsername}
+                            placeholder={t('Введите username')}
+                        />
+                        <Input
+                            type="text"
+                            value={password}
+                            onChange={onChangePassword}
+                            placeholder={t('Введите пароль')}
+                        />
+                        <HStack max gap="16">
+                            {error && (
+                                <Text
+                                    text={t(
+                                        'Вы ввели неверный логин или пароль',
+                                    )}
+                                    variant="error"
+                                />
+                            )}
+                            <Button
+                                variant="outline"
+                                onClick={onLoginClick}
+                                disabled={isLoading}
+                                className={cls.loginBtnRedesigned}
+                            >
+                                {t('Войти')}
+                            </Button>
+                        </HStack>
+                    </VStack>
+                }
+                off={
+                    <div className={classNames(cls.LoginForm, {}, [className])}>
+                        <VStack>
+                            <TextOld title={t('Форма авторизации')} />
+                            {error && (
+                                <TextOld
+                                    text={t(
+                                        'Вы ввели неверный логин или пароль',
+                                    )}
+                                    theme={TextTheme.ERROR}
+                                />
+                            )}
+                            <InputOld
+                                autofocus
+                                type="text"
+                                className={cls.input}
+                                value={username}
+                                onChange={onChangeUsername}
+                                placeholder={t('Введите username')}
+                            />
+                            <InputOld
+                                type="text"
+                                value={password}
+                                className={cls.input}
+                                onChange={onChangePassword}
+                                placeholder={t('Введите пароль')}
+                            />
+                            <ButtonOld
+                                theme={ButtonTheme.OUTLINE}
+                                className={cls.loginBtn}
+                                onClick={onLoginClick}
+                                disabled={isLoading}
+                            >
+                                {t('Войти')}
+                            </ButtonOld>
+                        </VStack>
+                    </div>
+                }
+            />
         </DynamicModuleLoader>
     );
 });

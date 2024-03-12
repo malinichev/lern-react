@@ -39,16 +39,40 @@
     border: none;
     outline: none;
     border-radius: 34px;
+
+    &.normal{
+        background: var(--icon-redesigned);
+    }
+
+    &.success{
+        background: var(--save-redesigned);
+    }
+
+    &.error{
+        background: var(--cancel-redesigned);
+    }
 }
 
 .outline {
     background: none;
-    border: 2px solid var(--icon-redesigned);
+
     outline: none;
     border-radius: 34px;
 
     &:hover{
         border: 2px solid var(--accent-redesigned);
+    }
+
+    &.normal{
+        border: 2px solid var(--icon-redesigned);
+    }
+
+    &.success{
+        border: 2px solid var(--save-redesigned);
+    }
+
+    &.error{
+        border: 2px solid var(--cancel-redesigned);
     }
 }
 
