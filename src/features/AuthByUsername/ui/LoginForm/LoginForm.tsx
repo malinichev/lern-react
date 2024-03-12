@@ -29,6 +29,7 @@ import {
 
 import cls from './LoginForm.module.scss';
 import { ToggleFeatures } from '@/shared/lib/features';
+import { useForceUpdate } from '@/shared/lib/render/forceUpdate';
 
 interface LoginFormProps {
     className?: string;
@@ -47,6 +48,7 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
     const isLoading = useSelector(getLoginIsLoading);
     const password = useSelector(getLoginPassword);
     const username = useSelector(getLoginUsername);
+    const forceUpdate = useForceUpdate();
 
     const onChangeUsername = useCallback(
         (value: string) => {
@@ -66,8 +68,9 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
         const result = await dispatch(loginByUserName({ username, password }));
         if (result.meta.requestStatus === 'fulfilled') {
             onSuccess();
+            forceUpdate();
         }
-    }, [onSuccess, dispatch, password, username]);
+    }, [dispatch, username, password, onSuccess, forceUpdate]);
 
     return (
         <DynamicModuleLoader reducers={reducers}>

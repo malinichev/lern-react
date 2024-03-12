@@ -709,7 +709,7 @@
         "USER"
       ],
       "jsonSettings": {
-        "theme": "app_theme_light",
+        "theme": "app_theme_yellow",
         "isFirstVisit": true,
         "settingsPageHasBeenOpen": false,
         "isArticlePageWasOpened": true
