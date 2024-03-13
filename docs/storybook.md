@@ -5,6 +5,8 @@
 
 Файл со сторикейсами создает рядом с компонентом с расширением .stories.tsx
 
+В сторибук добавлена поддержка фичаФлагов (FeaturesFlagsDecorator или NewDesignDecorator)
+
 Запустить сторибук можно командой:
 - `npm run storybook`
 

@@ -4,14 +4,16 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { AppImage } from './AppImage';
 
 export default {
-    title: 'shared/AppImage',
+    title: 'shared/AppImage/deprecated',
     component: AppImage,
     argTypes: {
         backgroundColor: { control: 'color' },
     },
 } as ComponentMeta<typeof AppImage>;
 
-const Template: ComponentStory<typeof AppImage> = (args) => <AppImage {...args} />;
+const Template: ComponentStory<typeof AppImage> = (args) => (
+    <AppImage {...args} />
+);
 
 export const Normal = Template.bind({});
 Normal.args = {};
