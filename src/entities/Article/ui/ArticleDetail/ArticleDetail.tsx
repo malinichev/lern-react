@@ -8,12 +8,15 @@ import {
 } from '@/shared/lib/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
 import { Text, TextAlign, TextSize } from '@/shared/ui/deprecated/Text';
+import { Text as TextNew } from '@/shared/ui/redesigned/Text';
 import { Skeleton as SkeletonOld } from '@/shared/ui/deprecated/Skeleton';
 import { Skeleton as SkeletonNew } from '@/shared/ui/redesigned/Skeleton';
 import { Avatar } from '@/shared/ui/deprecated/Avatar';
+import { Avatar as AvatarNew } from '@/shared/ui/redesigned/Avatar';
 import EyeIcon from '@/shared/assets/icons/eye-20-20.svg';
 import CalendarIcon from '@/shared/assets/icons/calendar-20-20.svg';
 import { Icon } from '@/shared/ui/deprecated/Icon';
+import { Icon as IconNew } from '@/shared/ui/redesigned/Icon';
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect';
 import { ArticleBlockType } from '../../model/consts/consts';
 import { ArticleImageBlockComponent } from '../ArticleImageBlockComponent/ArticleImageBlockComponent';
@@ -28,7 +31,7 @@ import {
 } from '../../model/selector/articleDetails';
 import { articleDetailsReducer } from '../../model/slice/articleDetailsSlice';
 import cls from './ArticleDetail.module.scss';
-import { toggleFeatures } from '@/shared/lib/features';
+import { ToggleFeatures, toggleFeatures } from '@/shared/lib/features';
 
 interface ArticleDetailProps {
     className?: string;
@@ -112,33 +115,71 @@ export const ArticleDetail = memo((props: ArticleDetailProps) => {
         content = <Text title={t('Ошибка')} align={TextAlign.CENTER} />;
     } else {
         content = (
-            <div
-                data-testid="ArticleDetail.Info"
-                className={classNames(cls.ArticleDetail, {}, [className])}
-            >
-                <div className={cls.avatarWrapper}>
-                    <Avatar
-                        className={cls.avatar}
-                        src={article?.img}
-                        alt={article?.title}
-                    />
-                </div>
-                <Text
-                    data-testid="Title"
-                    title={article?.title}
-                    text={article?.subtitle}
-                    size={TextSize.L}
-                />
-                <div className={cls.articleInfo}>
-                    <Icon className={cls.icons} Svg={EyeIcon} />
-                    <Text text={String(article?.views)} />
-                </div>
-                <div className={cls.articleInfo}>
-                    <Icon className={cls.icons} Svg={CalendarIcon} />
-                    <Text text={String(article?.createdAt)} />
-                </div>
-                {article?.blocks.map(renderBlocks)}
-            </div>
+            <ToggleFeatures
+                feature="isAppRedesigned"
+                on={
+                    <div
+                        data-testid="ArticleDetail.Info"
+                        className={classNames(cls.ArticleDetail, {}, [
+                            className,
+                        ])}
+                    >
+                        <div className={cls.avatarWrapper}>
+                            <AvatarNew
+                                className={cls.avatar}
+                                src={article?.img}
+                                alt={article?.title}
+                            />
+                        </div>
+                        <TextNew
+                            data-testid="Title"
+                            title={article?.title}
+                            text={article?.subtitle}
+                            size="l"
+                        />
+                        <div className={cls.articleInfo}>
+                            <IconNew className={cls.icons} Svg={EyeIcon} />
+                            <TextNew text={String(article?.views)} />
+                        </div>
+                        <div className={cls.articleInfo}>
+                            <IconNew className={cls.icons} Svg={CalendarIcon} />
+                            <TextNew text={String(article?.createdAt)} />
+                        </div>
+                        {article?.blocks.map(renderBlocks)}
+                    </div>
+                }
+                off={
+                    <div
+                        data-testid="ArticleDetail.Info"
+                        className={classNames(cls.ArticleDetail, {}, [
+                            className,
+                        ])}
+                    >
+                        <div className={cls.avatarWrapper}>
+                            <Avatar
+                                className={cls.avatar}
+                                src={article?.img}
+                                alt={article?.title}
+                            />
+                        </div>
+                        <Text
+                            data-testid="Title"
+                            title={article?.title}
+                            text={article?.subtitle}
+                            size={TextSize.L}
+                        />
+                        <div className={cls.articleInfo}>
+                            <Icon className={cls.icons} Svg={EyeIcon} />
+                            <Text text={String(article?.views)} />
+                        </div>
+                        <div className={cls.articleInfo}>
+                            <Icon className={cls.icons} Svg={CalendarIcon} />
+                            <Text text={String(article?.createdAt)} />
+                        </div>
+                        {article?.blocks.map(renderBlocks)}
+                    </div>
+                }
+            />
         );
     }
 
