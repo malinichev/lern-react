@@ -1,17 +1,13 @@
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { Button } from '@/shared/ui/deprecated/Button';
 import { VStack } from '@/shared/ui/redesigned/Stack';
 import cls from './ErrorPage.module.scss';
+import { Button } from '@/shared/ui/redesigned/Button';
 
 interface ErrorPageProps {
     className?: string;
 }
 
-/**
- * Устарел, используем компоненты из папки redesigned
- * @deprecated
- * */
 export const ErrorPage = ({ className }: ErrorPageProps) => {
     const { t } = useTranslation();
 

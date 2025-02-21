@@ -1,43 +1,49 @@
-import React from 'react';
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import LoginForm from './LoginForm';
 
-export default {
+const meta = {
     title: 'features/LoginForm',
     component: LoginForm,
-    argTypes: {
-        backgroundColor: { control: 'color' },
+    args: {
+        onSuccess: () => {},
     },
-} as ComponentMeta<typeof LoginForm>;
+} satisfies Meta<typeof LoginForm>;
 
-const Template: ComponentStory<typeof LoginForm> = (args) => <LoginForm {...args} />;
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const Primary = Template.bind({});
-Primary.args = {};
-Primary.decorators = [StoreDecorator({
-    login: {
-        userName: 'admin',
-        password: '123',
-    },
-})];
+export const Primary: Story = {
+    decorators: [
+        StoreDecorator({
+            login: {
+                userName: 'admin',
+                password: '123',
+            },
+        }),
+    ],
+};
 
-export const WithError = Template.bind({});
-WithError.args = {};
-WithError.decorators = [StoreDecorator({
-    login: {
-        userName: 'admin',
-        password: '123',
-        error: '1234',
-    },
-})];
+export const WithError: Story = {
+    decorators: [
+        StoreDecorator({
+            login: {
+                userName: 'admin',
+                password: '123',
+                error: '1234',
+            },
+        }),
+    ],
+};
 
-export const IsLoading = Template.bind({});
-IsLoading.args = {};
-IsLoading.decorators = [StoreDecorator({
-    login: {
-        userName: 'admin',
-        password: '123',
-        isLoading: true,
-    },
-})];
+export const IsLoading: Story = {
+    decorators: [
+        StoreDecorator({
+            login: {
+                userName: 'admin',
+                password: '123',
+                isLoading: true,
+            },
+        }),
+    ],
+};

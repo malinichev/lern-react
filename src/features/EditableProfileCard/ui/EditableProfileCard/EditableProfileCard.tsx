@@ -6,7 +6,7 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect';
 import { Country, Currency } from '@/shared/const/common';
-import { Text, TextTheme } from '@/shared/ui/deprecated/Text';
+import { Text } from '@/shared/ui/redesigned/Text';
 import {
     DynamicModuleLoader,
     ReducersList,
@@ -23,6 +23,8 @@ import { fetchProfileData } from '../../model/service/fetchProfileData/fetchProf
 import { profileActions, profileReducer } from '../../model/slice/profileSlice';
 import { ProfileRating } from '@/entities/profileRating';
 import { getProfileIsLoading } from '../../model/selectors/getProfileIsLoading/getProfileIsLoading';
+import cls from '@/features/AddCommentForm/ui/AddCommentForm.module.scss';
+import { Input } from '@/shared/ui/redesigned/Input';
 
 interface EditableProfileCardProps {
     className?: string;
@@ -135,7 +137,7 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
                             (error: keyof typeof validateErrorTranslate) => (
                                 <Text
                                     key={error}
-                                    theme={TextTheme.ERROR}
+                                    variant={'error'}
                                     text={validateErrorTranslate[error]}
                                     data-testid="EditableProfileCard.Error"
                                 />

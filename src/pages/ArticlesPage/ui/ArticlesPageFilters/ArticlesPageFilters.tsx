@@ -9,9 +9,6 @@ import {
 } from '@/entities/Article';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
 
-import { Input } from '@/shared/ui/deprecated/Input';
-import { Card } from '@/shared/ui/deprecated/Card';
-
 import { SortOrder } from '@/shared/types';
 import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce';
 
@@ -29,6 +26,8 @@ import cls from './ArticlesPageFilters.module.scss';
 import { ArticleTypeTabs } from '@/features/ArticleTypeTabs';
 import { ArticleSortSelector } from '@/features/ArticleSortSelector';
 import { ArticleViewSelector } from '@/features/ArticleViewSelector';
+import { Card } from '@/shared/ui/redesigned/Card';
+import { Input } from '@/shared/ui/redesigned/Input';
 
 interface ArticlesPageFiltersProps {
     className?: string;

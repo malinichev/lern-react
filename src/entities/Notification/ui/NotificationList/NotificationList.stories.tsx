@@ -1,23 +1,17 @@
-import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import { NotificationList } from './NotificationList';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 
-export default {
+const meta = {
     title: 'entities/Notification/NotificationList',
     component: NotificationList,
-    argTypes: {
-        backgroundColor: { control: 'color' },
-    },
-} as ComponentMeta<typeof NotificationList>;
+} satisfies Meta<typeof NotificationList>;
 
-const Template: ComponentStory<typeof NotificationList> = (args) => (
-    <NotificationList {...args} />
-);
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const Normal = Template.bind({});
-Normal.args = {};
+export const Normal: Story = {};
 Normal.decorators = [StoreDecorator({})];
 Normal.parameters = {
     mockData: [

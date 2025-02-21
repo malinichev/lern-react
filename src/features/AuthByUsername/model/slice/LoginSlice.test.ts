@@ -1,3 +1,4 @@
+import { AnyAction } from '@reduxjs/toolkit';
 import { loginByUserName } from '../services/loginByUserName/loginByUserName';
 import { LoginSchema } from '../types/LoginSchema';
 import { loginAction, loginReducer } from './LoginSlice';
@@ -28,7 +29,10 @@ describe('LoginSlice.test', () => {
     test('test set isLoad', () => {
         const state: DeepPartial<LoginSchema> = {};
         expect(
-            loginReducer(state as LoginSchema, loginByUserName.pending),
+            loginReducer(
+                state as LoginSchema,
+                loginByUserName.pending as unknown as AnyAction,
+            ),
         ).toEqual({
             isLoading: true,
         });

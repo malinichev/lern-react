@@ -1,5 +1,5 @@
 // eslint-disable-next-line malini4-plugin/layer-imports
 import '@/app/styles/index.scss';
-import { Story } from '@storybook/react';
+import { Decorator } from '@storybook/react';
 
-export const StyleDecorator = (story: () => Story) => story();
+export const StyleDecorator: Decorator = (story) => story();

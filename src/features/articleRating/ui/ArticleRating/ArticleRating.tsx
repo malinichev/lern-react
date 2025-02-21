@@ -7,9 +7,7 @@ import {
     useRateArticle,
 } from '../../api/articleRatingApi';
 import { getUserAuthData } from '@/entities/User';
-import { Skeleton as SkeletonOld } from '@/shared/ui/deprecated/Skeleton';
 import { Skeleton as SkeletonNew } from '@/shared/ui/redesigned/Skeleton';
-import { toggleFeatures } from '@/shared/lib/features';
 
 export interface ArticleRatingProps {
     className?: string;
@@ -27,11 +25,7 @@ const ArticleRating = memo((props: ArticleRatingProps) => {
     });
     const [rateArticleMutation] = useRateArticle();
 
-    const Skeleton = toggleFeatures({
-        name: 'isAppRedesigned',
-        on: () => SkeletonNew,
-        off: () => SkeletonOld,
-    });
+    const Skeleton = SkeletonNew;
 
     const handleRateArticle = useCallback(
         (starsCount: number, feedback?: string) => {

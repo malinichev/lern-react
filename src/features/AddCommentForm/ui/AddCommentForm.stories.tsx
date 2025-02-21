@@ -1,20 +1,20 @@
-import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import { action } from '@storybook/addon-actions';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import AddCommentForm from './AddCommentForm';
 
-export default {
+const meta = {
     title: 'features/AddCommentForm',
     component: AddCommentForm,
-} as ComponentMeta<typeof AddCommentForm>;
+} satisfies Meta<typeof AddCommentForm>;
 
-const Template: ComponentStory<typeof AddCommentForm> = (args) => <AddCommentForm {...args} />;
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const Normal = Template.bind({});
-
-Normal.args = {
-    onSendComment: action('onSendComment'),
+export const Normal: Story = {
+    args: {
+        onSendComment: action('onSendComment'),
+    },
+    decorators: [StoreDecorator({})],
 };
-Normal.decorators = [StoreDecorator({})];

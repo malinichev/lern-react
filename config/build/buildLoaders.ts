@@ -26,8 +26,7 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
 
     const codeBabelLoader = buildBabelLoader({ ...options, isTsx: false });
     const tsxCodeBabelLoader = buildBabelLoader({ ...options, isTsx: true });
-
-    const cssLoader = buildCssLoader(isDev);
+    const cssLoader = buildCssLoader(isDev)
 
     // Если не используем тайпскрипт - нужен babel-loader
     // const typescriptLoader = {

@@ -1,3 +1,4 @@
+import { AnyAction } from '@reduxjs/toolkit';
 import type { Article } from '../types/article';
 import type { ArticleDetailsSchema } from '../types/articleDetailsSchema';
 import { fetchArticleById } from '../services/fetchArticleById/fetchArticleById';
@@ -12,7 +13,7 @@ describe('articleDetailsSlice', () => {
         expect(
             articleDetailsReducer(
                 state as ArticleDetailsSchema,
-                fetchArticleById.pending,
+                fetchArticleById.pending as unknown as AnyAction,
             ),
         ).toEqual({
             isLoading: true,
@@ -44,7 +45,7 @@ describe('articleDetailsSlice', () => {
         expect(
             articleDetailsReducer(
                 state as ArticleDetailsSchema,
-                fetchArticleById.rejected,
+                fetchArticleById.rejected(new Error(), '', ''),
             ),
         ).toEqual({
             isLoading: false,

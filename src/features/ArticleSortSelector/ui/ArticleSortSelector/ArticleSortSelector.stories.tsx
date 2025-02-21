@@ -1,19 +1,21 @@
-import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import { ArticleSortSelector } from './ArticleSortSelector';
+import { ArticlesSortField } from '@/entities/Article';
 
-export default {
+const meta = {
     title: 'features/ArticleSortSelector',
     component: ArticleSortSelector,
-    argTypes: {
-        backgroundColor: { control: 'color' },
+} satisfies Meta<typeof ArticleSortSelector>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Normal: Story = {
+    args: {
+        sort: ArticlesSortField.CREATED,
+        order: 'asc',
+        onChangeOrder: (newOrder) => {},
+        onChangeSort: (newSort) => {},
     },
-} as ComponentMeta<typeof ArticleSortSelector>;
-
-const Template: ComponentStory<typeof ArticleSortSelector> = (args) => (
-    <ArticleSortSelector {...args} />
-);
-
-export const Normal = Template.bind({});
-Normal.args = {};
+};

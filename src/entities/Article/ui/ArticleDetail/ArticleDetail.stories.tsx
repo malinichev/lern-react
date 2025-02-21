@@ -1,36 +1,44 @@
-import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-
+import type { Meta, StoryObj } from '@storybook/react';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ArticleBlockType, ArticleType } from '../../model/consts/consts';
 import { Article } from '../../model/types/article';
 import { ArticleDetail } from './ArticleDetail';
 
-export default {
+const meta = {
     title: 'entities/ArticleDetail',
     component: ArticleDetail,
-} as ComponentMeta<typeof ArticleDetail>;
+} satisfies Meta<typeof ArticleDetail>;
 
-const Template: ComponentStory<typeof ArticleDetail> = (args) => <ArticleDetail {...args} />;
-export const Loading = Template.bind({});
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-Loading.decorators = [StoreDecorator({
-    articleDetails: {
-        isLoading: true,
+export const Loading: Story = {
+    args: {
+        id: '1',
     },
-})];
+    decorators: [
+        StoreDecorator({
+            articleDetails: {
+                isLoading: true,
+            },
+        }),
+    ],
+};
 
-export const Error = Template.bind({});
-
-Error.decorators = [StoreDecorator({
-    articleDetails: {
-        error: 'Error',
+export const Error: Story = {
+    args: {
+        id: '1',
     },
-})];
+    decorators: [
+        StoreDecorator({
+            articleDetails: {
+                error: 'Error',
+            },
+        }),
+    ],
+};
 
-export const Normal = Template.bind({});
-
-const article:Article = {
+const article: Article = {
     id: '1',
     title: 'Javascript news',
     subtitle: 'Что нового в JS за 2022 год?',
@@ -101,12 +109,15 @@ const article:Article = {
     ],
 };
 
-Normal.args = {
-    id: '1',
-};
-
-Normal.decorators = [StoreDecorator({
-    articleDetails: {
-        data: article,
+export const Normal: Story = {
+    args: {
+        id: '1',
     },
-})];
+    decorators: [
+        StoreDecorator({
+            articleDetails: {
+                data: article,
+            },
+        }),
+    ],
+};

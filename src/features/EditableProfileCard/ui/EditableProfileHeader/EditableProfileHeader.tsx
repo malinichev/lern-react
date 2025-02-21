@@ -3,12 +3,7 @@ import { memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { HStack } from '@/shared/ui/redesigned/Stack';
-import { Text as TextOld } from '@/shared/ui/deprecated/Text';
 import { Text } from '@/shared/ui/redesigned/Text';
-import {
-    Button as ButtonOld,
-    ButtonTheme,
-} from '@/shared/ui/deprecated/Button';
 import { Button } from '@/shared/ui/redesigned/Button';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
 import { getUserAuthData } from '@/entities/User';
@@ -16,7 +11,6 @@ import { getProfileIsReadOnly } from '../../model/selectors/getProfileIsReadOnly
 import { getProfileData } from '../../model/selectors/getProfileData/getProfileData';
 import { profileActions } from '../../model/slice/profileSlice';
 import { updateProfileData } from '../../model/service/updateProfileData/updateProfileData';
-import { ToggleFeatures } from '@/shared/lib/features';
 import { Card } from '@/shared/ui/redesigned/Card';
 
 export const EditableProfileHeader = memo(
@@ -43,83 +37,42 @@ export const EditableProfileHeader = memo(
         );
 
         return (
-            <ToggleFeatures
-                feature="isAppRedesigned"
-                on={
-                    <Card border="partial" padding="24" max>
-                        <HStack
-                            max
-                            justify="between"
-                            className={classNames('', {}, [className])}
+            <Card border="partial" padding="24" max>
+                <HStack
+                    max
+                    justify="between"
+                    className={classNames('', {}, [className])}
+                >
+                    <Text title={t('Профиль')} />
+
+                    {canEdit && readonly ? (
+                        <Button
+                            onClick={onEdit}
+                            data-testid="EditableProfileHeader.EditButton"
                         >
-                            <Text title={t('Профиль')} />
-
-                            {canEdit && readonly ? (
-                                <Button
-                                    onClick={onEdit}
-                                    data-testid="EditableProfileHeader.EditButton"
-                                >
-                                    {t('Редактировать')}
-                                </Button>
-                            ) : (
-                                <HStack gap="16">
-                                    <Button
-                                        onClick={onCancelEdit}
-                                        color="error"
-                                        data-testid="EditableProfileHeader.CancelButton"
-                                    >
-                                        {t('Отменить')}
-                                    </Button>
-                                    <Button
-                                        variant="outline"
-                                        color="success"
-                                        onClick={onSave}
-                                        data-testid="EditableProfileHeader.SaveButton"
-                                    >
-                                        {t('Сохранить')}
-                                    </Button>
-                                </HStack>
-                            )}
-                        </HStack>
-                    </Card>
-                }
-                off={
-                    <HStack
-                        max
-                        justify="between"
-                        className={classNames('', {}, [className])}
-                    >
-                        <TextOld title={t('Профиль')} />
-
-                        {canEdit && readonly ? (
-                            <ButtonOld
-                                theme={ButtonTheme.OUTLINE}
-                                onClick={onEdit}
-                                data-testid="EditableProfileHeader.EditButton"
+                            {t('Редактировать')}
+                        </Button>
+                    ) : (
+                        <HStack gap="16">
+                            <Button
+                                onClick={onCancelEdit}
+                                color="error"
+                                data-testid="EditableProfileHeader.CancelButton"
                             >
-                                {t('Редактировать')}
-                            </ButtonOld>
-                        ) : (
-                            <HStack gap="16">
-                                <ButtonOld
-                                    theme={ButtonTheme.OUTLINE}
-                                    onClick={onCancelEdit}
-                                    data-testid="EditableProfileHeader.CancelButton"
-                                >
-                                    {t('Отменить')}
-                                </ButtonOld>
-                                <ButtonOld
-                                    theme={ButtonTheme.OUTLINE_RED}
-                                    onClick={onSave}
-                                    data-testid="EditableProfileHeader.SaveButton"
-                                >
-                                    {t('Сохранить')}
-                                </ButtonOld>
-                            </HStack>
-                        )}
-                    </HStack>
-                }
-            />
+                                {t('Отменить')}
+                            </Button>
+                            <Button
+                                variant="outline"
+                                color="success"
+                                onClick={onSave}
+                                data-testid="EditableProfileHeader.SaveButton"
+                            >
+                                {t('Сохранить')}
+                            </Button>
+                        </HStack>
+                    )}
+                </HStack>
+            </Card>
         );
     },
 );

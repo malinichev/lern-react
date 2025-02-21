@@ -1,19 +1,12 @@
-import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-
+import type { Meta, StoryObj } from '@storybook/react';
 import { RatingCard } from './RatingCard';
 
-export default {
+const meta = {
     title: 'entities/Rating/RatingCard',
     component: RatingCard,
-    argTypes: {
-        backgroundColor: { control: 'color' },
-    },
-} as ComponentMeta<typeof RatingCard>;
+} satisfies Meta<typeof RatingCard>;
 
-const Template: ComponentStory<typeof RatingCard> = (args) => (
-    <RatingCard {...args} />
-);
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const Normal = Template.bind({});
-Normal.args = {};
+export const Normal: Story = {};

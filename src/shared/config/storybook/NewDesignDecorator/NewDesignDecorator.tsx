@@ -1,8 +1,8 @@
-import { Story } from '@storybook/react';
+import { Decorator } from '@storybook/react';
 import { setFeatureFlags } from '@/shared/lib/features';
 import { getAllFeatureFlags } from '@/shared/lib/features/lib/setGetFeatures';
 
-export const NewDesignDecorator = (StoryComponent: Story) => {
+export const NewDesignDecorator: Decorator = (StoryComponent) => {
     setFeatureFlags({ ...getAllFeatureFlags(), isAppRedesigned: true });
     return (
         <div className="app_redesigned">

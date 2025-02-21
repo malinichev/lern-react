@@ -31,3 +31,4 @@ export const decorators = [
     RouterDecorator,
     FeaturesFlagsDecorator({}),
 ];
+export const tags = ['autodocs'];

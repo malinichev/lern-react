@@ -7,8 +7,6 @@ import { getInitAuthData, initAuthData } from '@/entities/User';
 import { AppRouter } from './providers/router';
 import { Navbar } from '@/widgets/NavBar';
 import { Sidebar } from '@/widgets/Sidebar';
-import { PageLoader } from '@/widgets/PageLoader';
-import { ToggleFeatures } from '@/shared/lib/features';
 import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
 import { MainLayout } from '@/shared/layouts/MainLayout';
 import { AppLoaderLayout } from '@/shared/layouts/AppLoaderLayout';
@@ -27,51 +25,23 @@ const App = memo(() => {
 
     if (!_initAuth) {
         return (
-            <ToggleFeatures
-                feature="isAppRedesigned"
-                on={
-                    <div
-                        id="app"
-                        className={classNames('app_redesigned', {}, [theme])}
-                    >
-                        <AppLoaderLayout />{' '}
-                    </div>
-                }
-                off={<PageLoader />}
-            />
+            <div id="app" className={classNames('app_redesigned', {}, [theme])}>
+                <AppLoaderLayout />{' '}
+            </div>
         );
     }
 
     return (
-        <ToggleFeatures
-            feature="isAppRedesigned"
-            off={
-                <div id="app" className={classNames('app', {}, [theme])}>
-                    <Suspense fallback="">
-                        <Navbar />
-                        <div className="content-page">
-                            <Sidebar />
-                            <AppRouter />
-                        </div>
-                    </Suspense>
-                </div>
-            }
-            on={
-                <div
-                    id="app"
-                    className={classNames('app_redesigned', {}, [theme])}
-                >
-                    <Suspense fallback="">
-                        <MainLayout
-                            header={<Navbar />}
-                            content={<AppRouter />}
-                            sidebar={<Sidebar />}
-                            toolbar={toolbar}
-                        />
-                    </Suspense>
-                </div>
-            }
-        />
+        <div id="app" className={classNames('app_redesigned', {}, [theme])}>
+            <Suspense fallback="">
+                <MainLayout
+                    header={<Navbar />}
+                    content={<AppRouter />}
+                    sidebar={<Sidebar />}
+                    toolbar={toolbar}
+                />
+            </Suspense>
+        </div>
     );
 });
 

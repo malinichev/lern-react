@@ -1,80 +1,85 @@
-import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-
+import type { Meta, StoryObj } from '@storybook/react';
 import { Flex } from './Flex';
 
-export default {
+const meta = {
     title: 'shared/Flex',
     component: Flex,
-} as ComponentMeta<typeof Flex>;
+} satisfies Meta<typeof Flex>;
 
-const Template: ComponentStory<typeof Flex> = (args) => (
-    <Flex style={{ height: '500px' }} {...args} />
-);
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const StartStart = Template.bind({});
-
-StartStart.args = {
-    children: 'StartStart',
-    justify: 'start',
-    align: 'start',
+export const StartStart: Story = {
+    args: {
+        children: (
+            <>
+                <div>first</div>
+                <div>second</div>
+                <div>third</div>
+            </>
+        ),
+        justify: 'start',
+        align: 'start',
+        direction: 'row',
+    },
 };
 
-export const StartCenter = Template.bind({});
-
-StartCenter.args = {
-    direction: 'column',
-    children: (
-        <>
-            <div>3333</div>
-            <div>4444</div>
-            <div>5555</div>
-        </>
-    ),
-    justify: 'start',
-    align: 'center',
+export const StartCenter: Story = {
+    args: {
+        children: (
+            <>
+                <div>first</div>
+                <div>second</div>
+                <div>third</div>
+            </>
+        ),
+        justify: 'start',
+        align: 'center',
+        direction: 'row',
+    },
 };
 
-export const CenterCenter = Template.bind({});
-
-CenterCenter.args = {
-    direction: 'column',
-    children: (
-        <>
-            <div>3333</div>
-            <div>4444</div>
-            <div>5555</div>
-        </>
-    ),
-    justify: 'center',
-    align: 'center',
-};
-export const EndCenter = Template.bind({});
-
-EndCenter.args = {
-    direction: 'column',
-    children: (
-        <>
-            <div>3333</div>
-            <div>4444</div>
-            <div>5555</div>
-        </>
-    ),
-    justify: 'end',
-    align: 'center',
+export const CenterCenter: Story = {
+    args: {
+        children: (
+            <>
+                <div>first</div>
+                <div>second</div>
+                <div>third</div>
+            </>
+        ),
+        justify: 'center',
+        align: 'center',
+        direction: 'row',
+    },
 };
 
-export const EndEnd = Template.bind({});
+export const EndCenter: Story = {
+    args: {
+        children: (
+            <>
+                <div>first</div>
+                <div>second</div>
+                <div>third</div>
+            </>
+        ),
+        justify: 'end',
+        align: 'center',
+        direction: 'row',
+    },
+};
 
-EndEnd.args = {
-    direction: 'column',
-    children: (
-        <>
-            <div>3333</div>
-            <div>4444</div>
-            <div>5555</div>
-        </>
-    ),
-    justify: 'end',
-    align: 'end',
+export const EndEnd: Story = {
+    args: {
+        children: (
+            <>
+                <div>first</div>
+                <div>second</div>
+                <div>third</div>
+            </>
+        ),
+        justify: 'end',
+        align: 'end',
+        direction: 'row',
+    },
 };

@@ -16,6 +16,7 @@ export default {
         '@storybook/addon-interactions',
         'storybook-addon-mock',
         'storybook-addon-themes',
+        '@storybook/addon-webpack5-compiler-babel',
     ],
 
     framework: {
@@ -44,8 +45,9 @@ export default {
 
         // @ts-ignore
         config!.module!.rules = config!.module!.rules!.map(
+            // @ts-ignore
             (rule: RuleSetRule) => {
-                if (/svg/.test(rule.test as string)) {
+                if (/svg/.test((rule?.test ?? '') as string)) {
                     return { ...rule, exclude: /\.svg$/i };
                 }
 
@@ -70,7 +72,9 @@ export default {
         return config;
     },
 
-    docs: {
-        autodocs: true,
+    docs: {},
+
+    typescript: {
+        reactDocgen: 'react-docgen-typescript',
     },
 };

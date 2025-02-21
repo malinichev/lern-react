@@ -1,5 +1,4 @@
-import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { Article } from '@/entities/Article';
@@ -20,16 +19,15 @@ const mockArticle: Article = {
     blocks: [],
 };
 
-export default {
+const meta = {
     title: 'features/ArticleRecommendationList',
     component: ArticleRecommendationList,
-} as ComponentMeta<typeof ArticleRecommendationList>;
+} satisfies Meta<typeof ArticleRecommendationList>;
 
-const Template: ComponentStory<typeof ArticleRecommendationList> = (args) => (
-    <ArticleRecommendationList {...args} />
-);
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const Normal = Template.bind({});
+export const Normal: Story = {};
 Normal.decorators = [StoreDecorator({})];
 Normal.parameters = {
     mockData: [

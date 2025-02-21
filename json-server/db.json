@@ -683,6 +683,12 @@
       "userId": "1",
       "text": "sdfsdf",
       "id": "nUGzMOQ"
+    },
+    {
+      "articleId": "18",
+      "userId": "1",
+      "text": "sdfdfsfdsfds",
+      "id": "gd1cgpO"
     }
   ],
   "users": [
@@ -695,7 +701,7 @@
         "MANAGER"
       ],
       "jsonSettings": {
-        "theme": "app_theme_yellow",
+        "theme": "app_theme_dark",
         "isFirstVisit": true,
         "settingsPageHasBeenOpen": false,
         "isArticlePageWasOpened": true
@@ -829,6 +835,13 @@
       "rate": 3,
       "feedback": "dfg",
       "id": "asukZCQ"
+    },
+    {
+      "userId": "1",
+      "articleId": "18",
+      "rate": 5,
+      "feedback": "324rewrew",
+      "id": "EXN5ZgV"
     }
   ],
   "profile-ratings": [

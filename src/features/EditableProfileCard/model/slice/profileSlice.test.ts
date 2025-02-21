@@ -65,7 +65,10 @@ describe('profileSlice.test', () => {
             validateError: [ValidateProfileErrors.SERVER_ERROR],
         };
         expect(
-            profileReducer(state as ProfileSchema, fetchProfileData.pending),
+            profileReducer(
+                state as ProfileSchema,
+                fetchProfileData.pending('', '', undefined),
+            ),
         ).toEqual({
             isLoading: true,
             validateError: undefined,
@@ -93,7 +96,10 @@ describe('profileSlice.test', () => {
             isLoading: true,
         };
         expect(
-            profileReducer(state as ProfileSchema, fetchProfileData.rejected),
+            profileReducer(
+                state as ProfileSchema,
+                fetchProfileData.rejected(new Error(), '', ''),
+            ),
         ).toEqual({
             isLoading: false,
         });
@@ -105,7 +111,10 @@ describe('profileSlice.test', () => {
             validateError: [ValidateProfileErrors.SERVER_ERROR],
         };
         expect(
-            profileReducer(state as ProfileSchema, updateProfileData.pending),
+            profileReducer(
+                state as ProfileSchema,
+                updateProfileData.pending('', undefined),
+            ),
         ).toEqual({
             isLoading: true,
             validateError: undefined,
@@ -138,7 +147,10 @@ describe('profileSlice.test', () => {
         };
 
         expect(
-            profileReducer(state as ProfileSchema, updateProfileData.rejected),
+            profileReducer(
+                state as ProfileSchema,
+                updateProfileData.rejected(new Error(), ''),
+            ),
         ).toEqual({
             isLoading: false,
         });

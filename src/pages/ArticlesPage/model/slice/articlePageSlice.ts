@@ -2,6 +2,7 @@ import {
     createEntityAdapter,
     createSlice,
     PayloadAction,
+    EntityState,
 } from '@reduxjs/toolkit';
 import { StateSchema } from '@/app/providers/StoreProvider';
 import {
@@ -23,21 +24,26 @@ export const getArticles = articlesAdapter.getSelectors<StateSchema>(
     (state) => state.articlesPage || articlesAdapter.getInitialState(),
 );
 
-export const articlePageSlice = createSlice({
-    name: 'articlePageSlice',
-    initialState: articlesAdapter.getInitialState<ArticlePageSchema>({
-        view: ArticleView.SMALL,
-        ids: [],
-        entities: {},
-        hasMore: true,
-        page: 1,
-        limit: 9,
-        sort: ArticlesSortField.CREATED,
-        order: 'asc',
-        search: '',
-        type: ArticleType.ALL,
-        _inited: false,
-    }),
+type ArticlesPageStateSchema = EntityState<Article> & ArticlePageSchema;
+
+const initialState: ArticlesPageStateSchema = {
+    ...articlesAdapter.getInitialState(),
+    isLoading: false,
+    error: undefined,
+    hasMore: true,
+    page: 1,
+    limit: 9,
+    view: ArticleView.SMALL,
+    order: 'asc',
+    sort: ArticlesSortField.CREATED,
+    search: '',
+    type: ArticleType.ALL,
+    _inited: false,
+};
+
+export const articlesPageSlice = createSlice({
+    name: 'articlesPage',
+    initialState,
     reducers: {
         setView: (state, actions: PayloadAction<ArticleView>) => {
             state.view = actions.payload;
@@ -46,7 +52,7 @@ export const articlePageSlice = createSlice({
                 actions.payload,
             );
         },
-        initState: (state) => {
+        initState: (state: ArticlePageSchema) => {
             const view =
                 (localStorage.getItem(
                     ARTICLES_VIEW_LOCALSTORAGE_KEY,
@@ -67,8 +73,8 @@ export const articlePageSlice = createSlice({
         setSearch: (state, actions: PayloadAction<string>) => {
             state.search = actions.payload;
         },
-        setHasMore: (state, actions: PayloadAction<boolean>) => {
-            state.hasMore = actions.payload;
+        setHasMore: (state, action: PayloadAction<boolean>) => {
+            state.hasMore = action.payload;
         },
         setType: (state, actions: PayloadAction<ArticleType>) => {
             state.type = actions.payload;
@@ -87,7 +93,8 @@ export const articlePageSlice = createSlice({
             .addCase(fetchArticlesList.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.hasMore =
-                    action.payload.total > action.payload.articles.length;
+                    Number(action.payload.total) >
+                    action.payload.articles.length;
 
                 if (action.meta.arg.replace) {
                     articlesAdapter.setAll(state, action.payload.articles);
@@ -103,5 +110,5 @@ export const articlePageSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { actions: articlesPageActions } = articlePageSlice;
-export const { reducer: articlesPageReducer } = articlePageSlice;
+export const { actions: articlesPageActions } = articlesPageSlice;
+export const { reducer: articlesPageReducer } = articlesPageSlice;

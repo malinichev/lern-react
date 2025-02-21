@@ -1,36 +1,36 @@
-import React from 'react';
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { CommentList } from './CommentList';
 
-export default {
+const meta = {
     title: 'entities/Comment/CommentList',
     component: CommentList,
-} as ComponentMeta<typeof CommentList>;
+} satisfies Meta<typeof CommentList>;
 
-const Template: ComponentStory<typeof CommentList> = (args) => <CommentList {...args} />;
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const Normal = Template.bind({});
-
-Normal.args = {
-    comments: [
-        {
-            id: '1',
-            text: 'Hellow!',
-            user: { id: '1', username: 'Vasyia' },
-        },
-        {
-            id: '2',
-            text: 'World!',
-            user: { id: '2', username: 'Petyia' },
-        },
-    ],
+export const Normal: Story = {
+    args: {
+        comments: [
+            {
+                id: '1',
+                text: 'Hellow!',
+                user: { id: '1', username: 'Vasyia' },
+            },
+            {
+                id: '2',
+                text: 'World!',
+                user: { id: '2', username: 'Petyia' },
+            },
+        ],
+    },
+    decorators: [StoreDecorator({})],
 };
-Normal.decorators = [StoreDecorator({})];
 
-export const Loading = Template.bind({});
-
-Loading.args = {
-    isLoading: true,
+export const Loading: Story = {
+    args: {
+        isLoading: true,
+    },
 };

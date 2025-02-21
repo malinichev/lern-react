@@ -1,5 +1,4 @@
-import React from 'react';
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import ProfilePage from './ProfilePage';
 import { ThemeDecorator } from '../../../shared/config/storybook/ThemeDecorator/ThemeDecorator';
@@ -14,112 +13,109 @@ import { Theme } from '@/shared/const/theme';
 const userId = '1';
 const profileId = '2';
 
-export default {
+const meta = {
     title: 'pages/ProfilePage',
     component: ProfilePage,
-} as ComponentMeta<typeof ProfilePage>;
+} satisfies Meta<typeof ProfilePage>;
 
-const Template: ComponentStory<typeof ProfilePage> = (args) => (
-    <ProfilePage {...args} />
-);
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const Normal = Template.bind({});
-Normal.args = {};
-
-Normal.decorators = [
-    StoreDecorator(
-        {
-            profile: {
-                form: {
-                    id: userId,
-                    firstname: 'Sergey',
-                    lastname: 'Malinichev',
-                    age: 39,
-                    currency: Currency.RUB,
-                    country: Country.Russia,
-                    city: 'Irk',
-                    username: 'malin',
-                    avatar,
+export const Normal: Story = {
+    decorators: [
+        StoreDecorator(
+            {
+                profile: {
+                    form: {
+                        id: userId,
+                        firstname: 'Sergey',
+                        lastname: 'Malinichev',
+                        age: 39,
+                        currency: Currency.RUB,
+                        country: Country.Russia,
+                        city: 'Irk',
+                        username: 'malin',
+                        avatar,
+                    },
+                },
+                user: {
+                    authData: {
+                        id: userId,
+                        username: 'serg',
+                    },
                 },
             },
-            user: {
-                authData: {
-                    id: userId,
-                    username: 'serg',
-                },
+            {
+                profile: profileReducer,
             },
-        },
-        {
-            profile: profileReducer,
-        },
-    ),
-];
-
-Normal.parameters = {
-    mockData: [
-        {
-            url: `${__API__}/profile-ratings?userId=${userId}&profileId= `,
-            method: 'GET',
-            status: 200,
-            response: [
-                {
-                    id: '1',
-                    rate: 2,
-                    feedback: 'Хороший профиль',
-                    userId,
-                    profileId,
-                },
-            ],
-        },
+        ),
     ],
+    parameters: {
+        mockData: [
+            {
+                url: `${__API__}/profile-ratings?userId=${userId}&profileId= `,
+                method: 'GET',
+                status: 200,
+                response: [
+                    {
+                        id: '1',
+                        rate: 2,
+                        feedback: 'Хороший профиль',
+                        userId,
+                        profileId,
+                    },
+                ],
+            },
+        ],
+    },
 };
 
-export const Dark = Template.bind({});
-Dark.args = {};
-Dark.decorators = [
-    ThemeDecorator(Theme.DARK),
-    StoreDecorator(
-        {
-            profile: {
-                form: {
-                    id: userId,
-                    firstname: 'Sergey',
-                    lastname: 'Malinichev',
-                    age: 39,
-                    currency: Currency.RUB,
-                    country: Country.Russia,
-                    city: 'Irk',
-                    username: 'malin',
-                    avatar,
+export const Dark: Story = {
+    decorators: [
+        ThemeDecorator(Theme.DARK),
+        StoreDecorator(
+            {
+                profile: {
+                    form: {
+                        id: userId,
+                        firstname: 'Sergey',
+                        lastname: 'Malinichev',
+                        age: 39,
+                        currency: Currency.RUB,
+                        country: Country.Russia,
+                        city: 'Irk',
+                        username: 'malin',
+                        avatar,
+                    },
+                },
+                user: {
+                    authData: {
+                        id: userId,
+                        username: 'serg',
+                    },
                 },
             },
-            user: {
-                authData: {
-                    id: userId,
-                    username: 'serg',
-                },
+            {
+                profile: profileReducer,
             },
-        },
-        {
-            profile: profileReducer,
-        },
-    ),
-];
-Dark.parameters = {
-    mockData: [
-        {
-            url: `${__API__}/profile-ratings?userId=${userId}&profileId= `,
-            method: 'GET',
-            status: 200,
-            response: [
-                {
-                    id: '1',
-                    rate: 4,
-                    feedback: 'Хороший профиль',
-                    userId,
-                    profileId,
-                },
-            ],
-        },
+        ),
     ],
+    parameters: {
+        mockData: [
+            {
+                url: `${__API__}/profile-ratings?userId=${userId}&profileId= `,
+                method: 'GET',
+                status: 200,
+                response: [
+                    {
+                        id: '1',
+                        rate: 4,
+                        feedback: 'Хороший профиль',
+                        userId,
+                        profileId,
+                    },
+                ],
+            },
+        ],
+    },
 };

@@ -1,8 +1,8 @@
 import {
-    AnyAction,
     combineReducers,
     Reducer,
     ReducersMapObject,
+    AnyAction,
 } from '@reduxjs/toolkit';
 import { ReducerManager, StateSchema, StateSchemaKey } from './StateSchema';
 
@@ -25,7 +25,7 @@ export function createReducerManager(
                 keysToRemove = [];
             }
 
-            return combinedReducer(state, action);
+            return combinedReducer(state as any, action);
         },
 
         add: (key: StateSchemaKey, reducer: Reducer) => {

@@ -1,4 +1,3 @@
-import { Story } from '@storybook/react';
 import { StateSchema, StoreProvider } from '@/app/providers/StoreProvider';
 
 import { ReducersList } from '@/shared/lib/DynamicModuleLoader/DynamicModuleLoader';
@@ -9,6 +8,7 @@ import { articleDetailPageReducer } from '@/pages/ArticlesDetailsPage/testing';
 import { profileReducer } from '@/features/EditableProfileCard/testing';
 import { loginReducer } from '@/features/AuthByUsername/testing';
 import { pageRestoreScrollReducer } from '@/widgets/Page/testing';
+import { Decorator } from '@storybook/react';
 
 const defaultAsyncReducers: ReducersList = {
     login: loginReducer,
@@ -19,7 +19,10 @@ const defaultAsyncReducers: ReducersList = {
     pageRestoreScroll: pageRestoreScrollReducer,
 };
 
-export const StoreDecorator = (state: DeepPartial<StateSchema>, asyncReducer?: ReducersList) => (StoryComponent: Story) => (
+export const StoreDecorator: (
+    state: DeepPartial<StateSchema>,
+    asyncReducer?: ReducersList,
+) => Decorator = (state, asyncReducer) => (StoryComponent: any) => (
     <StoreProvider
         initialState={state}
         asyncReducers={{ ...defaultAsyncReducers, ...asyncReducer }}

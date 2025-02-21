@@ -7,17 +7,7 @@ import { ToggleFeatures, toggleFeatures } from '@/shared/lib/features';
 const MainPage = memo(() => {
     const { t } = useTranslation('main');
 
-    const counter = toggleFeatures({
-        name: 'isCounterEnabled',
-        on: () => <Counter />,
-        off: () => null,
-    });
-
-    toggleFeatures({
-        name: 'isCounterEnabled',
-        on: () => console.log('ON blablabla'),
-        off: () => console.log('OFF blablabla'),
-    });
+    const counter = <Counter />;
 
     return (
         <Page data-testid="MainPage">
@@ -25,11 +15,7 @@ const MainPage = memo(() => {
             <div>3323234233</div>
             {t('Главная страница')}
             {counter}
-            <ToggleFeatures
-                feature="isCounterEnabled"
-                on={<Counter />}
-                off={<div />}
-            />
+            <Counter />
         </Page>
     );
 });

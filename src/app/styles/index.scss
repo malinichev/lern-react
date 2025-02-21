@@ -1,8 +1,8 @@
-@import "reset";
-@import "variables/global";
-@import "themes/normal";
-@import "themes/dark";
-@import "themes/yellow";
+@use "themes/normal";
+@use "themes/dark";
+@use "themes/yellow";
+@use "variables/global";
+@use "reset";
 
 .app {
     font: var(--font-m);

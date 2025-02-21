@@ -7,7 +7,7 @@ type ActionCreatorType<Return, Arg, RejectedValue> = (
 ) => AsyncThunkAction<Return, Arg, { rejectValue: RejectedValue }>;
 jest.mock('axios');
 
-const mockedAxios = jest.mocked(axios, true);
+const mockedAxios = jest.mocked<AxiosStatic>(axios);
 
 export class TestAsyncThunk<Return, Arg, RejectedValue> {
     dispatch: jest.MockedFn<any>;

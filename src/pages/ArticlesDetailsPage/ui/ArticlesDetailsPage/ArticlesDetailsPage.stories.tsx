@@ -1,15 +1,15 @@
-import React from 'react';
-import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
+import type { Meta, StoryObj } from '@storybook/react';
 import { Article, ArticleBlockType, ArticleType } from '@/entities/Article';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import ArticlesDetailsPage from './ArticlesDetailsPage';
-import { Theme } from '@/shared/const/theme';
 
-export default {
-    title: 'pages/ArticlesDetailsPage',
+const meta = {
+    title: 'pages/ArticleDetailsPage/ArticlesDetailsPage',
     component: ArticlesDetailsPage,
-} as ComponentMeta<typeof ArticlesDetailsPage>;
+} satisfies Meta<typeof ArticlesDetailsPage>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 const article: Article = {
     id: '1',
@@ -85,90 +85,54 @@ const article: Article = {
     ],
 };
 
-const Template: ComponentStory<typeof ArticlesDetailsPage> = () => (
-    <ArticlesDetailsPage />
-);
-
-export const Normal = Template.bind({});
-Normal.args = {};
-Normal.decorators = [
-    StoreDecorator({
-        articleDetails: {
-            data: article,
-        },
-        user: {
-            authData: {
-                id: '1',
-                username: 'serg',
-            },
-        },
-    }),
-];
-Normal.parameters = {
-    mockData: [
-        {
-            url: `${__API__}/articles?_limit=3`,
-            method: 'GET',
-            status: 200,
-            response: [
-                { ...article, id: '1' },
-                { ...article, id: '2' },
-                { ...article, id: '3' },
-            ],
-        },
-        {
-            url: `${__API__}/article-ratings?userId=&articleId=1`,
-            method: 'GET',
-            status: 200,
-            response: [
-                {
+export const Normal: Story = {
+    args: {},
+    decorators: [
+        StoreDecorator({
+            articleDetails: {
+                data: {
+                    ...article,
                     id: '1',
-                    rate: 4,
-                    feedback: 'Хорошая статья',
-                    userId: '1',
-                    articleId: '1',
+                    title: 'JavaScript News',
+                    subtitle: 'What is new in JS for 2023',
+                    views: 1022,
+                    createdAt: '26.02.2023',
+                    type: [ArticleType.IT],
+                    blocks: [],
                 },
-            ],
-        },
+            },
+        }),
+    ],
+    parameters: {
+        mockData: [
+            {
+                url: `${__API__}/articles?_limit=3`,
+                method: 'GET',
+                status: 200,
+                response: [],
+            },
+        ],
+    },
+};
+
+export const Loading: Story = {
+    args: {},
+    decorators: [
+        StoreDecorator({
+            articleDetails: {
+                isLoading: true,
+            },
+        }),
     ],
 };
 
-export const Dark = Template.bind({});
-Dark.args = {};
-Dark.decorators = [
-    ThemeDecorator(Theme.DARK),
-    StoreDecorator({
-        articleDetails: {
-            data: article,
-        },
-    }),
-];
-
-Dark.parameters = {
-    mockData: [
-        {
-            url: `${__API__}/articles?_limit=3`,
-            method: 'GET',
-            status: 200,
-            response: [
-                { ...article, id: '1' },
-                { ...article, id: '2' },
-                { ...article, id: '3' },
-            ],
-        },
-        {
-            url: `${__API__}/article-ratings?userId=&articleId=1`,
-            method: 'GET',
-            status: 200,
-            response: [
-                {
-                    id: '1',
-                    rate: 4,
-                    feedback: 'Хорошая статья',
-                    userId: '1',
-                    articleId: '1',
-                },
-            ],
-        },
+export const Error: Story = {
+    args: {},
+    decorators: [
+        StoreDecorator({
+            articleDetails: {
+                error: 'Error',
+            },
+        }),
     ],
 };

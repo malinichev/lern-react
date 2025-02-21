@@ -1,19 +1,16 @@
-import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import ArticleRating from './ArticleRating';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 
-export default {
+const meta = {
     title: 'features/ArticleRating',
     component: ArticleRating,
-} as ComponentMeta<typeof ArticleRating>;
+} satisfies Meta<typeof ArticleRating>;
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-const Template: ComponentStory<typeof ArticleRating> = (args) => (
-    <ArticleRating {...args} />
-);
-
-export const Normal = Template.bind({});
+export const Normal: Story = {};
 Normal.args = {
     articleId: '1',
 };

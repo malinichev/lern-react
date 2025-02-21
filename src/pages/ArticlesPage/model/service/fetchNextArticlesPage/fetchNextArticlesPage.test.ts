@@ -13,8 +13,6 @@ describe('fetchNextArticlesPage.test', () => {
                 limit: 5,
                 hasMore: true,
                 isLoading: false,
-                entities: {},
-                ids: [],
             },
         });
 
@@ -29,8 +27,6 @@ describe('fetchNextArticlesPage.test', () => {
                 limit: 5,
                 hasMore: false, // fetchArticlesList not called тк карточек больше нет
                 isLoading: false,
-                entities: {},
-                ids: [],
             },
         });
 
@@ -45,8 +41,6 @@ describe('fetchNextArticlesPage.test', () => {
                 limit: 5,
                 hasMore: true,
                 isLoading: true, // fetchArticlesList not called тк isLoading
-                entities: {},
-                ids: [],
             },
         });
 

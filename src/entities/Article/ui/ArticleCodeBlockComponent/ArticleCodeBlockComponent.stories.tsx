@@ -1,24 +1,23 @@
-import React from 'react';
-import { ComponentMeta, ComponentStory } from '@storybook/react';
-
+import type { Meta, StoryObj } from '@storybook/react';
 import { ArticleBlockType } from '../../model/consts/consts';
 import { ArticleCodeBlockComponent } from './ArticleCodeBlockComponent';
 
-export default {
+const meta = {
     title: 'entities/ArticleCodeBlockComponent',
     component: ArticleCodeBlockComponent,
-} as ComponentMeta<typeof ArticleCodeBlockComponent>;
+} satisfies Meta<typeof ArticleCodeBlockComponent>;
 
-const Template: ComponentStory<typeof ArticleCodeBlockComponent> = (args) => <ArticleCodeBlockComponent {...args} />;
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const Normal = Template.bind({});
-
-Normal.args = {
-    block: {
-        code: `export default {
+export const Normal: Story = {
+    args: {
+        block: {
+            code: `export default {
     title: 'shared/ArticleCodeBlockComponent',
     component: ArticleCodeBlockComponent,`,
-        type: ArticleBlockType.CODE,
-        id: '1',
+            type: ArticleBlockType.CODE,
+            id: '1',
+        },
     },
 };

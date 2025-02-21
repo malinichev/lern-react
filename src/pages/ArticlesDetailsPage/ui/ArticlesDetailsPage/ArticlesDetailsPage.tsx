@@ -31,45 +31,18 @@ const ArticlesDetailsPage = memo(() => {
 
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
-            <ToggleFeatures
-                feature="isAppRedesigned"
-                on={
-                    <StickyContentLayout
-                        content={
-                            <Page>
-                                <VStack gap="16" max>
-                                    <DetailsContainer />
-                                    <ArticleRating articleId={id} />
-                                    <ArticleRecommendationList />
-                                    <ArticlesDetailsComments id={id} />
-                                </VStack>
-                            </Page>
-                        }
-                        right={<AdditionalInfoContainer />}
-                    />
-                }
-                off={
+            <StickyContentLayout
+                content={
                     <Page>
-                        <VStack gap="8" max>
-                            <ArticlesDetailsPageHeader />
-                            <ArticleDetail
-                                id={__PROJECT__ === 'storybook' ? '1' : id}
-                            />
-                            {isCounterEnabled && <Counter />}
-                            {isArticleRatingEnabled && (
-                                <ArticleRating
-                                    articleId={
-                                        __PROJECT__ === 'storybook' ? '1' : id
-                                    }
-                                />
-                            )}
+                        <VStack gap="16" max>
+                            <DetailsContainer />
+                            <ArticleRating articleId={id} />
                             <ArticleRecommendationList />
-                            <ArticlesDetailsComments
-                                id={__PROJECT__ === 'storybook' ? '1' : id}
-                            />
+                            <ArticlesDetailsComments id={id} />
                         </VStack>
                     </Page>
                 }
+                right={<AdditionalInfoContainer />}
             />
         </DynamicModuleLoader>
     );
