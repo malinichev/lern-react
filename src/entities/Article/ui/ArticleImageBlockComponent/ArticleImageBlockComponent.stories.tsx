@@ -2,6 +2,7 @@ import { type Meta, type StoryObj } from '@storybook/react';
 
 import { ArticleBlockType } from '../../model/consts/consts';
 import { ArticleImageBlockComponent } from './ArticleImageBlockComponent';
+import img from '../../../../shared/assets/relax-meditation.jpg';
 
 const meta: Meta<typeof ArticleImageBlockComponent> = {
     title: 'entities/ArticleImageBlockComponent',
@@ -17,7 +18,7 @@ export const Normal: Story = {
             id: '1',
             type: ArticleBlockType.IMAGE,
             title: 'ArticleImageBlockComponent',
-            src: 'https://avatars.mds.yandex.net/i?id=264d7fccf6aa1da5976a7cace97e50b80c8e5a8b-9266795-images-thumbs&n=13',
+            src: img,
         },
     },
 };

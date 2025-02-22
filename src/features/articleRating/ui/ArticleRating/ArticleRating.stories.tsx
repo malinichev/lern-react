@@ -25,20 +25,31 @@ Normal.decorators = [
     }),
 ];
 Normal.parameters = {
-    mockData: [
-        {
-            url: `${__API__}/article-ratings?userId=&articleId=1`,
-            method: 'GET',
-            status: 200,
-            response: [
-                {
-                    id: '1',
-                    rate: 4,
-                    feedback: 'Хорошая статья',
-                    userId: '1',
-                    articleId: '1',
+    fetchMock: {
+        mocks: [
+            {
+                matcher: {
+                    name: `ratings`,
+                    url: `${__API__}/article-ratings`,
+                    method: 'GET',
+                    query: {
+                        userId: '1',
+                        articleId: '1',
+                    },
                 },
-            ],
-        },
-    ],
+                response: {
+                    status: 200,
+                    body: [
+                        {
+                            id: '1',
+                            rate: 4,
+                            feedback: 'Хорошая статья',
+                            userId: '1',
+                            articleId: '1',
+                        },
+                    ],
+                },
+            },
+        ],
+    },
 };

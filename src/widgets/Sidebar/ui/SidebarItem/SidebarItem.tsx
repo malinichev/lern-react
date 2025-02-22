@@ -30,6 +30,8 @@ export const SidebarItem = memo(({ item, collapsed }: SidebarItemProps) => {
             activeClassName={cls.active}
         >
             <Icon Svg={item.Icon} />
+
+            {/* i18next-extract-disable-next-line */}
             <span className={cls.link}>{t(item.text)}</span>
         </AppLink>
     );

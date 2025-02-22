@@ -51,22 +51,33 @@ export const Normal: Story = {
         ),
     ],
     parameters: {
-        mockData: [
-            {
-                url: `${__API__}/profile-ratings?userId=${userId}&profileId= `,
-                method: 'GET',
-                status: 200,
-                response: [
-                    {
-                        id: '1',
-                        rate: 2,
-                        feedback: 'Хороший профиль',
-                        userId,
-                        profileId,
+        fetchMock: {
+            mocks: [
+                {
+                    matcher: {
+                        name: `articlesRating`,
+                        url: `${__API__}/profile-ratings`,
+                        method: 'GET',
+                        query: {
+                            userId,
+                            profileId: '',
+                        },
                     },
-                ],
-            },
-        ],
+                    response: {
+                        status: 200,
+                        body: [
+                            {
+                                id: '1',
+                                rate: 2,
+                                feedback: 'Хороший профиль',
+                                userId,
+                                profileId,
+                            },
+                        ],
+                    },
+                },
+            ],
+        },
     },
 };
 
@@ -101,21 +112,32 @@ export const Dark: Story = {
         ),
     ],
     parameters: {
-        mockData: [
-            {
-                url: `${__API__}/profile-ratings?userId=${userId}&profileId= `,
-                method: 'GET',
-                status: 200,
-                response: [
-                    {
-                        id: '1',
-                        rate: 4,
-                        feedback: 'Хороший профиль',
-                        userId,
-                        profileId,
+        fetchMock: {
+            mocks: [
+                {
+                    matcher: {
+                        name: `articlesRating`,
+                        url: `${__API__}/profile-ratings`,
+                        method: 'GET',
+                        query: {
+                            userId,
+                            profileId: '',
+                        },
                     },
-                ],
-            },
-        ],
+                    response: {
+                        status: 200,
+                        body: [
+                            {
+                                id: '1',
+                                rate: 2,
+                                feedback: 'Хороший профиль',
+                                userId,
+                                profileId,
+                            },
+                        ],
+                    },
+                },
+            ],
+        },
     },
 };

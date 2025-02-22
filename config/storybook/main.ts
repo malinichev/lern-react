@@ -14,7 +14,7 @@ export default {
             },
         },
         '@storybook/addon-interactions',
-        'storybook-addon-mock',
+        'storybook-addon-fetch-mock',
         'storybook-addon-themes',
         '@storybook/addon-webpack5-compiler-babel',
     ],

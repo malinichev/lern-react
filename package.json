@@ -115,7 +115,7 @@
     "regenerator-runtime": "^0.14.1",
     "sass": "^1.69.5",
     "sass-loader": "^13.3.2",
-    "storybook-addon-mock": "^5.0.0",
+    "storybook-addon-fetch-mock": "^2.0.1",
     "storybook-addon-themes": "^6.1.0",
     "style-loader": "^3.3.3",
     "stylelint": "^16.14.1",

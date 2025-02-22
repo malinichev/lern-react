@@ -27,20 +27,31 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Normal: Story = {};
-Normal.decorators = [StoreDecorator({})];
-Normal.parameters = {
-    mockData: [
-        {
-            url: `${__API__}/articles?_limit=3`,
-            method: 'GET',
-            status: 200,
-            response: [
-                { ...mockArticle, id: '1' },
-                { ...mockArticle, id: '2' },
-                { ...mockArticle, id: '3' },
-                { ...mockArticle, id: '4' },
+export const Normal: Story = {
+    decorators: [StoreDecorator({})],
+    parameters: {
+        fetchMock: {
+            mocks: [
+                {
+                    matcher: {
+                        name: `articles`,
+                        url: `${__API__}/articles`,
+                        method: 'GET',
+                        query: {
+                            _limit: 3,
+                        },
+                    },
+                    response: {
+                        status: 200,
+                        body: [
+                            { ...mockArticle, id: '1' },
+                            { ...mockArticle, id: '2' },
+                            { ...mockArticle, id: '3' },
+                            { ...mockArticle, id: '4' },
+                        ],
+                    },
+                },
             ],
         },
-    ],
+    },
 };

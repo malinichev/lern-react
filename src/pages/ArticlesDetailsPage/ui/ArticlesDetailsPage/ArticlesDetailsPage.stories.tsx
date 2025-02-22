@@ -3,6 +3,21 @@ import { Article, ArticleBlockType, ArticleType } from '@/entities/Article';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import ArticlesDetailsPage from './ArticlesDetailsPage';
 
+const mockArticle: Article = {
+    id: '1',
+    title: 'Javascript news СВЕЖАЯ',
+    img: '',
+    createdAt: '26.04.2022',
+    views: 1022,
+    subtitle: 'Что нового в JS за 2022 год?',
+    user: {
+        id: '1',
+        username: 'ssss',
+    },
+    type: [],
+    blocks: [],
+};
+
 const meta = {
     title: 'pages/ArticleDetailsPage/ArticlesDetailsPage',
     component: ArticlesDetailsPage,
@@ -85,6 +100,42 @@ const article: Article = {
     ],
 };
 
+const apiMock = {
+    fetchMock: {
+        mocks: [
+            {
+                matcher: {
+                    name: `articles1`,
+                    url: `${__API__}/articles`,
+                    method: 'GET',
+                    query: {
+                        _limit: 3,
+                        _expand: 'user',
+                    },
+                },
+                response: {
+                    status: 200,
+                    body: [{ ...mockArticle, id: '1' }],
+                },
+            },
+            {
+                matcher: {
+                    name: `articles2`,
+                    url: `${__API__}/article-ratings`,
+                    method: 'GET',
+                    query: {
+                        userId: '',
+                    },
+                },
+                response: {
+                    status: 200,
+                    body: {},
+                },
+            },
+        ],
+    },
+};
+
 export const Normal: Story = {
     args: {},
     decorators: [
@@ -104,14 +155,7 @@ export const Normal: Story = {
         }),
     ],
     parameters: {
-        mockData: [
-            {
-                url: `${__API__}/articles?_limit=3`,
-                method: 'GET',
-                status: 200,
-                response: [],
-            },
-        ],
+        ...apiMock,
     },
 };
 
@@ -124,6 +168,9 @@ export const Loading: Story = {
             },
         }),
     ],
+    parameters: {
+        ...apiMock,
+    },
 };
 
 export const Error: Story = {
@@ -135,4 +182,7 @@ export const Error: Story = {
             },
         }),
     ],
+    parameters: {
+        ...apiMock,
+    },
 };

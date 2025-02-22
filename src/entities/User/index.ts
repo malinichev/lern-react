@@ -1,3 +1,5 @@
+export type { JsonSettings } from './model/types/jsonSettings';
+
 export { initAuthData } from './model/service/initAuthData';
 
 export { useJsonSettings } from './model/selectors/jsonSettings/jsonSettings';
