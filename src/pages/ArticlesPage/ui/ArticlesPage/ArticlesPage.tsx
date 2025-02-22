@@ -24,6 +24,7 @@ import { FiltersContainer } from '../FiltersContainer/FiltersContainer';
 
 interface ArticlesPageProps {
     className?: string;
+    isTest?: boolean;
 }
 
 const reducers: ReducersList = {
@@ -31,14 +32,14 @@ const reducers: ReducersList = {
 };
 
 const ArticlesPage = (props: ArticlesPageProps) => {
-    const { className } = props;
-    const { t } = useTranslation();
+    const { className, isTest } = props;
     const dispatch = useAppDispatch();
     const [searchParams] = useSearchParams();
 
     const onLoadNextPart = useCallback(() => {
+        if (isTest) return;
         dispatch(fetchNextArticlesPage());
-    }, [dispatch]);
+    }, [dispatch, isTest]);
 
     useInitialEffect(() => {
         dispatch(initArticlesPages(searchParams));
