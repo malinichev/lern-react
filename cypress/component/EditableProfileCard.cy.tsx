@@ -6,7 +6,9 @@ const USER_ID = '1';
 describe('EditableProfileCard.cy.tsx', () => {
     it('playground', () => {
         cy.intercept('GET', '**/profile/*', { fixture: 'profile.json' });
-        cy.intercept('GET', '**/profile-ratings?*', { fixture: 'profile-rating.json' });
+        cy.intercept('GET', '**/profile-ratings?*', {
+            fixture: 'profile-rating.json',
+        });
         cy.mount(
             <TestProvider
                 options={{

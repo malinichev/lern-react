@@ -12,13 +12,25 @@ export const Counter = () => {
         <div>
             <h2 data-testid="value-title">{count}</h2>
 
-            <button data-testid="value-inc-btn" onClick={handleInc} type="button">
+            <button
+                data-testid="value-inc-btn"
+                onClick={handleInc}
+                type="button"
+            >
                 {t('Увеличить')}
             </button>
-            <button data-testid="value-inc-btn" onClick={handleAdd} type="button">
+            <button
+                data-testid="value-inc-btn"
+                onClick={handleAdd}
+                type="button"
+            >
                 {t('Add 5')}
             </button>
-            <button data-testid="value-dec-btn" onClick={handleDec} type="button">
+            <button
+                data-testid="value-dec-btn"
+                onClick={handleDec}
+                type="button"
+            >
                 {t('Уменьшить')}
             </button>
         </div>

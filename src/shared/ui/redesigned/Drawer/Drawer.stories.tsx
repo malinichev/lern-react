@@ -24,4 +24,4 @@ export const Dark: Story = {
         children: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
     },
     decorators: [ThemeDecorator(Theme.DARK)],
-}; 
+};

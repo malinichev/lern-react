@@ -22,4 +22,4 @@ export const WithLabel: Story = {
         value: 'Some text',
         label: 'Label text',
     },
-}; 
+};

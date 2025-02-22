@@ -20,4 +20,4 @@ export const Normal: Story = {
         value: 'tab2',
         onTabClick: action('onTabClick'),
     },
-}; 
+};

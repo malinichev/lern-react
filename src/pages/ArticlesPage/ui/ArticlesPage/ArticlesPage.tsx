@@ -46,23 +46,21 @@ const ArticlesPage = (props: ArticlesPageProps) => {
 
     const content = (
         <StickyContentLayout
-                            left={<ViewSelectorContainer />}
-                            right={<FiltersContainer />}
-                            content={
-                                <Page
-                                    data-testid="ArticlesPage"
-                                    onScrollEnd={onLoadNextPart}
-                                    className={classNames(
-                                        cls.ArticlesPageRedesigned,
-                                        {},
-                                        [className],
-                                    )}
-                                >
-                                    <ArticleInfinityList className={cls.list} />
-                                    <ArticlePageGreeting />
-                                </Page>
-                            }
-                        />
+            left={<ViewSelectorContainer />}
+            right={<FiltersContainer />}
+            content={
+                <Page
+                    data-testid="ArticlesPage"
+                    onScrollEnd={onLoadNextPart}
+                    className={classNames(cls.ArticlesPageRedesigned, {}, [
+                        className,
+                    ])}
+                >
+                    <ArticleInfinityList className={cls.list} />
+                    <ArticlePageGreeting />
+                </Page>
+            }
+        />
     );
 
     return (

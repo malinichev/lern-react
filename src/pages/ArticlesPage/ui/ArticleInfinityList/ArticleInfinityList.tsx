@@ -11,7 +11,7 @@ import {
 import { ArticleList } from '@/entities/Article';
 
 interface ArticleInfinityListProps {
-  className?: string;
+    className?: string;
 }
 
 export const ArticleInfinityList = memo((props: ArticleInfinityListProps) => {
@@ -27,7 +27,11 @@ export const ArticleInfinityList = memo((props: ArticleInfinityListProps) => {
 
     return (
         <div className={classNames('', {}, [className])}>
-            <ArticleList isLoading={isLoading} view={view} articles={articles} />
+            <ArticleList
+                isLoading={isLoading}
+                view={view}
+                articles={articles}
+            />
         </div>
     );
 });
