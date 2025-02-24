@@ -21,7 +21,6 @@ export function buildCssLoader(isDev: boolean) {
                 loader: "sass-loader",
                 options: {
                     api: "modern",
-                    
                 },
             },
         ],

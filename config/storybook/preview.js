@@ -6,7 +6,6 @@ import { Theme } from '../../src/shared/const/theme';
 import { FeaturesFlagsDecorator } from '../../src/shared/config/storybook/FeaturesFlagsDecorator/FeaturesFlagsDecorator';
 
 export const parameters = {
-    actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
         matchers: {
             color: /(background|color)$/i,

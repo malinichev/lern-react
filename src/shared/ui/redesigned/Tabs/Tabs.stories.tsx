@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
+import { fn } from '@storybook/test';
 import { Tabs } from './Tabs';
 
 const meta = {
@@ -18,6 +18,6 @@ export const Normal: Story = {
             { value: 'tab3', content: 'Tab 3' },
         ],
         value: 'tab2',
-        onTabClick: action('onTabClick'),
+        onTabClick: fn(),
     },
 };

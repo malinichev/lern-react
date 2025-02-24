@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-
-import { action } from '@storybook/addon-actions';
+import { fn } from '@storybook/test';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import AddCommentForm from './AddCommentForm';
 
@@ -14,7 +13,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Normal: Story = {
     args: {
-        onSendComment: action('onSendComment'),
+        onSendComment: fn(),
     },
     decorators: [StoreDecorator({})],
 };

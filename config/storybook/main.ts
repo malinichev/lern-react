@@ -2,20 +2,23 @@ import { Configuration, DefinePlugin, RuleSetRule } from 'webpack';
 import path from 'path';
 import { buildCssLoader } from '../build/loaders/buildCssLoader';
 
-export default {
+import type { StorybookConfig } from '@storybook/react-webpack5';
+
+const config: StorybookConfig = {
     stories: ['../../src/**/*.stories.@(js|jsx|ts|tsx)'],
 
     addons: [
-        '@storybook/addon-links',
+        '@storybook/addon-onboarding',
         {
             name: '@storybook/addon-essentials',
             options: {
                 backgrounds: false,
             },
         },
+        '@chromatic-com/storybook',
         '@storybook/addon-interactions',
+        '@storybook/addon-links',
         'storybook-addon-fetch-mock',
-        'storybook-addon-themes',
         '@storybook/addon-webpack5-compiler-babel',
     ],
 
@@ -68,6 +71,25 @@ export default {
                 __PROJECT__: JSON.stringify('storybook'),
             }),
         );
+
+        // Добавляем поддержку SCSS
+        // config.module?.rules?.push({
+        //     test: /\.s[ac]ss$/i,
+        //     use: [
+        //         'style-loader',
+        //         {
+        //             loader: 'css-loader',
+        //             options: {
+        //                 modules: {
+        //                     auto: true,
+        //                     localIdentName: '[name]__[local]--[hash:base64:5]',
+        //                 },
+        //             },
+        //         },
+        //         'sass-loader',
+        //     ],
+        // });
+
         // Return the altered config
         return config;
     },
@@ -78,3 +100,5 @@ export default {
         reactDocgen: 'react-docgen-typescript',
     },
 };
+
+export default config;
