@@ -3,6 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { ArticleBlockType } from '../../model/consts/consts';
 import { ArticleImageBlockComponent } from './ArticleImageBlockComponent';
+import js from '@/shared/assets/js.jpg'
 
 export default {
     title: 'entities/ArticleImageBlockComponent',
@@ -18,6 +19,6 @@ Normal.args = {
         id: '1',
         type: ArticleBlockType.IMAGE,
         title: 'ArticleImageBlockComponent',
-        src: 'https://avatars.mds.yandex.net/i?id=264d7fccf6aa1da5976a7cace97e50b80c8e5a8b-9266795-images-thumbs&n=13',
+        src: js,
     },
 };
