@@ -6,10 +6,6 @@
     padding: 0;
 }
 
-.normal {
-    background: var(--dark-bg-redesigned);
-}
-
 .light {
     background: var(--light-bg-redesigned);
 }
@@ -19,6 +15,7 @@
 }
 
 .normal {
+    background: var(--dark-bg-redesigned);
     border-radius: 12px;
 }
 
@@ -38,7 +35,6 @@
     padding: 0;
 }
 
-
 .gap_8 {
     padding: 8px;
 }
@@ -48,9 +44,9 @@
 }
 
 .gap_24 {
-    padding: 24px
+    padding: 24px;
 }
 
-.fullHeight{
+.fullHeight {
     height: 100%;
 }

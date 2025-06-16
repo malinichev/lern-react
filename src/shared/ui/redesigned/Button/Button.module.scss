@@ -1,3 +1,8 @@
+.addonRight svg,
+.addonLeft svg {
+    color: var(--hint-redesigned);
+}
+
 .Button {
     cursor: pointer;
     color: var(--text-redesigned);
@@ -8,7 +13,8 @@
     &:hover {
         color: var(--accent-redesigned);
 
-        .addonLeft svg, .addonRight svg {
+        .addonLeft svg,
+        .addonRight svg {
             color: var(--accent-redesigned);
         }
     }
@@ -18,14 +24,10 @@
     padding: 0 16px;
 }
 
-.addonLeft, .addonRight {
+.addonLeft,
+.addonRight {
     display: flex;
 }
-
-.addonRight svg, .addonLeft svg {
-    color: var(--hint-redesigned);
-}
-
 
 .clear {
     padding: 0;
@@ -40,38 +42,37 @@
     outline: none;
     border-radius: 34px;
 
-    &.normal{
+    &.normal {
         background: var(--icon-redesigned);
     }
 
-    &.success{
+    &.success {
         background: var(--save-redesigned);
     }
 
-    &.error{
+    &.error {
         background: var(--cancel-redesigned);
     }
 }
 
 .outline {
     background: none;
-
     outline: none;
     border-radius: 34px;
 
-    &:hover{
+    &:hover {
         border: 2px solid var(--accent-redesigned);
     }
 
-    &.normal{
+    &.normal {
         border: 2px solid var(--icon-redesigned);
     }
 
-    &.success{
+    &.success {
         border: 2px solid var(--save-redesigned);
     }
 
-    &.error{
+    &.error {
         border: 2px solid var(--cancel-redesigned);
     }
 }
