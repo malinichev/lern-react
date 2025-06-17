@@ -11,6 +11,7 @@ yarn dev или yarn dev:vite - запуск сервера + frontend прое�
 
 ## Скрипты
 
+- `yarn deploy:production` - Деплой приложения
 - `yarn start` - Запуск frontend проекта на webpack dev server
 - `yarn dev:vite` - Запуск frontend проекта на vite
 - `yarn dev` - Запуск frontend проекта на webpack dev server + backend

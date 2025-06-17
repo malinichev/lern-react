@@ -21,8 +21,7 @@ module.exports = {
             repo: DEPLOY_REPOSITORY,
             path: DEPLOY_PATH,
             'pre-deploy-local': `bash scripts/deployEnv.sh ${DEPLOY_USER}@${DEPLOY_HOST} ${DEPLOY_PATH}`,
-            // eslint-disable-next-line max-len
-            'post-deploy': `pwd && npm i yarn -g && yarn install --frozen-lockfile && yarn build:prod --env mode=production apiUrl="http://${DEPLOY_HOST}:8000" &&  pm2 startOrRestart ecosystem.config.js --env production && rm -rf ~/../var/www/production_project/html && mv ~/../home/lern-react/build ~/../var/www/production_project/html`,
+            'post-deploy': `chmod +x .deploy/deploy.sh && .deploy/deploy.sh ${DEPLOY_HOST}`,
         },
     },
 };

@@ -10,6 +10,7 @@ export const Counter = () => {
     const { increment, decrement, add } = useCounterActions();
     return (
         <div>
+            23232323232323
             <h2 data-testid="value-title">{count}</h2>
 
             <button data-testid="value-inc-btn" onClick={handleInc} type="button">

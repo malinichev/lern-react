@@ -21,8 +21,6 @@ const MainPage = memo(() => {
 
     return (
         <Page data-testid="MainPage">
-            <div>33333</div>
-            <div>3323234233</div>
             {t('Главная страница')}
             {counter}
             <ToggleFeatures

@@ -51,53 +51,53 @@ concurrency:
   group: "pages"
   cancel-in-progress: true
 jobs:
-  build-and-ui-testing:
-    runs-on: ubuntu-latest
-    concurrency: ci-${{ github.ref }}
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    strategy:
-      matrix:
-        node-version: [ 20.x ]
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 20
-          cache: 'yarn'
-      - name: install modules
-        run: yarn install --frozen-lockfile
-      - name: build production project
-        run: yarn build:prod
-        if: always()
-      - name: build storybook
-        run: yarn storybook:build
-        if: always()
-      - name: screenshot testing
-        run: yarn test:unit
-        if: always()
-      - name: unit testing
-        run: yarn test:ui:ci
-        if: always()
-      - name: Generate HTML report
-        run: yarn test:ui:report
-        if: always()
-      - name: move loki
-        run: mv .loki reports/
-        if: always()
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-        if: always()
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          path: 'reports'
-      # - name: Deploy to GitHub Pages
-      #   id: deployment
-      #   if: always()
-      #?   uses: actions/deploy-pages@v4
+#  build-and-ui-testing:
+#    runs-on: ubuntu-latest
+#    concurrency: ci-${{ github.ref }}
+#    environment:
+#      name: github-pages
+#      url: ${{ steps.deployment.outputs.page_url }}
+#    strategy:
+#      matrix:
+#        node-version: [ 20.x ]
+#    steps:
+#      - uses: actions/checkout@v4
+#      - uses: actions/setup-node@v3
+#        with:
+#          node-version: 20
+#          cache: 'yarn'
+#      - name: install modules
+#        run: yarn install --frozen-lockfile
+#      - name: build production project
+#        run: yarn build:prod
+#        if: always()
+#      - name: build storybook
+#        run: yarn storybook:build
+#        if: always()
+#      - name: screenshot testing
+#        run: yarn test:unit
+#        if: always()
+#      - name: unit testing
+#        run: yarn test:ui:ci
+#        if: always()
+#      - name: Generate HTML report
+#        run: yarn test:ui:report
+#        if: always()
+#      - name: move loki
+#        run: mv .loki reports/
+#        if: always()
+#      - name: Setup Pages
+#        uses: actions/configure-pages@v4
+#        if: always()
+#      - name: Upload artifact
+#        uses: actions/upload-artifact@v4
+#        if: always()
+#        with:
+#          path: 'reports'
+#      # - name: Deploy to GitHub Pages
+#      #   id: deployment
+#      #   if: always()
+#      #?   uses: actions/deploy-pages@v4
 
   checks:
     runs-on: ubuntu-latest

@@ -40,7 +40,6 @@ export function buildPlugins({
     if (isDev) {
         plugins.push(new ReactRefreshWebpackPlugin());
         plugins.push(new webpack.HotModuleReplacementPlugin());
-        plugins.push(new webpack.HotModuleReplacementPlugin());
         plugins.push(new BundleAnalyzerPlugin({
             openAnalyzer: false,
         }));

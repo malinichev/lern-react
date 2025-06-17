@@ -5,6 +5,7 @@
   "main": "index.js",
   "private": false,
   "scripts": {
+    "deploy:production": "./node_modules/.bin/pm2 deploy production",
     "dev": "concurrently \"yarn start\" \"yarn start:dev:server\"",
     "dev:vite": "concurrently \"yarn start:vite\" \"yarn start:dev:server\"",
     "start:vite": "vite",
