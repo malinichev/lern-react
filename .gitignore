@@ -1,6 +1,8 @@
 /build
 node_modules
 .idea
+.DS_Store
+/config/.DS_Store
 /storybook-static
 /reports/unit
 .loki/report.html
